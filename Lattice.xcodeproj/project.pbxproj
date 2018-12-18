@@ -9,19 +9,27 @@
 /* Begin PBXBuildFile section */
 		CAC263CA21C6C0EC0018EEA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */; };
 		CAC263CC21C6C0ED0018EEA8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263CB21C6C0EC0018EEA8 /* ViewController.swift */; };
-		CAC263CF21C6C0ED0018EEA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC263CD21C6C0ED0018EEA8 /* Main.storyboard */; };
 		CAC263D121C6C0EF0018EEA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */; };
 		CAC263D421C6C0EF0018EEA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC263D221C6C0EF0018EEA8 /* LaunchScreen.storyboard */; };
+		CAC263DC21C6C1CF0018EEA8 /* TextSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263DB21C6C1CF0018EEA8 /* TextSelectionViewController.swift */; };
+		CAC263DE21C86E8B0018EEA8 /* PhotoProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263DD21C86E8B0018EEA8 /* PhotoProcessor.swift */; };
+		CAC263E021C86EE70018EEA8 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = CAC263DF21C86EE60018EEA8 /* tessdata */; };
+		D963C3844E1FE7513B07D988 /* Pods_Lattice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA05287BA8A88A675C58F70 /* Pods_Lattice.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1938793CEDADB23B1D4E09DE /* Pods-Lattice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lattice.debug.xcconfig"; path = "Target Support Files/Pods-Lattice/Pods-Lattice.debug.xcconfig"; sourceTree = "<group>"; };
+		4FBFE1793BE587CE39C06923 /* Pods-Lattice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lattice.release.xcconfig"; path = "Target Support Files/Pods-Lattice/Pods-Lattice.release.xcconfig"; sourceTree = "<group>"; };
 		CAC263C621C6C0EC0018EEA8 /* Lattice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lattice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAC263CB21C6C0EC0018EEA8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CAC263CE21C6C0ED0018EEA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAC263D321C6C0EF0018EEA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAC263D521C6C0EF0018EEA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAC263DB21C6C1CF0018EEA8 /* TextSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectionViewController.swift; sourceTree = "<group>"; };
+		CAC263DD21C86E8B0018EEA8 /* PhotoProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoProcessor.swift; sourceTree = "<group>"; };
+		CAC263DF21C86EE60018EEA8 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		EEA05287BA8A88A675C58F70 /* Pods_Lattice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lattice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D963C3844E1FE7513B07D988 /* Pods_Lattice.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A43385EAE5CE7A19EE8DC3F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EEA05287BA8A88A675C58F70 /* Pods_Lattice.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C1A00BF6D1D7F782DB07B02B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1938793CEDADB23B1D4E09DE /* Pods-Lattice.debug.xcconfig */,
+				4FBFE1793BE587CE39C06923 /* Pods-Lattice.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CAC263BD21C6C0EC0018EEA8 = {
 			isa = PBXGroup;
 			children = (
 				CAC263C821C6C0EC0018EEA8 /* Lattice */,
 				CAC263C721C6C0EC0018EEA8 /* Products */,
+				C1A00BF6D1D7F782DB07B02B /* Pods */,
+				4A43385EAE5CE7A19EE8DC3F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,9 +82,11 @@
 		CAC263C821C6C0EC0018EEA8 /* Lattice */ = {
 			isa = PBXGroup;
 			children = (
+				CAC263DF21C86EE60018EEA8 /* tessdata */,
 				CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */,
+				CAC263DB21C6C1CF0018EEA8 /* TextSelectionViewController.swift */,
+				CAC263DD21C86E8B0018EEA8 /* PhotoProcessor.swift */,
 				CAC263CB21C6C0EC0018EEA8 /* ViewController.swift */,
-				CAC263CD21C6C0ED0018EEA8 /* Main.storyboard */,
 				CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */,
 				CAC263D221C6C0EF0018EEA8 /* LaunchScreen.storyboard */,
 				CAC263D521C6C0EF0018EEA8 /* Info.plist */,
@@ -71,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAC263D821C6C0EF0018EEA8 /* Build configuration list for PBXNativeTarget "Lattice" */;
 			buildPhases = (
+				8B74A2CF7312E918D4804477 /* [CP] Check Pods Manifest.lock */,
 				CAC263C221C6C0EC0018EEA8 /* Sources */,
 				CAC263C321C6C0EC0018EEA8 /* Frameworks */,
 				CAC263C421C6C0EC0018EEA8 /* Resources */,
+				2D1B8B06A686DCBD93EE08C5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,12 +155,63 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAC263D421C6C0EF0018EEA8 /* LaunchScreen.storyboard in Resources */,
+				CAC263E021C86EE70018EEA8 /* tessdata in Resources */,
 				CAC263D121C6C0EF0018EEA8 /* Assets.xcassets in Resources */,
-				CAC263CF21C6C0ED0018EEA8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2D1B8B06A686DCBD93EE08C5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lattice/Pods-Lattice-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lattice/Pods-Lattice-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B74A2CF7312E918D4804477 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Lattice-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CAC263C221C6C0EC0018EEA8 /* Sources */ = {
@@ -136,6 +219,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAC263CC21C6C0ED0018EEA8 /* ViewController.swift in Sources */,
+				CAC263DE21C86E8B0018EEA8 /* PhotoProcessor.swift in Sources */,
+				CAC263DC21C6C1CF0018EEA8 /* TextSelectionViewController.swift in Sources */,
 				CAC263CA21C6C0EC0018EEA8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,14 +228,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CAC263CD21C6C0ED0018EEA8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CAC263CE21C6C0ED0018EEA8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CAC263D221C6C0EF0018EEA8 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -280,10 +357,12 @@
 		};
 		CAC263D921C6C0EF0018EEA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1938793CEDADB23B1D4E09DE /* Pods-Lattice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37AKFHT6H5;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Lattice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -298,10 +377,12 @@
 		};
 		CAC263DA21C6C0EF0018EEA8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FBFE1793BE587CE39C06923 /* Pods-Lattice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37AKFHT6H5;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Lattice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -1,0 +1,6 @@
+framework module Pods_Lattice {
+  umbrella header "Pods-Lattice-umbrella.h"
+
+  export *
+  module * { export * }
+}

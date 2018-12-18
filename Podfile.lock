@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.8.0)
+  - SnapKit (4.2.0)
+  - TesseractOCRiOS (5.0.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - SnapKit
+  - TesseractOCRiOS
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - SnapKit
+    - TesseractOCRiOS
+
+SPEC CHECKSUMS:
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  TesseractOCRiOS: 2c189465f86abb030d0c5141c90da9705b647854
+
+PODFILE CHECKSUM: 113369a0f4d77a86a02f5d0eac9b2c4b074a9029
+
+COCOAPODS: 1.6.0.beta.2
