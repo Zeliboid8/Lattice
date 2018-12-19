@@ -14,6 +14,8 @@
 		CAC263DC21C6C1CF0018EEA8 /* TextSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263DB21C6C1CF0018EEA8 /* TextSelectionViewController.swift */; };
 		CAC263DE21C86E8B0018EEA8 /* PhotoProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263DD21C86E8B0018EEA8 /* PhotoProcessor.swift */; };
 		CAC263E021C86EE70018EEA8 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = CAC263DF21C86EE60018EEA8 /* tessdata */; };
+		CAD3559021C9DBB50097885A /* CodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3558F21C9DBB50097885A /* CodeScannerViewController.swift */; };
+		CAD3559221CAB6CB0097885A /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3559121CAB6CB0097885A /* QRCode.swift */; };
 		D963C3844E1FE7513B07D988 /* Pods_Lattice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA05287BA8A88A675C58F70 /* Pods_Lattice.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,8 @@
 		CAC263DB21C6C1CF0018EEA8 /* TextSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectionViewController.swift; sourceTree = "<group>"; };
 		CAC263DD21C86E8B0018EEA8 /* PhotoProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoProcessor.swift; sourceTree = "<group>"; };
 		CAC263DF21C86EE60018EEA8 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		CAD3558F21C9DBB50097885A /* CodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScannerViewController.swift; sourceTree = "<group>"; };
+		CAD3559121CAB6CB0097885A /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		EEA05287BA8A88A675C58F70 /* Pods_Lattice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lattice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -85,6 +89,8 @@
 				CAC263DF21C86EE60018EEA8 /* tessdata */,
 				CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */,
 				CAC263DB21C6C1CF0018EEA8 /* TextSelectionViewController.swift */,
+				CAD3558F21C9DBB50097885A /* CodeScannerViewController.swift */,
+				CAD3559121CAB6CB0097885A /* QRCode.swift */,
 				CAC263DD21C86E8B0018EEA8 /* PhotoProcessor.swift */,
 				CAC263CB21C6C0EC0018EEA8 /* ViewController.swift */,
 				CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */,
@@ -173,6 +179,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Lattice/Pods-Lattice-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 			);
@@ -181,6 +188,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 			);
@@ -218,10 +226,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAD3559021C9DBB50097885A /* CodeScannerViewController.swift in Sources */,
 				CAC263CC21C6C0ED0018EEA8 /* ViewController.swift in Sources */,
 				CAC263DE21C86E8B0018EEA8 /* PhotoProcessor.swift in Sources */,
 				CAC263DC21C6C1CF0018EEA8 /* TextSelectionViewController.swift in Sources */,
 				CAC263CA21C6C0EC0018EEA8 /* AppDelegate.swift in Sources */,
+				CAD3559221CAB6CB0097885A /* QRCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

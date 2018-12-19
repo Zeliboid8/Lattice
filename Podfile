@@ -8,6 +8,7 @@ target 'Lattice' do
   # Pods for Lattice
   pod 'TesseractOCRiOS'
   pod 'Alamofire'
+  pod 'AlamofireImage'
   pod 'SnapKit'
 
 post_install do |installer|
