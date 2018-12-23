@@ -2,12 +2,14 @@ PODS:
   - Alamofire (4.8.0)
   - AlamofireImage (3.5.0):
     - Alamofire (~> 4.8)
+  - JTAppleCalendar (7.1.6)
   - SnapKit (4.2.0)
   - TesseractOCRiOS (5.0.1)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
+  - JTAppleCalendar
   - SnapKit
   - TesseractOCRiOS
 
@@ -15,15 +17,17 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireImage
+    - JTAppleCalendar
     - SnapKit
     - TesseractOCRiOS
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
+  JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   TesseractOCRiOS: 2c189465f86abb030d0c5141c90da9705b647854
 
-PODFILE CHECKSUM: 5c9ac2cb26737e62eca44718d6e4e1498c351405
+PODFILE CHECKSUM: e426e749f45c5997862aff5c5fb92c47cab77dbb
 
 COCOAPODS: 1.6.0.beta.2

@@ -56,6 +56,7 @@ class ViewController: UIViewController {
         viewCalendarButton.layer.cornerRadius = cornerRadius
         viewCalendarButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchDown)
         viewCalendarButton.addTarget(self, action: #selector(buttonReleased(sender:)), for: .touchUpOutside)
+        viewCalendarButton.addTarget(self, action: #selector(presentCalendarView(sender:)), for: .touchUpInside)
         view.addSubview(viewCalendarButton)
         
         createGroupButton = UIButton()
@@ -88,7 +89,7 @@ class ViewController: UIViewController {
     
     @objc func setUpConstraints() {
         scanTextButton.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(HPAD)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(2 * HPAD)
             make.height.equalTo(buttonHeight)
             make.leading.trailing.equalTo(view).inset(VPAD)
         }
@@ -136,6 +137,12 @@ class ViewController: UIViewController {
         sender.backgroundColor = sender.backgroundColor?.lighter(by: 10)
         let codeScannerView = CodeScannerViewController()
         present(codeScannerView, animated: true, completion: nil)
+    }
+    
+    @objc func presentCalendarView(sender: UIButton) {
+        sender.backgroundColor = sender.backgroundColor?.lighter(by: 10)
+        let calendarView = CalendarViewController()
+        present(calendarView, animated: true, completion: nil)
     }
 }
 

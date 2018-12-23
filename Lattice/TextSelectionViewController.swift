@@ -161,6 +161,7 @@ class TextSelectionViewController: UIViewController {
         let resizedImage = PhotoProcessor.image(with: selectedImage, scaledTo: CGSize(width: imageView.frame.width, height: imageView.frame.height))
         let text = PhotoProcessor.processPhoto(image: resizedImage, frame: buttonFrame, imageViewFrame: imageView.frame)
         print("Text: \(text)")
+        TextSimilarityCheck.findClosestStrings(inputString: text)
     }
     
     @objc func dismissModalView() {
@@ -214,8 +215,7 @@ extension TextSelectionViewController: AVCapturePhotoCaptureDelegate {
             print("Failed to make a UIImage")
             return
         }
-        
-        print(capturedImage)
+
         selectedImage = capturedImage
         processPhoto()
     }
