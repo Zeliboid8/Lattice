@@ -161,11 +161,20 @@ class TextSelectionController: UIViewController {
         let resizedImage = PhotoProcessor.image(with: selectedImage, scaledTo: CGSize(width: imageView.frame.width, height: imageView.frame.height))
         let text = PhotoProcessor.processPhoto(image: resizedImage, frame: buttonFrame, imageViewFrame: imageView.frame)
         print("Text: \(text)")
-        TextSimilarityCheck.findClosestStrings(inputString: text)
+        let strings = TextSimilarityCheck.findClosestStrings(inputString: text)
+        if !strings.isEmpty {
+            presentNewEventView(strings: strings)
+        }
     }
     
     @objc func dismissModalView() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func presentNewEventView(strings: Set<String>) {
+        let newEventView = EventCreationController()
+        newEventView.modalPresentationStyle = .overCurrentContext
+        present(newEventView, animated: true, completion: nil)
     }
 }
 

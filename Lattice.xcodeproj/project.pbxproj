@@ -15,6 +15,7 @@
 		CA73D43D21D5E7B600CE7720 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73D43721D5E7B600CE7720 /* CalendarCell.swift */; };
 		CA73D43E21D5E7B600CE7720 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73D43821D5E7B600CE7720 /* CalendarController.swift */; };
 		CA73D43F21D5E7B600CE7720 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73D43921D5E7B600CE7720 /* LocationCell.swift */; };
+		CA73D44321D942BF00CE7720 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73D44221D942BF00CE7720 /* TabBarController.swift */; };
 		CAC263CA21C6C0EC0018EEA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */; };
 		CAC263CC21C6C0ED0018EEA8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263CB21C6C0EC0018EEA8 /* ViewController.swift */; };
 		CAC263D121C6C0EF0018EEA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		CA73D43721D5E7B600CE7720 /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		CA73D43821D5E7B600CE7720 /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		CA73D43921D5E7B600CE7720 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		CA73D44221D942BF00CE7720 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CAC263C621C6C0EC0018EEA8 /* Lattice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lattice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAC263CB21C6C0EC0018EEA8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,9 +106,10 @@
 				CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */,
 				CA73D43221D57B9D00CE7720 /* SwipingController.swift */,
 				CAC263DB21C6C1CF0018EEA8 /* TextSelectionController.swift */,
+				CA73D44221D942BF00CE7720 /* TabBarController.swift */,
 				CA2A378421CB8231007D30F2 /* TextSimilarityCheck.swift */,
-				CA73D43721D5E7B600CE7720 /* CalendarCell.swift */,
 				CA73D43821D5E7B600CE7720 /* CalendarController.swift */,
+				CA73D43721D5E7B600CE7720 /* CalendarCell.swift */,
 				CA73D43521D5E7B600CE7720 /* CodeScannerController.swift */,
 				CA73D43421D5E7B500CE7720 /* EventCreationController.swift */,
 				CA73D43921D5E7B600CE7720 /* LocationCell.swift */,
@@ -201,8 +204,10 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Lattice/Pods-Lattice-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/IRLDocumentScanner/IRLDocumentScanner.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -211,8 +216,10 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IRLDocumentScanner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +267,7 @@
 				CA73D43D21D5E7B600CE7720 /* CalendarCell.swift in Sources */,
 				CAC263DC21C6C1CF0018EEA8 /* TextSelectionController.swift in Sources */,
 				CAC263CA21C6C0EC0018EEA8 /* AppDelegate.swift in Sources */,
+				CA73D44321D942BF00CE7720 /* TabBarController.swift in Sources */,
 				CA73D43C21D5E7B600CE7720 /* LocationController.swift in Sources */,
 				CAD3559221CAB6CB0097885A /* QRCode.swift in Sources */,
 			);

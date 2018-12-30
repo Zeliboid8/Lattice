@@ -15,8 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let swipingController = SwipingController()
-        window?.rootViewController = swipingController
+//        let tabBarController = TabBarController()
+//        window?.rootViewController = tabBarController
+        window?.rootViewController = SwipingController()	
         window?.makeKeyAndVisible()
         return true
     }

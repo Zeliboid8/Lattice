@@ -25,13 +25,24 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        if let backgroundImage = UIImage(named: "Mountain Background.png") {
+            let imageView = UIImageView(frame: view.bounds)
+            imageView.contentMode =  .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.image = backgroundImage
+            imageView.center = view.center
+            view.addSubview(imageView)
+            self.view.sendSubviewToBack(imageView)
+        } else {
+            view.backgroundColor = .white
+        }
         
         scanTextButton = UIButton()
         scanTextButton.setTitle("Scan Text", for: .normal)
         scanTextButton.setTitleColor(.white, for: .normal)
         scanTextButton.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .light)
-        scanTextButton.backgroundColor = UIColor(red: 0.929, green: 0.718, blue: 0.259, alpha: 1)
+        scanTextButton.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.2)
+        // scanTextButton.backgroundColor = UIColor(red: 0.929, green: 0.718, blue: 0.259, alpha: 1)
         scanTextButton.layer.cornerRadius = cornerRadius
         scanTextButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchDown)
         scanTextButton.addTarget(self, action: #selector(buttonReleased(sender:)), for: .touchUpOutside)
@@ -42,17 +53,20 @@ class ViewController: UIViewController {
         eventsButton.setTitle("Your Events", for: .normal)
         eventsButton.setTitleColor(.white, for: .normal)
         eventsButton.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .light)
-        eventsButton.backgroundColor = UIColor(red: 0.929, green: 0.498, blue: 0.373, alpha: 1)
+        eventsButton.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.2)
+        // eventsButton.backgroundColor = UIColor(red: 0.929, green: 0.498, blue: 0.373, alpha: 1)
         eventsButton.layer.cornerRadius = cornerRadius
         eventsButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchDown)
         eventsButton.addTarget(self, action: #selector(buttonReleased(sender:)), for: .touchUpOutside)
+        eventsButton.addTarget(self, action: #selector(presentNewEventView(sender:)), for: .touchUpInside)
         view.addSubview(eventsButton)
         
         viewCalendarButton = UIButton()
         viewCalendarButton.setTitle("Your Calendar", for: .normal)
         viewCalendarButton.setTitleColor(.white, for: .normal)
         viewCalendarButton.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .light)
-        viewCalendarButton.backgroundColor = UIColor(red: 0.937, green: 0.486, blue: 0.714, alpha: 1)
+        viewCalendarButton.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.2)
+        // viewCalendarButton.backgroundColor = UIColor(red: 0.937, green: 0.486, blue: 0.714, alpha: 1)
         viewCalendarButton.layer.cornerRadius = cornerRadius
         viewCalendarButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchDown)
         viewCalendarButton.addTarget(self, action: #selector(buttonReleased(sender:)), for: .touchUpOutside)
@@ -63,7 +77,8 @@ class ViewController: UIViewController {
         createGroupButton.setTitle("Create a Group", for: .normal)
         createGroupButton.setTitleColor(.white, for: .normal)
         createGroupButton.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .light)
-        createGroupButton.backgroundColor = UIColor(red: 0.243, green: 0.663, blue: 0.929, alpha: 1)
+        createGroupButton.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.2)
+        // createGroupButton.backgroundColor = UIColor(red: 0.243, green: 0.663, blue: 0.929, alpha: 1)
         createGroupButton.layer.cornerRadius = cornerRadius
         createGroupButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchDown)
         createGroupButton.addTarget(self, action: #selector(buttonReleased(sender:)), for: .touchUpOutside)
@@ -73,7 +88,8 @@ class ViewController: UIViewController {
         addFriendButton.setTitle("Add a Friend", for: .normal)
         addFriendButton.setTitleColor(.white, for: .normal)
         addFriendButton.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .light)
-        addFriendButton.backgroundColor = UIColor(red: 0.624, green: 0.541, blue: 0.914, alpha: 1)
+        addFriendButton.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.2)
+        // addFriendButton.backgroundColor = UIColor(red: 0.624, green: 0.541, blue: 0.914, alpha: 1)
         addFriendButton.layer.cornerRadius = cornerRadius
         addFriendButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchDown)
         addFriendButton.addTarget(self, action: #selector(buttonReleased(sender:)), for: .touchUpOutside)
@@ -139,9 +155,17 @@ class ViewController: UIViewController {
         present(codeScannerView, animated: true, completion: nil)
     }
     
+    @objc func presentNewEventView(sender: UIButton) {
+        sender.backgroundColor = sender.backgroundColor?.lighter(by: 10)
+        let newEventView = EventCreationController()
+        newEventView.modalPresentationStyle = .overCurrentContext
+        present(newEventView, animated: true, completion: nil)
+    }
+    
     @objc func presentCalendarView(sender: UIButton) {
         sender.backgroundColor = sender.backgroundColor?.lighter(by: 10)
         let calendarView = CalendarController()
+        calendarView.modalPresentationStyle = .overCurrentContext
         present(calendarView, animated: true, completion: nil)
     }
 }

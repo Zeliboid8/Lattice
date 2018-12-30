@@ -33,7 +33,11 @@ class CalendarController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 0.937, green: 0.486, blue: 0.714, alpha: 1)
+        
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.frame
+        view.insertSubview(blurEffectView, at: 0)
         
         yearLabel = UILabel()
         yearLabel.textColor = .white
@@ -49,24 +53,31 @@ class CalendarController: UIViewController {
         sunday = UILabel()
         sunday.text = "Sun"
         sunday.textAlignment = .center
+        sunday.textColor = .white
         monday = UILabel()
         monday.text = "Mon"
         monday.textAlignment = .center
+        monday.textColor = .white
         tuesday = UILabel()
         tuesday.text = "Tue"
         tuesday.textAlignment = .center
+        tuesday.textColor = .white
         wednesday = UILabel()
         wednesday.text = "Wed"
         wednesday.textAlignment = .center
+        wednesday.textColor = .white
         thursday = UILabel()
         thursday.text = "Thu"
         thursday.textAlignment = .center
+        thursday.textColor = .white
         friday = UILabel()
         friday.text = "Fri"
         friday.textAlignment = .center
+        friday.textColor = .white
         saturday = UILabel()
         saturday.text = "Sat"
         saturday.textAlignment = .center
+        saturday.textColor = .white
         
         // Adding to stack view to arrange nicely
         dayNames = UIStackView()
@@ -96,6 +107,7 @@ class CalendarController: UIViewController {
         calendar.register(CalendarCell.self, forCellWithReuseIdentifier: calCellReuseIdentifier)
         calendar.scrollToDate(Date(), animateScroll: false)
         calendar.selectDates([Date()])
+        calendar.backgroundColor = .clear
         
         calendar.visibleDates { (visibleDates) in
             let date = visibleDates.monthDates.first!.date

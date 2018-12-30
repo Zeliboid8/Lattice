@@ -16,7 +16,14 @@ class CalendarCell: JTAppleCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor(red: 0.937, green: 0.486, blue: 0.714, alpha: 1)
+        backgroundColor = .clear
+        
+//        let blurEffect = UIBlurEffect(style: .dark)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = contentView.frame
+//        contentView.insertSubview(blurEffectView, at: 0)
+//        contentView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
+        
         dateLabel = UILabel()
         dateLabel.textColor = .white
         dateLabel.textAlignment = .center
