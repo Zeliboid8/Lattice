@@ -9,7 +9,7 @@
 import Foundation
 
 class TextSimilarityCheck {
-    static func findClosestStrings(inputString: String) -> [String] {
+    static func findClosestStrings(inputString: String) -> Set<String> {
         let excessChars = CharacterSet.alphanumerics.inverted.union(CharacterSet(charactersIn: " "))    // Alphaneumerics + spaces aren't removed
         let alphanumeric  = inputString.components(separatedBy: excessChars).joined(separator: " ")
         let separators = CharacterSet(charactersIn: " ,")
@@ -17,11 +17,11 @@ class TextSimilarityCheck {
         let viableStrings: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
                                         "January", "February", "March", "April", "May", "June", "July", "August", "September",
                                         "October", "November", "December"]
-        var parsedStrings: [String] = []
+        var parsedStrings: Set<String> = []
         for viable in viableStrings {
             let jaroWinkler = inputString.jaroWinkler(viable)
             if jaroWinkler > 80 {
-                parsedStrings.insert(viable, at: 0)
+                parsedStrings.insert(viable)
             }
         }
         
@@ -29,7 +29,7 @@ class TextSimilarityCheck {
             for viable in viableStrings {
                 let levenshtein = string.levenshtein(viable)
                 if levenshtein < 2 {
-                    parsedStrings.insert(viable, at: 0)
+                    parsedStrings.insert(viable)
                 }
             }
         }

@@ -129,19 +129,19 @@ class ViewController: UIViewController {
     
     @objc func presentTextSelectionView(sender: UIButton) {
         sender.backgroundColor = sender.backgroundColor?.lighter(by: 10)
-        let textSelectionView = TextSelectionViewController()
+        let textSelectionView = TextSelectionController()
         present(textSelectionView, animated: true, completion: nil)
     }
     
     @objc func presentCodeScannerView(sender: UIButton) {
         sender.backgroundColor = sender.backgroundColor?.lighter(by: 10)
-        let codeScannerView = CodeScannerViewController()
+        let codeScannerView = CodeScannerController()
         present(codeScannerView, animated: true, completion: nil)
     }
     
     @objc func presentCalendarView(sender: UIButton) {
         sender.backgroundColor = sender.backgroundColor?.lighter(by: 10)
-        let calendarView = CalendarViewController()
+        let calendarView = CalendarController()
         present(calendarView, animated: true, completion: nil)
     }
 }
