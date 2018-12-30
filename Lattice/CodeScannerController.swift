@@ -1,5 +1,5 @@
 //
-//  CodeScannerViewController.swift
+//  CodeScannerController.swift
 //  Lattice
 //
 //  Created by Eli Zhang on 12/18/18.
@@ -13,7 +13,7 @@ import SnapKit
 import AVFoundation
 import Vision
 
-class CodeScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class CodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     var imageView: UIImageView!
     var backButton: UIButton!
@@ -31,7 +31,7 @@ class CodeScannerViewController: UIViewController, AVCaptureMetadataOutputObject
         view.addSubview(imageView)
         
         backButton = UIButton()
-        backButton.setImage(UIImage(named: "BackArrow"), for: .normal)
+        backButton.setImage(UIImage(named: "BackArrowWhite"), for: .normal)
         backButton.addTarget(self, action: #selector(dismissModalView), for: .touchUpInside)
         backButton.tag = 1
         view.addSubview(backButton)
@@ -105,7 +105,7 @@ class CodeScannerViewController: UIViewController, AVCaptureMetadataOutputObject
     }
 }
 
-extension CodeScannerViewController {
+extension CodeScannerController {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects.count == 0 {
