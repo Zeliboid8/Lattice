@@ -7,6 +7,7 @@ PODS:
     - TOCropViewController (~> 2.3)
   - IRLDocumentScanner/Default (0.3.1):
     - TOCropViewController (~> 2.3)
+  - JGProgressHUD (2.0.3)
   - JTAppleCalendar (7.1.6)
   - SnapKit (4.2.0)
   - TesseractOCRiOS (5.0.1)
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireImage
   - IRLDocumentScanner
+  - JGProgressHUD
   - JTAppleCalendar
   - SnapKit
   - TesseractOCRiOS
@@ -25,6 +27,7 @@ SPEC REPOS:
     - Alamofire
     - AlamofireImage
     - IRLDocumentScanner
+    - JGProgressHUD
     - JTAppleCalendar
     - SnapKit
     - TesseractOCRiOS
@@ -34,11 +37,12 @@ SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
   IRLDocumentScanner: 8a110e4bae712036dcd98061d046b1bee497c76d
+  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   TesseractOCRiOS: 2c189465f86abb030d0c5141c90da9705b647854
   TOCropViewController: 368d8df3ea43b62c3dc5a61f11b9048274d240bd
 
-PODFILE CHECKSUM: a9f44752c75e7fc683e43377f5eac53cbd44c082
+PODFILE CHECKSUM: de76db5447d632c5f1d9e89bcf8bcc6f71ed9f2d
 
 COCOAPODS: 1.6.0.beta.2

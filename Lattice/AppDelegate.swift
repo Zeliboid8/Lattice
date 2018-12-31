@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
 //        let tabBarController = TabBarController()
 //        window?.rootViewController = tabBarController
-        window?.rootViewController = SwipingController()	
+        window?.rootViewController = SwipingController()
+//        window?.rootViewController = DocumentScannerController()
         window?.makeKeyAndVisible()
         return true
     }

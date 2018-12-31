@@ -92,7 +92,7 @@ class CalendarController: UIViewController {
         view.addSubview(dayNames)
         
         backButton = UIButton()
-        backButton.setImage(UIImage(named: "BackArrowBlack"), for: .normal)
+        backButton.setImage(UIImage(named: "BackArrowWhite"), for: .normal)
         backButton.addTarget(self, action: #selector(dismissModalView), for: .touchUpInside)
         view.addSubview(backButton)
         
@@ -167,7 +167,7 @@ extension CalendarController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDa
             cell.dateLabel.textColor = .white
         }
         else {
-            cell.dateLabel.textColor = .black
+            cell.dateLabel.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
         }
         handleCellSelection(cell: cell, cellState: cellState)
         return cell

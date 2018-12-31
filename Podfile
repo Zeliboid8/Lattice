@@ -12,6 +12,7 @@ target 'Lattice' do
   pod 'SnapKit'
   pod 'JTAppleCalendar'
   pod 'IRLDocumentScanner'
+  pod 'JGProgressHUD'
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|

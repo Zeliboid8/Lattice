@@ -10,7 +10,7 @@ import UIKit
 
 class SwipingController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
-    lazy var viewControllersToDisplay: [UIViewController] = [TextSelectionController(), ViewController(), CodeScannerController()]
+    lazy var viewControllersToDisplay: [UIViewController] = [TextSelectionController(), ViewController(), CalendarController()]
     
     override func viewDidLoad()
     {

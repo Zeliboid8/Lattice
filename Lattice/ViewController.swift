@@ -98,6 +98,7 @@ class ViewController: UIViewController {
         
         settingsButton = UIButton()
         settingsButton.setImage(UIImage(named: "Gear"), for: .normal)
+        settingsButton.addTarget(self, action: #selector(presentProfileView(sender:)), for: .touchUpInside)
         view.addSubview(settingsButton)
         
         setUpConstraints()
@@ -167,6 +168,12 @@ class ViewController: UIViewController {
         let calendarView = CalendarController()
         calendarView.modalPresentationStyle = .overCurrentContext
         present(calendarView, animated: true, completion: nil)
+    }
+    
+    @objc func presentProfileView(sender: UIButton) {
+        let profileView = ProfileController()
+        profileView.modalPresentationStyle = .overCurrentContext
+        present(profileView, animated: true, completion: nil)
     }
 }
 

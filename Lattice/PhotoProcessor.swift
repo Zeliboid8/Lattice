@@ -41,6 +41,13 @@ class PhotoProcessor: NSObject, G8TesseractDelegate {
         return ""
     }
     
+    static func processPhoto(image: UIImage) -> String {
+        let tesseract: G8Tesseract = G8Tesseract(language: "eng")!
+        tesseract.image = image
+        tesseract.recognize()
+        return tesseract.recognizedText!
+    }
+    
     static func image(with image: UIImage, scaledTo newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
         image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))

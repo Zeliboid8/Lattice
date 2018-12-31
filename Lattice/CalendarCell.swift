@@ -31,7 +31,7 @@ class CalendarCell: JTAppleCell {
         
         selectedView = UIView()
         selectedView.backgroundColor = .white
-        selectedView.layer.cornerRadius = 20
+        selectedView.layer.cornerRadius = 5
         selectedView.layer.opacity = 0.3
         selectedView.isHidden = true
         contentView.addSubview(selectedView)

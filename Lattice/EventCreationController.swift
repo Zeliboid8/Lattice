@@ -93,6 +93,7 @@ class EventCreationController: UIViewController {
         stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
+        stackView.spacing = 25
         stackView.addArrangedSubview(eventNameLabel)
         stackView.addArrangedSubview(dateLabel)
         stackView.addArrangedSubview(locationLabel)
@@ -135,7 +136,7 @@ class EventCreationController: UIViewController {
         stackView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(titleLabel.snp.bottom).offset(vOffset)
             make.leading.equalTo(view).offset(hOffset)
-            make.bottom.equalTo(submitButton.snp.top).offset(-vOffset)
+//            make.bottom.equalTo(submitButton.snp.top).offset(-vOffset)
             make.width.equalTo(110)
         }
         eventNameTextField.snp.makeConstraints { (make) -> Void in
