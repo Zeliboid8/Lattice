@@ -10,6 +10,8 @@ target 'Lattice' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'SnapKit'
+  pod 'JTAppleCalendar'
+  pod 'IRLDocumentScanner'
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|

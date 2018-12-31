@@ -7,14 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA2A378521CB8231007D30F2 /* TextSimilarityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2A378421CB8231007D30F2 /* TextSimilarityCheck.swift */; };
+		CA73D43321D57B9D00CE7720 /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73D43221D57B9D00CE7720 /* SwipingController.swift */; };
+		CA73D43A21D5E7B600CE7720 /* EventCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73D43421D5E7B500CE7720 /* EventCreationController.swift */; };
+		CA73D43B21D5E7B600CE7720 /* CodeScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73D43521D5E7B600CE7720 /* CodeScannerController.swift */; };
+		CA73D43C21D5E7B600CE7720 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73D43621D5E7B600CE7720 /* LocationController.swift */; };
+		CA73D43D21D5E7B600CE7720 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73D43721D5E7B600CE7720 /* CalendarCell.swift */; };
+		CA73D43E21D5E7B600CE7720 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73D43821D5E7B600CE7720 /* CalendarController.swift */; };
+		CA73D43F21D5E7B600CE7720 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73D43921D5E7B600CE7720 /* LocationCell.swift */; };
+		CA73D44321D942BF00CE7720 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73D44221D942BF00CE7720 /* TabBarController.swift */; };
 		CAC263CA21C6C0EC0018EEA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */; };
 		CAC263CC21C6C0ED0018EEA8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263CB21C6C0EC0018EEA8 /* ViewController.swift */; };
 		CAC263D121C6C0EF0018EEA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */; };
 		CAC263D421C6C0EF0018EEA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC263D221C6C0EF0018EEA8 /* LaunchScreen.storyboard */; };
-		CAC263DC21C6C1CF0018EEA8 /* TextSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263DB21C6C1CF0018EEA8 /* TextSelectionViewController.swift */; };
+		CAC263DC21C6C1CF0018EEA8 /* TextSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263DB21C6C1CF0018EEA8 /* TextSelectionController.swift */; };
 		CAC263DE21C86E8B0018EEA8 /* PhotoProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263DD21C86E8B0018EEA8 /* PhotoProcessor.swift */; };
 		CAC263E021C86EE70018EEA8 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = CAC263DF21C86EE60018EEA8 /* tessdata */; };
-		CAD3559021C9DBB50097885A /* CodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3558F21C9DBB50097885A /* CodeScannerViewController.swift */; };
 		CAD3559221CAB6CB0097885A /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3559121CAB6CB0097885A /* QRCode.swift */; };
 		D963C3844E1FE7513B07D988 /* Pods_Lattice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA05287BA8A88A675C58F70 /* Pods_Lattice.framework */; };
 /* End PBXBuildFile section */
@@ -22,16 +30,24 @@
 /* Begin PBXFileReference section */
 		1938793CEDADB23B1D4E09DE /* Pods-Lattice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lattice.debug.xcconfig"; path = "Target Support Files/Pods-Lattice/Pods-Lattice.debug.xcconfig"; sourceTree = "<group>"; };
 		4FBFE1793BE587CE39C06923 /* Pods-Lattice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lattice.release.xcconfig"; path = "Target Support Files/Pods-Lattice/Pods-Lattice.release.xcconfig"; sourceTree = "<group>"; };
+		CA2A378421CB8231007D30F2 /* TextSimilarityCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSimilarityCheck.swift; sourceTree = "<group>"; };
+		CA73D43221D57B9D00CE7720 /* SwipingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
+		CA73D43421D5E7B500CE7720 /* EventCreationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCreationController.swift; sourceTree = "<group>"; };
+		CA73D43521D5E7B600CE7720 /* CodeScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeScannerController.swift; sourceTree = "<group>"; };
+		CA73D43621D5E7B600CE7720 /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
+		CA73D43721D5E7B600CE7720 /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		CA73D43821D5E7B600CE7720 /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
+		CA73D43921D5E7B600CE7720 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		CA73D44221D942BF00CE7720 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CAC263C621C6C0EC0018EEA8 /* Lattice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lattice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAC263CB21C6C0EC0018EEA8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAC263D321C6C0EF0018EEA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAC263D521C6C0EF0018EEA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CAC263DB21C6C1CF0018EEA8 /* TextSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectionViewController.swift; sourceTree = "<group>"; };
+		CAC263DB21C6C1CF0018EEA8 /* TextSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectionController.swift; sourceTree = "<group>"; };
 		CAC263DD21C86E8B0018EEA8 /* PhotoProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoProcessor.swift; sourceTree = "<group>"; };
 		CAC263DF21C86EE60018EEA8 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
-		CAD3558F21C9DBB50097885A /* CodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScannerViewController.swift; sourceTree = "<group>"; };
 		CAD3559121CAB6CB0097885A /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		EEA05287BA8A88A675C58F70 /* Pods_Lattice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lattice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -88,8 +104,16 @@
 			children = (
 				CAC263DF21C86EE60018EEA8 /* tessdata */,
 				CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */,
-				CAC263DB21C6C1CF0018EEA8 /* TextSelectionViewController.swift */,
-				CAD3558F21C9DBB50097885A /* CodeScannerViewController.swift */,
+				CA73D43221D57B9D00CE7720 /* SwipingController.swift */,
+				CAC263DB21C6C1CF0018EEA8 /* TextSelectionController.swift */,
+				CA73D44221D942BF00CE7720 /* TabBarController.swift */,
+				CA2A378421CB8231007D30F2 /* TextSimilarityCheck.swift */,
+				CA73D43821D5E7B600CE7720 /* CalendarController.swift */,
+				CA73D43721D5E7B600CE7720 /* CalendarCell.swift */,
+				CA73D43521D5E7B600CE7720 /* CodeScannerController.swift */,
+				CA73D43421D5E7B500CE7720 /* EventCreationController.swift */,
+				CA73D43921D5E7B600CE7720 /* LocationCell.swift */,
+				CA73D43621D5E7B600CE7720 /* LocationController.swift */,
 				CAD3559121CAB6CB0097885A /* QRCode.swift */,
 				CAC263DD21C86E8B0018EEA8 /* PhotoProcessor.swift */,
 				CAC263CB21C6C0EC0018EEA8 /* ViewController.swift */,
@@ -180,7 +204,10 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Lattice/Pods-Lattice-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/IRLDocumentScanner/IRLDocumentScanner.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -189,7 +216,10 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IRLDocumentScanner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,11 +256,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAD3559021C9DBB50097885A /* CodeScannerViewController.swift in Sources */,
+				CA2A378521CB8231007D30F2 /* TextSimilarityCheck.swift in Sources */,
+				CA73D43E21D5E7B600CE7720 /* CalendarController.swift in Sources */,
 				CAC263CC21C6C0ED0018EEA8 /* ViewController.swift in Sources */,
+				CA73D43321D57B9D00CE7720 /* SwipingController.swift in Sources */,
+				CA73D43A21D5E7B600CE7720 /* EventCreationController.swift in Sources */,
+				CA73D43F21D5E7B600CE7720 /* LocationCell.swift in Sources */,
 				CAC263DE21C86E8B0018EEA8 /* PhotoProcessor.swift in Sources */,
-				CAC263DC21C6C1CF0018EEA8 /* TextSelectionViewController.swift in Sources */,
+				CA73D43B21D5E7B600CE7720 /* CodeScannerController.swift in Sources */,
+				CA73D43D21D5E7B600CE7720 /* CalendarCell.swift in Sources */,
+				CAC263DC21C6C1CF0018EEA8 /* TextSelectionController.swift in Sources */,
 				CAC263CA21C6C0EC0018EEA8 /* AppDelegate.swift in Sources */,
+				CA73D44321D942BF00CE7720 /* TabBarController.swift in Sources */,
+				CA73D43C21D5E7B600CE7720 /* LocationController.swift in Sources */,
 				CAD3559221CAB6CB0097885A /* QRCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

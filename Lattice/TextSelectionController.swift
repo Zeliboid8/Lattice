@@ -13,7 +13,7 @@ import SnapKit
 import AVFoundation
 import Vision
 
-class TextSelectionViewController: UIViewController {
+class TextSelectionController: UIViewController {
     
     var imageView: UIImageView!
     var backButton: UIButton!
@@ -32,7 +32,7 @@ class TextSelectionViewController: UIViewController {
         view.addSubview(imageView)
         
         backButton = UIButton()
-        backButton.setImage(UIImage(named: "BackArrow"), for: .normal)
+        backButton.setImage(UIImage(named: "BackArrowWhite"), for: .normal)
         backButton.addTarget(self, action: #selector(dismissModalView), for: .touchUpInside)
         backButton.tag = 1
         view.addSubview(backButton)
@@ -161,14 +161,24 @@ class TextSelectionViewController: UIViewController {
         let resizedImage = PhotoProcessor.image(with: selectedImage, scaledTo: CGSize(width: imageView.frame.width, height: imageView.frame.height))
         let text = PhotoProcessor.processPhoto(image: resizedImage, frame: buttonFrame, imageViewFrame: imageView.frame)
         print("Text: \(text)")
+        let strings = TextSimilarityCheck.findClosestStrings(inputString: text)
+        if !strings.isEmpty {
+            presentNewEventView(strings: strings)
+        }
     }
     
     @objc func dismissModalView() {
         dismiss(animated: true, completion: nil)
     }
+    
+    @objc func presentNewEventView(strings: Set<String>) {
+        let newEventView = EventCreationController()
+        newEventView.modalPresentationStyle = .overCurrentContext
+        present(newEventView, animated: true, completion: nil)
+    }
 }
 
-extension TextSelectionViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension TextSelectionController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
@@ -190,7 +200,7 @@ extension TextSelectionViewController: AVCaptureVideoDataOutputSampleBufferDeleg
     }
 }
 
-extension TextSelectionViewController: AVCapturePhotoCaptureDelegate {
+extension TextSelectionController: AVCapturePhotoCaptureDelegate {
     func capturePhoto() {
         let settings = AVCapturePhotoSettings()
         let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
@@ -214,8 +224,7 @@ extension TextSelectionViewController: AVCapturePhotoCaptureDelegate {
             print("Failed to make a UIImage")
             return
         }
-        
-        print(capturedImage)
+
         selectedImage = capturedImage
         processPhoto()
     }
