@@ -105,7 +105,6 @@ class CalendarController: UIViewController {
         calendar.minimumLineSpacing = 0
         calendar.isPagingEnabled = true
         calendar.register(CalendarCell.self, forCellWithReuseIdentifier: calCellReuseIdentifier)
-        calendar.scrollToDate(Date(), animateScroll: false)
         calendar.selectDates([Date()])
         calendar.backgroundColor = .clear
         

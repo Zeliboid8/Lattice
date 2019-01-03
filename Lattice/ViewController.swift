@@ -82,6 +82,7 @@ class ViewController: UIViewController {
         createGroupButton.layer.cornerRadius = cornerRadius
         createGroupButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchDown)
         createGroupButton.addTarget(self, action: #selector(buttonReleased(sender:)), for: .touchUpOutside)
+        createGroupButton.addTarget(self, action: #selector(presentGroupView(sender:)), for: .touchUpInside)
         view.addSubview(createGroupButton)
         
         addFriendButton = UIButton()
@@ -168,6 +169,12 @@ class ViewController: UIViewController {
         let calendarView = CalendarController()
         calendarView.modalPresentationStyle = .overCurrentContext
         present(calendarView, animated: true, completion: nil)
+    }
+    
+    @objc func presentGroupView(sender: UIButton) {
+        sender.backgroundColor = sender.backgroundColor?.lighter(by: 10)
+        let groupView = GroupViewController()
+        present(groupView, animated: true, completion: nil)
     }
     
     @objc func presentProfileView(sender: UIButton) {

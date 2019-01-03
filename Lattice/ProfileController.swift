@@ -32,7 +32,7 @@ class ProfileController: UIViewController {
         
         let layer = CAShapeLayer()
         layer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: view.frame.height / 3, width: view.frame.width, height: view.frame.height * 2 / 3), cornerRadius: 0).cgPath
-        layer.fillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3).cgColor
+        layer.fillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7).cgColor
         view.layer.addSublayer(layer)
         
         imageView = UIImageView()
