@@ -71,10 +71,10 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         addButton.layer.masksToBounds = false
         view.addSubview(addButton)
         
-        setUpConstraints()
+        setupConstraints()
     }
     
-    func setUpConstraints() {
+    func setupConstraints() {
         backButton.snp.makeConstraints { (make) -> Void in
             make.height.width.equalTo(30)
             make.leading.top.equalTo(view.safeAreaLayoutGuide).offset(buttonOffset)

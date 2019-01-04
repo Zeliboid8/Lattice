@@ -113,10 +113,10 @@ class EventCreationController: UIViewController {
         let tapToDismiss = UITapGestureRecognizer(target: self, action: #selector(viewTapped(gesture:)))
         view.addGestureRecognizer(tapToDismiss)
     
-        setUpConstraints()
+        setupConstraints()
     }
 
-    func setUpConstraints() {
+    func setupConstraints() {
         backButton.snp.makeConstraints{ (make) -> Void in
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(buttonOffset)
             make.top.equalTo(view.safeAreaLayoutGuide).offset(vOffset)

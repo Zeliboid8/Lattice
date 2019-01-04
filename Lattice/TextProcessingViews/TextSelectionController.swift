@@ -40,7 +40,7 @@ class TextSelectionController: UIViewController {
         startLiveVideo()
         startTextDetection()
         
-        setUpConstraints()
+        setupConstraints()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -51,7 +51,7 @@ class TextSelectionController: UIViewController {
         }
     }
     
-    func setUpConstraints() {
+    func setupConstraints() {
         imageView.snp.makeConstraints{ (make) -> Void in
             make.edges.equalTo(view)
         }

@@ -62,10 +62,10 @@ class ProfileController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableEditing))
         
-        setUpConstraints()
+        setupConstraints()
     }
     
-    func setUpConstraints() {
+    func setupConstraints() {
         imageView.snp.makeConstraints{ (make) -> Void in
             make.centerY.equalTo(view).offset(-1 * view.frame.height / 6)
             make.centerX.equalTo(view)

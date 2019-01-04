@@ -7,8 +7,6 @@
 //
 
 import UIKit
-
-import UIKit
 import SnapKit
 import AVFoundation
 import Vision
@@ -47,7 +45,7 @@ class CodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsDel
         }
         
         startLiveVideo()        
-        setUpConstraints()
+        setupConstraints()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -58,7 +56,7 @@ class CodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsDel
         }
     }
     
-    func setUpConstraints() {
+    func setupConstraints() {
         imageView.snp.makeConstraints{ (make) -> Void in
             make.edges.equalTo(view)
         }

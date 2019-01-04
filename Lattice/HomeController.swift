@@ -1,100 +1,80 @@
 //
-//  CalendarController.swift
+//  HomeController.swift
 //  Lattice
 //
-//  Created by Eli Zhang on 12/19/18.
-//  Copyright © 2018 Eli Zhang. All rights reserved.
+//  Created by Eli Zhang on 1/3/19.
+//  Copyright © 2019 Eli Zhang. All rights reserved.
 //
 
 import UIKit
-import JTAppleCalendar
 import SnapKit
+import JTAppleCalendar
 
-class CalendarController: UIViewController {
-    
+class HomeController: UIViewController {
+
+    var menuBar: MenuBar!
+    var radialGradient: RadialGradientView!
     var calendar: JTAppleCalendarView!
+    var infoBox: UIView!
     var dayNames: UIStackView!
-    var sunday: UILabel!
-    var monday: UILabel!
-    var tuesday: UILabel!
-    var wednesday: UILabel!
-    var thursday: UILabel!
-    var friday: UILabel!
-    var saturday: UILabel!
-    
-    var yearLabel: UILabel!
     var monthLabel: UILabel!
-    var backButton: UIButton!
+    var addButton: UIButton!
     
     let formatter = DateFormatter()
-    
-    let buttonOffset: CGFloat = 8
+    let labelColor = UIColor(red: 0.82, green: 0.82, blue: 0.82, alpha: 1)
+    let dayTitles = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
     let calCellReuseIdentifier = "calCellReuseIdentifier"
+    let menuBarHeight: CGFloat = 70
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .black
         
-        let blurEffect = UIBlurEffect(style: .dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.view.frame
-        view.insertSubview(blurEffectView, at: 0)
+        menuBar = MenuBar()
+        view.addSubview(menuBar)
         
-        yearLabel = UILabel()
-        yearLabel.textColor = .white
-        yearLabel.font = UIFont.systemFont(ofSize: 30)
-        view.addSubview(yearLabel)
+        radialGradient = RadialGradientView()
+        view.addSubview(radialGradient)
+        view.sendSubviewToBack(radialGradient)
         
+        setupInfoBox()
+        
+        addButton = UIButton()
+        addButton.backgroundColor = UIColor(red: 1, green: 0.18, blue: 0.38, alpha: 1)
+        addButton.setTitle("+", for: .normal)
+        addButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 50)
+        addButton.titleLabel?.textAlignment = .center
+        addButton.setTitleColor(.black, for: .normal)
+        addButton.layer.cornerRadius = 40
+        addButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        addButton.layer.shadowOffset = CGSize(width: 5, height: 7)
+        addButton.layer.shadowOpacity = 0.8
+        addButton.layer.shadowRadius = 2
+        addButton.layer.masksToBounds = false
+        view.addSubview(addButton)
+        
+        setupCalendar()
+        setupConstraints()
+    }
+    
+    func setupCalendar() {
         monthLabel = UILabel()
-        monthLabel.textColor = .white
-        monthLabel.font = UIFont.systemFont(ofSize: 20)
+        monthLabel.textColor = labelColor
+        monthLabel.font = UIFont(name: "Nunito-Regular", size: 40)
         view.addSubview(monthLabel)
         
         // Setting up day name labels
-        sunday = UILabel()
-        sunday.text = "Sun"
-        sunday.textAlignment = .center
-        sunday.textColor = .white
-        monday = UILabel()
-        monday.text = "Mon"
-        monday.textAlignment = .center
-        monday.textColor = .white
-        tuesday = UILabel()
-        tuesday.text = "Tue"
-        tuesday.textAlignment = .center
-        tuesday.textColor = .white
-        wednesday = UILabel()
-        wednesday.text = "Wed"
-        wednesday.textAlignment = .center
-        wednesday.textColor = .white
-        thursday = UILabel()
-        thursday.text = "Thu"
-        thursday.textAlignment = .center
-        thursday.textColor = .white
-        friday = UILabel()
-        friday.text = "Fri"
-        friday.textAlignment = .center
-        friday.textColor = .white
-        saturday = UILabel()
-        saturday.text = "Sat"
-        saturday.textAlignment = .center
-        saturday.textColor = .white
-        
-        // Adding to stack view to arrange nicely
         dayNames = UIStackView()
         dayNames.distribution = .fillEqually
-        dayNames.addArrangedSubview(sunday)
-        dayNames.addArrangedSubview(monday)
-        dayNames.addArrangedSubview(tuesday)
-        dayNames.addArrangedSubview(wednesday)
-        dayNames.addArrangedSubview(thursday)
-        dayNames.addArrangedSubview(friday)
-        dayNames.addArrangedSubview(saturday)
+        for day in dayTitles {
+            let dayLabel = UILabel()
+            dayLabel.text = day
+            dayLabel.textAlignment = .center
+            dayLabel.textColor = labelColor
+            dayLabel.font = UIFont(name: "Nunito-Bold", size: 15)
+            dayNames.addArrangedSubview(dayLabel)
+        }
         view.addSubview(dayNames)
-        
-        backButton = UIButton()
-        backButton.setImage(UIImage(named: "BackArrowWhite"), for: .normal)
-        backButton.addTarget(self, action: #selector(dismissModalView), for: .touchUpInside)
-        view.addSubview(backButton)
         
         calendar = JTAppleCalendarView(frame: .zero)
         calendar.calendarDelegate = self
@@ -112,45 +92,56 @@ class CalendarController: UIViewController {
             let date = visibleDates.monthDates.first!.date
             
             self.formatter.dateFormat = "YYYY"
-            self.yearLabel.text = self.formatter.string(from: date)
             self.formatter.dateFormat = "MMMM"
             self.monthLabel.text = self.formatter.string(from: date)
             
         }
         view.addSubview(calendar)
-        setUpConstraints()
     }
     
-    func setUpConstraints() {
-        backButton.snp.makeConstraints{ (make) -> Void in
-            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(buttonOffset)
-            make.height.width.equalTo(30)
+    func setupInfoBox() {
+        infoBox = UIView()
+        infoBox.backgroundColor = UIColor(red: 0.22, green: 0.22, blue: 0.22, alpha: 0.64)
+        infoBox.layer.cornerRadius = 8
+        
+        
+        view.addSubview(infoBox)
+    }
+    
+    func setupConstraints() {
+        menuBar.snp.makeConstraints { (make) -> Void in
+            make.bottom.leading.trailing.equalTo(view)
+            make.height.equalTo(menuBarHeight)
         }
-        yearLabel.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(backButton.snp.bottom).offset(20)
-            make.leading.equalTo(view).offset(20)
+        radialGradient.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(view)
         }
-        monthLabel.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(yearLabel.snp.bottom).offset(20)
-            make.leading.equalTo(view).offset(20)
+        monthLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(30)
         }
-        dayNames.snp.makeConstraints{ (make) -> Void in
+        dayNames.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(monthLabel.snp.bottom).offset(20)
             make.leading.trailing.equalTo(view).inset(20)
         }
-        calendar.snp.makeConstraints{ (make) -> Void in
+        calendar.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(dayNames.snp.bottom).offset(10)
             make.leading.trailing.equalTo(view).inset(20)
-            make.height.equalTo(300)
+            make.height.equalTo(250)
+        }
+        infoBox.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(calendar.snp.bottom).offset(20)
+            make.leading.trailing.equalTo(view).inset(20)
+            make.bottom.equalTo(menuBar.snp.top).offset(-30)
+        }
+        addButton.snp.makeConstraints { (make) -> Void in
+            make.trailing.bottom.equalTo(infoBox).inset(10)
+            make.height.width.equalTo(80)
         }
     }
-    
-    @objc func dismissModalView() {
-        dismiss(animated: true, completion: nil)
-    }
 }
-    
-extension CalendarController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
+
+extension HomeController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         let customCell = cell as! CalendarCell
         customCell.setNeedsUpdateConstraints()
@@ -163,7 +154,7 @@ extension CalendarController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDa
         cell.setNeedsUpdateConstraints()
         cell.configure(text: cellState.text)
         if cellState.dateBelongsTo == .thisMonth {
-            cell.dateLabel.textColor = .white
+            cell.dateLabel.textColor = labelColor
         }
         else {
             cell.dateLabel.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
@@ -195,7 +186,6 @@ extension CalendarController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDa
         let date = visibleDates.monthDates.first!.date
         
         formatter.dateFormat = "YYYY"
-        yearLabel.text = formatter.string(from: date)
         formatter.dateFormat = "MMMM"
         monthLabel.text = formatter.string(from: date)
     }

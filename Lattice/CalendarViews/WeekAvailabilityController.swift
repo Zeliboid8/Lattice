@@ -64,10 +64,10 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
         tap.delegate = self
         tap.cancelsTouchesInView = false
         collectionView.addGestureRecognizer(tap)
-        setUpConstraints()
+        setupConstraints()
     }
     
-    func setUpConstraints() {
+    func setupConstraints() {
         dailyTimes.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)

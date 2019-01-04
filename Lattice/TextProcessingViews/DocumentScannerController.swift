@@ -25,10 +25,10 @@ class DocumentScannerController: UIViewController, IRLScannerViewControllerDeleg
         scanButton.setTitle("Scan", for: .normal)
         scanButton.addTarget(self, action: #selector(scan(sender:)), for: .touchUpInside)
         view.addSubview(scanButton)
-        setUpConstraints()
+        setupConstraints()
     }
 
-    func setUpConstraints() {
+    func setupConstraints() {
         scanButton.snp.makeConstraints { (make) -> Void in
             make.leading.trailing.equalTo(view).inset(30)
             make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
