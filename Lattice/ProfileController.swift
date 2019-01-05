@@ -11,97 +11,197 @@ import SnapKit
 
 class ProfileController: UIViewController {
 
-    var nameTextField: UITextField!
-    var netIDLabel: UILabel!
-    var imageView: UIImageView!
-    var yearTextField: UITextField!
-    var majorTextField: UITextField!
-    var bio: UITextView!
-    var signOutButton: UIButton!
+    var menuBar: MenuBar!
+    var radialGradient: RadialGradientView!
+    var profilePhoto: UIImageView!
+    var nameLabel: UILabel!
+    var usernameLabel: UILabel!
+    var qrCodeButton: UIButton!
+    var emailStackView: UIStackView!
+    var emailLabel: UILabel!
+    var emailTextField: UITextField!
+    var passwordStackView: UIStackView!
+    var passwordLabel: UILabel!
+    var passwordTextField: UITextField!
+    var notificationsLabel: UILabel!
+    var logoutButton: UIButton!
+    
+    let photoHeight: CGFloat = 120
+    let buttonHeight: CGFloat = 50
+    let menuBarHeight: CGFloat = 70
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .clear
-        let blurEffect = UIBlurEffect(style: .dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.view.frame
-        view.insertSubview(blurEffectView, at: 0)
-        
+        view.backgroundColor = .black
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        let tapToDismiss = UITapGestureRecognizer(target: self, action: #selector(viewTapped(gesture:)))
+        view.addGestureRecognizer(tapToDismiss)
         
-        let layer = CAShapeLayer()
-        layer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: view.frame.height / 3, width: view.frame.width, height: view.frame.height * 2 / 3), cornerRadius: 0).cgPath
-        layer.fillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7).cgColor
-        view.layer.addSublayer(layer)
+        menuBar = MenuBar()
+        view.addSubview(menuBar)
         
-        imageView = UIImageView()
-        view.addSubview(imageView)
+        radialGradient = RadialGradientView()
+        view.addSubview(radialGradient)
+        view.sendSubviewToBack(radialGradient)
         
-        nameTextField = UITextField()
-        nameTextField.font = UIFont.systemFont(ofSize: 40, weight: .bold)
-        nameTextField.isUserInteractionEnabled = false
-        nameTextField.placeholder = "Name"
-        nameTextField.text = "Joe Shmoe"
-        nameTextField.textAlignment = .center
-        view.addSubview(nameTextField)
+        profilePhoto = UIImageView()
+        profilePhoto.layer.masksToBounds = false
+        profilePhoto.layer.cornerRadius = photoHeight / 2
+        profilePhoto.image = UIImage(named: "ProfilePhoto")
+        profilePhoto.clipsToBounds = true
+        profilePhoto.contentMode = .scaleAspectFit
         
-        bio = UITextView()
-        bio.backgroundColor = .clear
-        bio.font = UIFont.systemFont(ofSize: 18, weight: .light)
-        bio.textColor = .black
-        bio.text = "squidward"
-        view.addSubview(bio)
+        nameLabel = UILabel()
+        nameLabel.text = "Eli Zhang"
+        nameLabel.textColor = .white
+        nameLabel.textAlignment = .center
+        nameLabel.font = UIFont(name: "Nunito-Bold", size: 25)
         
-        signOutButton = UIButton()
-        signOutButton.setTitle("Sign out", for: .normal)
-        signOutButton.setTitleColor(.black, for: .normal)
-        signOutButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .light)
-        signOutButton.addTarget(self, action: #selector(signOut), for: .touchUpInside)
-        view.addSubview(signOutButton)
+        usernameLabel = UILabel()
+        usernameLabel.text = "@elikzhang"
+        usernameLabel.textColor = .white
+        usernameLabel.textAlignment = .center
+        usernameLabel.font = UIFont(name: "Nunito-Regular", size: 18)
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableEditing))
+        qrCodeButton = UIButton()
+        qrCodeButton.setTitle("My QR Code", for: .normal)
+        qrCodeButton.setImage(UIImage(named: "QRCode"), for: .normal)
+        qrCodeButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        qrCodeButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        qrCodeButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        qrCodeButton.imageView?.contentMode = .scaleAspectFit
+        qrCodeButton.imageView?.clipsToBounds = true
+        qrCodeButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        qrCodeButton.setTitleColor(.white, for: .normal)
+        qrCodeButton.contentMode = .center
+        qrCodeButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 20)
+        qrCodeButton.titleLabel?.textAlignment = .center
+        qrCodeButton.backgroundColor = UIColor(red: 0.03, green: 0.85, blue: 0.84, alpha: 1)
+        qrCodeButton.layer.cornerRadius = buttonHeight / 2
+        qrCodeButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        qrCodeButton.layer.shadowOffset = CGSize(width: 5, height: 7)
+        qrCodeButton.layer.shadowOpacity = 0.8
+        qrCodeButton.layer.masksToBounds = false
+        
+        emailLabel = UILabel()
+        emailLabel.text = "EMAIL"
+        emailLabel.textColor = .white
+        emailLabel.font = UIFont(name: "Nunito-Semibold", size: 18)
+        
+        emailTextField = UITextField()
+        emailTextField.text = "elikzhang@gmail.com"
+        emailTextField.placeholder = "Email"
+        emailTextField.textColor = .white
+        emailTextField.font = UIFont(name: "Nunito-Regular", size: 18)
+        
+        emailStackView = UIStackView()
+        emailStackView.axis = .horizontal
+        emailStackView.distribution = .fill
+        emailStackView.addArrangedSubview(emailLabel)
+        emailStackView.addArrangedSubview(emailTextField)
+        
+        passwordLabel = UILabel()
+        passwordLabel.text = "PASSWORD"
+        passwordLabel.textColor = .white
+        passwordLabel.font = UIFont(name: "Nunito-Semibold", size: 18)
+        
+        passwordTextField = UITextField()
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.text = "password123"
+        passwordTextField.textColor = .white
+        passwordTextField.placeholder = "Password"
+        passwordTextField.font = UIFont(name: "Nunito-Regular", size: 18)
+        
+        passwordStackView = UIStackView()
+        passwordStackView.axis = .horizontal
+        passwordStackView.distribution = .fill
+        passwordStackView.addArrangedSubview(passwordLabel)
+        passwordStackView.addArrangedSubview(passwordTextField)
+        
+        notificationsLabel = UILabel()
+        notificationsLabel.text = "NOTIFICATIONS"
+        notificationsLabel.textColor = .white
+        notificationsLabel.font = UIFont(name: "Nunito-Semibold", size: 18)
+        
+        logoutButton = UIButton()
+        logoutButton.setTitle("Logout", for: .normal)
+        logoutButton.setTitleColor(.white, for: .normal)
+        logoutButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 20)
+        logoutButton.backgroundColor = UIColor(red: 1, green: 0.18, blue: 0.38, alpha: 1)
+        logoutButton.layer.cornerRadius = buttonHeight / 2
+        logoutButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        logoutButton.layer.shadowOffset = CGSize(width: 5, height: 7)
+        logoutButton.layer.shadowOpacity = 0.8
+        logoutButton.layer.masksToBounds = false
+
+        view.addSubview(profilePhoto)
+        view.addSubview(nameLabel)
+        view.addSubview(usernameLabel)
+        view.addSubview(qrCodeButton)
+        view.addSubview(emailStackView)
+        view.addSubview(passwordStackView)
+        view.addSubview(notificationsLabel)
+        view.addSubview(logoutButton)
         
         setupConstraints()
     }
     
     func setupConstraints() {
-        imageView.snp.makeConstraints{ (make) -> Void in
-            make.centerY.equalTo(view).offset(-1 * view.frame.height / 6)
+        menuBar.snp.makeConstraints { (make) -> Void in
+            make.bottom.leading.trailing.equalTo(view)
+            make.height.equalTo(menuBarHeight)
+        }
+        radialGradient.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(view)
+        }
+        profilePhoto.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
+            make.height.width.equalTo(photoHeight)
             make.centerX.equalTo(view)
-            make.height.width.equalTo(100)
         }
-        nameTextField.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(imageView.snp.bottom).offset(10)
+        nameLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(profilePhoto.snp.bottom).offset(15)
             make.centerX.equalTo(view)
         }
-        bio.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(nameTextField.snp.bottom).offset(20)
-            make.bottom.equalTo(signOutButton.snp.top).offset(20)
-            make.leading.equalTo(view).offset(20)
-            make.trailing.equalTo(view).offset(-20)
+        usernameLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(nameLabel.snp.bottom).offset(5)
+            make.centerX.equalTo(view)
         }
-        signOutButton.snp.makeConstraints{ (make) -> Void in
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
-            make.leading.equalTo(view).offset(20)
+        qrCodeButton.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(usernameLabel.snp.bottom).offset(20)
+            make.centerX.equalTo(view)
+            make.height.equalTo(buttonHeight)
+            make.width.equalTo(250)
         }
-    }
-    
-    @objc func signOut() {
-        dismiss(animated: true, completion: nil)
+        emailStackView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(qrCodeButton.snp.bottom).offset(30)
+            make.leading.trailing.equalTo(view).inset(30)
+        }
+        passwordStackView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(emailStackView.snp.bottom).offset(15)
+            make.leading.trailing.equalTo(view).inset(30)
+        }
+        notificationsLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(passwordStackView.snp.bottom).offset(50)
+            make.leading.equalTo(view).offset(30)
+        }
+        logoutButton.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(notificationsLabel.snp.bottom).offset(50)
+            make.centerX.equalTo(view)
+            make.height.equalTo(buttonHeight)
+            make.width.equalTo(250)
+        }
     }
     
     @objc func enableEditing() {
-        nameTextField.isUserInteractionEnabled = true
-        netIDLabel.isUserInteractionEnabled = true
-        yearTextField.isUserInteractionEnabled = true
-        majorTextField.isUserInteractionEnabled = true
-        bio.isEditable = true
+        emailTextField.isUserInteractionEnabled = true
+        passwordTextField.isUserInteractionEnabled = true
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
+            if self.view.frame.origin.y == 0 {
                 self.view.frame.origin.y -= keyboardSize.height
             }
         }
@@ -114,5 +214,8 @@ class ProfileController: UIViewController {
             }
         }
     }
-
+    
+    @objc func viewTapped(gesture: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
 }
