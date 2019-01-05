@@ -36,14 +36,14 @@ class ProfileController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         let tapToDismiss = UITapGestureRecognizer(target: self, action: #selector(viewTapped(gesture:)))
+        tapToDismiss.cancelsTouchesInView = false
         view.addGestureRecognizer(tapToDismiss)
-        
-        menuBar = MenuBar()
-        view.addSubview(menuBar)
         
         radialGradient = RadialGradientView()
         view.addSubview(radialGradient)
-        view.sendSubviewToBack(radialGradient)
+        
+        menuBar = MenuBar()
+        view.addSubview(menuBar)
         
         profilePhoto = UIImageView()
         profilePhoto.layer.masksToBounds = false

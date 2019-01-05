@@ -20,7 +20,7 @@
 		CA5E479321DF058B005606AA /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E479221DF058B005606AA /* RadialGradientView.swift */; };
 		CA5E479A21DF10E7005606AA /* WeekAvailabilityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E479821DF10E6005606AA /* WeekAvailabilityController.swift */; };
 		CA5E479B21DF10E7005606AA /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E479921DF10E6005606AA /* HeaderCell.swift */; };
-		CA5E479E21DF10EC005606AA /* GroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E479C21DF10EB005606AA /* GroupController.swift */; };
+		CA5E479E21DF10EC005606AA /* GroupOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E479C21DF10EB005606AA /* GroupOverviewController.swift */; };
 		CA5E479F21DF10EC005606AA /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E479D21DF10EC005606AA /* GroupTableViewCell.swift */; };
 		CA5E47A421DF10F2005606AA /* TextSimilarityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47A021DF10F1005606AA /* TextSimilarityCheck.swift */; };
 		CA5E47A521DF10F2005606AA /* PhotoProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47A121DF10F2005606AA /* PhotoProcessor.swift */; };
@@ -31,13 +31,15 @@
 		CA5E47AF21DF10FC005606AA /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47AC21DF10FB005606AA /* LocationController.swift */; };
 		CA5E47B021DF10FC005606AA /* EventCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47AD21DF10FB005606AA /* EventCreationController.swift */; };
 		CA5E47B121DF10FC005606AA /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47AE21DF10FB005606AA /* LocationCell.swift */; };
-		CA73D43321D57B9D00CE7720 /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73D43221D57B9D00CE7720 /* SwipingController.swift */; };
 		CAC263CA21C6C0EC0018EEA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */; };
 		CAC263D121C6C0EF0018EEA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */; };
 		CAC263D421C6C0EF0018EEA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC263D221C6C0EF0018EEA8 /* LaunchScreen.storyboard */; };
 		CAC263E021C86EE70018EEA8 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = CAC263DF21C86EE60018EEA8 /* tessdata */; };
 		CACBC01C21DE030C0063BDDE /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACBC01B21DE030C0063BDDE /* ProfileController.swift */; };
 		CACBC01E21DE04D80063BDDE /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACBC01D21DE04D80063BDDE /* MenuBar.swift */; };
+		CADC5EA721E0641200E3097E /* GroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADC5EA621E0641200E3097E /* GroupController.swift */; };
+		CADC5EA921E0AAA900E3097E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADC5EA821E0AAA900E3097E /* LoginController.swift */; };
+		CADC5EAD21E13FF900E3097E /* Offside-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CADC5EAC21E0AD9D00E3097E /* Offside-Regular.ttf */; };
 		D963C3844E1FE7513B07D988 /* Pods_Lattice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA05287BA8A88A675C58F70 /* Pods_Lattice.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +59,7 @@
 		CA5E479221DF058B005606AA /* RadialGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
 		CA5E479821DF10E6005606AA /* WeekAvailabilityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekAvailabilityController.swift; sourceTree = "<group>"; };
 		CA5E479921DF10E6005606AA /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
-		CA5E479C21DF10EB005606AA /* GroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupController.swift; sourceTree = "<group>"; };
+		CA5E479C21DF10EB005606AA /* GroupOverviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupOverviewController.swift; sourceTree = "<group>"; };
 		CA5E479D21DF10EC005606AA /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		CA5E47A021DF10F1005606AA /* TextSimilarityCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSimilarityCheck.swift; sourceTree = "<group>"; };
 		CA5E47A121DF10F2005606AA /* PhotoProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoProcessor.swift; sourceTree = "<group>"; };
@@ -68,7 +70,6 @@
 		CA5E47AC21DF10FB005606AA /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		CA5E47AD21DF10FB005606AA /* EventCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationController.swift; sourceTree = "<group>"; };
 		CA5E47AE21DF10FB005606AA /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
-		CA73D43221D57B9D00CE7720 /* SwipingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
 		CAC263C621C6C0EC0018EEA8 /* Lattice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lattice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,6 +78,9 @@
 		CAC263DF21C86EE60018EEA8 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		CACBC01B21DE030C0063BDDE /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		CACBC01D21DE04D80063BDDE /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		CADC5EA621E0641200E3097E /* GroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupController.swift; sourceTree = "<group>"; };
+		CADC5EA821E0AAA900E3097E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		CADC5EAC21E0AD9D00E3097E /* Offside-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Offside-Regular.ttf"; sourceTree = "<group>"; };
 		EEA05287BA8A88A675C58F70 /* Pods_Lattice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lattice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -192,26 +196,36 @@
 			children = (
 				CAC263DF21C86EE60018EEA8 /* tessdata */,
 				CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */,
+				CA5E479221DF058B005606AA /* RadialGradientView.swift */,
 				CACBC01D21DE04D80063BDDE /* MenuBar.swift */,
 				CA5E475E21DE09CE005606AA /* MenuCell.swift */,
+				CADC5EA821E0AAA900E3097E /* LoginController.swift */,
 				CA5E478E21DF03D8005606AA /* HomeController.swift */,
 				CACBC01B21DE030C0063BDDE /* ProfileController.swift */,
-				CA5E479C21DF10EB005606AA /* GroupController.swift */,
+				CA5E479C21DF10EB005606AA /* GroupOverviewController.swift */,
+				CADC5EA621E0641200E3097E /* GroupController.swift */,
 				CA5E479D21DF10EC005606AA /* GroupTableViewCell.swift */,
-				CA5E479221DF058B005606AA /* RadialGradientView.swift */,
 				CA5E476421DED0DB005606AA /* CalendarCell.swift */,
-				CA73D43221D57B9D00CE7720 /* SwipingController.swift */,
 				CA5E47B221DF113C005606AA /* CalendarViews */,
 				CA5E47B321DF1169005606AA /* GroupViews */,
 				CA5E47B421DF116E005606AA /* TextProcessingViews */,
 				CA5E47B521DF1172005606AA /* QRCodeViews */,
 				CA5E47B621DF1177005606AA /* EventViews */,
-				CA5E476E21DED2BC005606AA /* Nunito */,
+				CADC5EAB21E0AD9600E3097E /* Fonts */,
 				CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */,
 				CAC263D221C6C0EF0018EEA8 /* LaunchScreen.storyboard */,
 				CAC263D521C6C0EF0018EEA8 /* Info.plist */,
 			);
 			path = Lattice;
+			sourceTree = "<group>";
+		};
+		CADC5EAB21E0AD9600E3097E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CA5E476E21DED2BC005606AA /* Nunito */,
+				CADC5EAC21E0AD9D00E3097E /* Offside-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +296,7 @@
 				CA5E478921DED2CC005606AA /* Nunito-Regular.ttf in Resources */,
 				CA5E478421DED2CC005606AA /* Nunito-ExtraLight.ttf in Resources */,
 				CA5E478021DED2CC005606AA /* Nunito-Bold.ttf in Resources */,
+				CADC5EAD21E13FF900E3097E /* Offside-Regular.ttf in Resources */,
 				CAC263D121C6C0EF0018EEA8 /* Assets.xcassets in Resources */,
 				CA5E477E21DED2CC005606AA /* Nunito-Black.ttf in Resources */,
 			);
@@ -362,10 +377,11 @@
 				CA5E475F21DE09CE005606AA /* MenuCell.swift in Sources */,
 				CA5E479F21DF10EC005606AA /* GroupTableViewCell.swift in Sources */,
 				CA5E47AB21DF10F7005606AA /* CodeScannerController.swift in Sources */,
-				CA5E479E21DF10EC005606AA /* GroupController.swift in Sources */,
+				CA5E479E21DF10EC005606AA /* GroupOverviewController.swift in Sources */,
 				CA5E479A21DF10E7005606AA /* WeekAvailabilityController.swift in Sources */,
+				CADC5EA921E0AAA900E3097E /* LoginController.swift in Sources */,
 				CA5E47A721DF10F2005606AA /* TextSelectionController.swift in Sources */,
-				CA73D43321D57B9D00CE7720 /* SwipingController.swift in Sources */,
+				CADC5EA721E0641200E3097E /* GroupController.swift in Sources */,
 				CAC263CA21C6C0EC0018EEA8 /* AppDelegate.swift in Sources */,
 				CA5E47AA21DF10F7005606AA /* QRCode.swift in Sources */,
 				CA5E479B21DF10E7005606AA /* HeaderCell.swift in Sources */,

@@ -30,12 +30,11 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
-        menuBar = MenuBar()
-        view.addSubview(menuBar)
-        
         radialGradient = RadialGradientView()
         view.addSubview(radialGradient)
-        view.sendSubviewToBack(radialGradient)
+        
+        menuBar = MenuBar()
+        view.addSubview(menuBar)
         
         setupInfoBox()
         

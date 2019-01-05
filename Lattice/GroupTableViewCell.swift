@@ -13,7 +13,7 @@ class GroupTableViewCell: UITableViewCell {
 
     var groupPhoto: UIImageView!
     var labelStackView: UIStackView!
-    var groupNameLabel: UILabel!
+    var nameLabel: UILabel!
     var memberLabel: UILabel!
     
     let photoHeight: CGFloat = 50
@@ -32,9 +32,9 @@ class GroupTableViewCell: UITableViewCell {
         groupPhoto.contentMode = .scaleAspectFit
         contentView.addSubview(groupPhoto)
         
-        groupNameLabel = UILabel()
-        groupNameLabel.textColor = .white
-        groupNameLabel.font = UIFont(name: "Nunito-Bold", size: 25)
+        nameLabel = UILabel()
+        nameLabel.textColor = .white
+        nameLabel.font = UIFont(name: "Nunito-Bold", size: 25)
         
         memberLabel = UILabel()
         memberLabel.textColor = .white
@@ -43,7 +43,7 @@ class GroupTableViewCell: UITableViewCell {
         labelStackView = UIStackView()
         labelStackView.distribution = .fillProportionally
         labelStackView.axis = .vertical
-        labelStackView.addArrangedSubview(groupNameLabel)
+        labelStackView.addArrangedSubview(nameLabel)
         labelStackView.addArrangedSubview(memberLabel)
         contentView.addSubview(labelStackView)
     }
@@ -66,10 +66,14 @@ class GroupTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    func configure(group: Group) {
-        groupNameLabel.text = group.groupName
+    func configureWithGroup(group: Group) {
+        nameLabel.text = group.groupName
         if (group.hasName) {
             memberLabel.text = group.groupMembersString
         }
+    }
+    
+    func configureWithUser(name: String) {
+        nameLabel.text = name
     }
 }

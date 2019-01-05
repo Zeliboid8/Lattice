@@ -43,6 +43,7 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Offside-Regular.ttf</string>
 		<string>Nunito-Black.ttf</string>
 		<string>Nunito-Regular.ttf</string>
 		<string>Nunito-SemiBold.ttf</string>

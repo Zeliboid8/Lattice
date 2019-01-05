@@ -1,26 +1,29 @@
 //
-//  GroupController.swift
+//  GroupOverviewController.swift
 //  Lattice
 //
-//  Created by Eli Zhang on 1/4/19
+//  Created by Eli Zhang on 12/31/18.
 //  Copyright © 2018 Eli Zhang. All rights reserved.
 //
 
 import UIKit
 import SnapKit
 
-class GroupController: UIViewController, UISearchBarDelegate {
-    
+class GroupOverviewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+
     var radialGradient: RadialGradientView!
-    var groupNameLabel: UILabel!
-    var viewCalendarButton: UIButton!
+    var groupLabel: UILabel!
     var searchBar: UISearchBar!
     var tableView: UITableView!
     var addButton: UIButton!
-    var group: Group!
     
-    let memberList: [String] = ["Michael Jones", "Charles Jones", "Lily Jones", "Anna Ricardo", "Joshua Chen"]
-    var matchingMembers: [String]!
+    let groupList: [Group] = [Group(groupMembers: ["Satomi Kikunaga"]),
+                               Group(groupName: "Parents", groupMembers: ["Charles Jones", "Anna Ricardo"]),
+                               Group(groupMembers: ["Ellen", "Juan", "Rachael"]),
+                               Group(groupName: "Math Study Group", groupMembers: ["Anthony Perez", "Daniel Heinz-Klarmann"]),
+                               Group(groupName: "Jones Family", groupMembers: ["Michael Jones", "Charles Jones", "Anna Ricardo"]),
+                               Group(groupMembers: ["Anna Ricardo"])]
+    var matchingGroups: [Group]!
     
     let reuseIdentifier = "groupCell"
     let cellHeight: CGFloat = 100
@@ -28,7 +31,6 @@ class GroupController: UIViewController, UISearchBarDelegate {
     let buttonOffset: CGFloat = 25
     let searchBarColor = UIColor(red: 0.84, green: 0.84, blue: 0.84, alpha: 1)
     let labelColor = UIColor(red: 0.82, green: 0.82, blue: 0.82, alpha: 1)
-    let buttonHeight: CGFloat = 50
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,25 +42,13 @@ class GroupController: UIViewController, UISearchBarDelegate {
         radialGradient = RadialGradientView()
         view.addSubview(radialGradient)
         
-        groupNameLabel = UILabel()
-        groupNameLabel.text = group.groupName
-        groupNameLabel.textColor = labelColor
-        groupNameLabel.font = UIFont(name: "Nunito-Regular", size: 40)
-        view.addSubview(groupNameLabel)
+        groupLabel = UILabel()
+        groupLabel.text = "Groups"
+        groupLabel.textColor = labelColor
+        groupLabel.font = UIFont(name: "Nunito-Regular", size: 40)
+        view.addSubview(groupLabel)
         
-        matchingMembers = memberList
-        
-        viewCalendarButton = UIButton()
-        viewCalendarButton.setTitle("View calendar", for: .normal)
-        viewCalendarButton.setTitleColor(.white, for: .normal)
-        viewCalendarButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 20)
-        viewCalendarButton.backgroundColor = UIColor(red: 1, green: 0.18, blue: 0.38, alpha: 1)
-        viewCalendarButton.layer.cornerRadius = buttonHeight / 2
-        viewCalendarButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        viewCalendarButton.layer.shadowOffset = CGSize(width: 5, height: 7)
-        viewCalendarButton.layer.shadowOpacity = 0.8
-        viewCalendarButton.layer.masksToBounds = false
-        view.addSubview(viewCalendarButton)
+        matchingGroups = groupList
         
         searchBar = UISearchBar()
         searchBar.delegate = self
@@ -98,17 +88,12 @@ class GroupController: UIViewController, UISearchBarDelegate {
         radialGradient.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
-        groupNameLabel.snp.makeConstraints { (make) -> Void in
+        groupLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
         }
-        viewCalendarButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(groupNameLabel.snp.bottom).offset(20)
-            make.leading.trailing.equalTo(view).inset(40)
-            make.height.equalTo(buttonHeight)
-        }
         searchBar.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(viewCalendarButton.snp.bottom).offset(20)
+            make.top.equalTo(groupLabel.snp.bottom).offset(20)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         tableView.snp.makeConstraints { (make) -> Void in
@@ -121,37 +106,25 @@ class GroupController: UIViewController, UISearchBarDelegate {
         }
     }
     
-    func setGroup(group: Group) {
-        self.group = group
-    }
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        matchingMembers = searchText.isEmpty ? memberList : memberList.filter { (item: String) -> Bool in
-            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        matchingGroups = searchText.isEmpty ? groupList : groupList.filter { (item: Group) -> Bool in
+            return item.groupSearchText.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
         tableView.reloadData()
     }
+
     
-    @objc func dismissModalView() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
-        searchBar.resignFirstResponder()
-    }
-}
-extension GroupController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return matchingMembers.count
+        return matchingGroups.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! GroupTableViewCell
-        cell.configureWithUser(name: matchingMembers[indexPath.section])
+        cell.configureWithGroup(group: matchingGroups[indexPath.section])
         cell.backgroundColor = .clear
         cell.setNeedsUpdateConstraints()
         return cell
@@ -169,5 +142,72 @@ extension GroupController: UITableViewDelegate, UITableViewDataSource {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let groupController = GroupController()
+        groupController.setGroup(group: groupList[indexPath.section])
+        present(groupController, animated: true, completion: nil)
+    }
+    
+    @objc func dismissModalView() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        searchBar.resignFirstResponder()
+    }
+}
+
+class Group {
+    var groupName: String!
+    var groupMembersString: String!
+    var groupMembers: [String]!
+    var groupSearchText: String!
+    var hasName: Bool!
+    
+    init(groupName: String, groupMembersString: String, groupMembers: [String]) {
+        self.groupName = groupName
+        self.groupMembersString = groupMembersString
+        self.groupMembers = groupMembers
+        self.groupSearchText = String("\(groupName) \(groupMembersString)")
+        self.hasName = true
+    }
+    init(groupName: String, groupMembers: [String]) {
+        self.groupMembersString = groupMembers.first
+        if groupMembers.count > 1 {
+            if groupMembers.count > 2 {
+                for i in 1..<groupMembers.count - 1 {
+                    self.groupMembersString.append(", \(groupMembers[i])")
+                }
+                self.groupMembersString.append(", and \(groupMembers.last ?? "")")
+            }
+            else {
+                self.groupMembersString.append(" and \(groupMembers.last ?? "")")
+            }
+        }
+        self.groupName = groupName
+        self.groupMembers = groupMembers
+        self.groupSearchText = String("\(groupName) \(groupMembersString ?? "")")
+        self.hasName = true
+    }
+    
+    init(groupMembers: [String]) {
+        self.groupMembersString = groupMembers.first
+        if groupMembers.count > 1 {
+            if groupMembers.count > 2 {
+                for i in 1..<groupMembers.count - 1 {
+                    self.groupMembersString.append(", \(groupMembers[i])")
+                }
+                self.groupMembersString.append(", and \(groupMembers.last ?? "")")
+            }
+            else {
+                self.groupMembersString.append(" and \(groupMembers.last ?? "")")
+            }
+        }
+        self.groupName = groupMembersString
+        self.groupMembers = groupMembers
+        self.groupSearchText = groupMembersString
+        self.hasName = false
     }
 }
