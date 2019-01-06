@@ -12,7 +12,6 @@ import JTAppleCalendar
 
 class HomeController: UIViewController {
 
-    var menuBar: MenuBar!
     var radialGradient: RadialGradientView!
     var calendar: JTAppleCalendarView!
     var infoBox: UIView!
@@ -24,7 +23,6 @@ class HomeController: UIViewController {
     let labelColor = UIColor(red: 0.82, green: 0.82, blue: 0.82, alpha: 1)
     let dayTitles = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
     let calCellReuseIdentifier = "calCellReuseIdentifier"
-    let menuBarHeight: CGFloat = 70
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +30,6 @@ class HomeController: UIViewController {
         
         radialGradient = RadialGradientView()
         view.addSubview(radialGradient)
-        
-        menuBar = MenuBar()
-        view.addSubview(menuBar)
         
         setupInfoBox()
         
@@ -108,10 +103,6 @@ class HomeController: UIViewController {
     }
     
     func setupConstraints() {
-        menuBar.snp.makeConstraints { (make) -> Void in
-            make.bottom.leading.trailing.equalTo(view)
-            make.height.equalTo(menuBarHeight)
-        }
         radialGradient.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(view)
         }
@@ -131,7 +122,7 @@ class HomeController: UIViewController {
         infoBox.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(calendar.snp.bottom).offset(20)
             make.leading.trailing.equalTo(view).inset(20)
-            make.bottom.equalTo(menuBar.snp.top).offset(-30)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30 - MenuBarParameters.menuBarHeight)
         }
         addButton.snp.makeConstraints { (make) -> Void in
             make.trailing.bottom.equalTo(infoBox).inset(10)

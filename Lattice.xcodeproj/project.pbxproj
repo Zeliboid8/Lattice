@@ -40,6 +40,7 @@
 		CADC5EA721E0641200E3097E /* GroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADC5EA621E0641200E3097E /* GroupController.swift */; };
 		CADC5EA921E0AAA900E3097E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADC5EA821E0AAA900E3097E /* LoginController.swift */; };
 		CADC5EAD21E13FF900E3097E /* Offside-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CADC5EAC21E0AD9D00E3097E /* Offside-Regular.ttf */; };
+		CAF809E921E1D00200313A82 /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF809E821E1D00200313A82 /* MenuBarController.swift */; };
 		D963C3844E1FE7513B07D988 /* Pods_Lattice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA05287BA8A88A675C58F70 /* Pods_Lattice.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		CADC5EA621E0641200E3097E /* GroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupController.swift; sourceTree = "<group>"; };
 		CADC5EA821E0AAA900E3097E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		CADC5EAC21E0AD9D00E3097E /* Offside-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Offside-Regular.ttf"; sourceTree = "<group>"; };
+		CAF809E821E1D00200313A82 /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
 		EEA05287BA8A88A675C58F70 /* Pods_Lattice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lattice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -197,6 +199,7 @@
 				CAC263DF21C86EE60018EEA8 /* tessdata */,
 				CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */,
 				CA5E479221DF058B005606AA /* RadialGradientView.swift */,
+				CAF809E821E1D00200313A82 /* MenuBarController.swift */,
 				CACBC01D21DE04D80063BDDE /* MenuBar.swift */,
 				CA5E475E21DE09CE005606AA /* MenuCell.swift */,
 				CADC5EA821E0AAA900E3097E /* LoginController.swift */,
@@ -370,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAF809E921E1D00200313A82 /* MenuBarController.swift in Sources */,
 				CACBC01C21DE030C0063BDDE /* ProfileController.swift in Sources */,
 				CA5E47A421DF10F2005606AA /* TextSimilarityCheck.swift in Sources */,
 				CA5E479321DF058B005606AA /* RadialGradientView.swift in Sources */,

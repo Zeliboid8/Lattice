@@ -11,6 +11,7 @@ import SnapKit
 
 class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    weak var delegate: ChangeView?
     var collectionView: UICollectionView!
     var layout: UICollectionViewFlowLayout!
     var barGradient: CAGradientLayer!
@@ -79,6 +80,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
             make.left.equalTo(CGFloat(indexPath.section) * frame.width / 5)
         }
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { self.layoutIfNeeded() }, completion: nil)
+        delegate?.changeView(indexPath: indexPath) // Tells view controller to change to different screen corresponding to index
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

@@ -11,7 +11,6 @@ import SnapKit
 
 class ProfileController: UIViewController {
 
-    var menuBar: MenuBar!
     var radialGradient: RadialGradientView!
     var profilePhoto: UIImageView!
     var nameLabel: UILabel!
@@ -28,7 +27,6 @@ class ProfileController: UIViewController {
     
     let photoHeight: CGFloat = 120
     let buttonHeight: CGFloat = 50
-    let menuBarHeight: CGFloat = 70
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +39,6 @@ class ProfileController: UIViewController {
         
         radialGradient = RadialGradientView()
         view.addSubview(radialGradient)
-        
-        menuBar = MenuBar()
-        view.addSubview(menuBar)
         
         profilePhoto = UIImageView()
         profilePhoto.layer.masksToBounds = false
@@ -148,10 +143,6 @@ class ProfileController: UIViewController {
     }
     
     func setupConstraints() {
-        menuBar.snp.makeConstraints { (make) -> Void in
-            make.bottom.leading.trailing.equalTo(view)
-            make.height.equalTo(menuBarHeight)
-        }
         radialGradient.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(view)
         }
@@ -200,7 +191,7 @@ class ProfileController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
                 self.view.frame.origin.y -= keyboardSize.height
             }
@@ -208,10 +199,8 @@ class ProfileController: UIViewController {
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
+        if self.view.frame.origin.y != 0{
+            self.view.frame.origin.y = 0
         }
     }
     

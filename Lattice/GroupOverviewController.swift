@@ -98,11 +98,13 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         }
         tableView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(searchBar.snp.bottom).offset(20)
-            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.leading.trailing.equalTo(view).inset(20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20 - MenuBarParameters.menuBarHeight)
         }
         addButton.snp.makeConstraints { (make) -> Void in
             make.height.width.equalTo(80)
-            make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(40)
+            make.trailing.equalTo(view).offset(-40)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40 - MenuBarParameters.menuBarHeight)
         }
     }
     

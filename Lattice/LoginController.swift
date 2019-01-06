@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UITextFieldDelegate {
 
     var radialGradient: RadialGradientView!
     var titleLabel: UILabel!
@@ -39,7 +39,7 @@ class LoginController: UIViewController {
         view.sendSubviewToBack(radialGradient)
         
         titleLabel = UILabel()
-        titleLabel.text = "lattice"
+        titleLabel.text = "Lattice"
         titleLabel.textColor = labelColor
         titleLabel.font = UIFont(name: "Offside-Regular", size: 45)
         view.addSubview(titleLabel)
@@ -54,8 +54,10 @@ class LoginController: UIViewController {
         view.addSubview(emailIcon)
         
         emailTextField = UITextField()
+        emailTextField.textColor = labelColor
         emailTextField.attributedPlaceholder = NSAttributedString(string: "EMAIL", attributes: [NSAttributedString.Key.foregroundColor: labelColor])
         emailTextField.font = UIFont(name: "Nunito-Semibold", size: 18)
+        emailTextField.delegate = self
         view.addSubview(emailTextField)
         
         passwordIcon = UIImageView()
@@ -63,8 +65,11 @@ class LoginController: UIViewController {
         view.addSubview(passwordIcon)
         
         passwordTextField = UITextField()
+        passwordTextField.textColor = labelColor
+        passwordTextField.isSecureTextEntry = true
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "PASSWORD", attributes: [NSAttributedString.Key.foregroundColor: labelColor])
         passwordTextField.font = UIFont(name: "Nunito-Semibold", size: 18)
+        passwordTextField.delegate = self
         view.addSubview(passwordTextField)
         
         signInButton = UIButton()
@@ -139,11 +144,20 @@ class LoginController: UIViewController {
             make.centerX.equalTo(view)
             make.leading.trailing.equalTo(view).inset(50)
         }
-        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            textField.resignFirstResponder()
+            passwordTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
                 self.view.frame.origin.y -= keyboardSize.height
             }
@@ -151,10 +165,8 @@ class LoginController: UIViewController {
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
+        if self.view.frame.origin.y != 0{
+            self.view.frame.origin.y = 0
         }
     }
     
