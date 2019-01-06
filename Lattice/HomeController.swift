@@ -47,6 +47,9 @@ class HomeController: UIViewController {
         addButton.layer.masksToBounds = false
         view.addSubview(addButton)
         
+        let events = EventManager.importEvents()
+        print(events[0].start_date)
+        
         setupCalendar()
         setupConstraints()
     }
