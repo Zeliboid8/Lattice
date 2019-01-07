@@ -23,7 +23,6 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     let logoHeight: CGFloat = 260
     let buttonHeight: CGFloat = 50
-    let labelColor = UIColor(red: 0.82, green: 0.82, blue: 0.82, alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +38,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         
         titleLabel = UILabel()
         titleLabel.text = "Lattice"
-        titleLabel.textColor = labelColor
+        titleLabel.textColor = Colors.labelColor
         titleLabel.font = UIFont(name: "Offside-Regular", size: 45)
         view.addSubview(titleLabel)
         
@@ -53,8 +52,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
         view.addSubview(emailIcon)
         
         emailTextField = UITextField()
-        emailTextField.textColor = labelColor
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "EMAIL", attributes: [NSAttributedString.Key.foregroundColor: labelColor])
+        emailTextField.textColor = Colors.labelColor
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "EMAIL", attributes: [NSAttributedString.Key.foregroundColor: Colors.labelColor])
         emailTextField.font = UIFont(name: "Nunito-Semibold", size: 18)
         emailTextField.delegate = self
         view.addSubview(emailTextField)
@@ -64,9 +63,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
         view.addSubview(passwordIcon)
         
         passwordTextField = UITextField()
-        passwordTextField.textColor = labelColor
+        passwordTextField.textColor = Colors.labelColor
         passwordTextField.isSecureTextEntry = true
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "PASSWORD", attributes: [NSAttributedString.Key.foregroundColor: labelColor])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "PASSWORD", attributes: [NSAttributedString.Key.foregroundColor: Colors.labelColor])
         passwordTextField.font = UIFont(name: "Nunito-Semibold", size: 18)
         passwordTextField.delegate = self
         view.addSubview(passwordTextField)
@@ -75,9 +74,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
         signInButton.setTitle("Sign in", for: .normal)
         signInButton.setTitleColor(.white, for: .normal)
         signInButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 20)
-        signInButton.backgroundColor = UIColor(red: 1, green: 0.18, blue: 0.38, alpha: 1)
+        signInButton.backgroundColor = Colors.red
         signInButton.layer.cornerRadius = buttonHeight / 2
-        signInButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        signInButton.layer.shadowColor = Colors.shadowColor
         signInButton.layer.shadowOffset = CGSize(width: 5, height: 7)
         signInButton.layer.shadowOpacity = 0.8
         signInButton.layer.masksToBounds = false
@@ -88,9 +87,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
         createAccountButton.setTitle("Create an account", for: .normal)
         createAccountButton.setTitleColor(.white, for: .normal)
         createAccountButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 20)
-        createAccountButton.backgroundColor = UIColor(red: 0.03, green: 0.85, blue: 0.84, alpha: 1)
+        createAccountButton.backgroundColor = Colors.blue
         createAccountButton.layer.cornerRadius = buttonHeight / 2
-        createAccountButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        createAccountButton.layer.shadowColor = Colors.shadowColor
         createAccountButton.layer.shadowOffset = CGSize(width: 5, height: 7)
         createAccountButton.layer.shadowOpacity = 0.8
         createAccountButton.layer.masksToBounds = false

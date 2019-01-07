@@ -29,9 +29,11 @@ class AddController: UIViewController {
         
         calendarButton = AddButton()
         calendarButton.configure(image: UIImage(named: "Calendar")!, title: "Calendar")
+        calendarButton.backgroundColor = Colors.red
         
         eventButton = AddButton()
-        eventButton.configure(image: UIImage(named: "Cake")!, title: "Event")
+        eventButton.configure(image: UIImage(named: "Clock")!, title: "Event")
+        eventButton.backgroundColor = Colors.blue
         
         topStackView = UIStackView()
         topStackView.axis = .horizontal
@@ -42,9 +44,11 @@ class AddController: UIViewController {
         
         groupButton = AddButton()
         groupButton.configure(image: UIImage(named: "Groups")!, title: "Group")
+        groupButton.backgroundColor = Colors.purple
         
         friendButton = AddButton()
         friendButton.configure(image: UIImage(named: "Profile")!, title: "Friend")
+        friendButton.backgroundColor = Colors.yellow
         
         bottomStackView = UIStackView()
         bottomStackView.axis = .horizontal
@@ -75,54 +79,59 @@ class AddController: UIViewController {
 }
 
 class AddButton: UIButton {
-    
-    let labelColor = UIColor(red: 0.82, green: 0.82, blue: 0.82, alpha: 1)
+
+    let padding: CGFloat = 20
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .purple
-        
-        setTitleColor(labelColor, for: .normal)
+        setTitleColor(Colors.labelColor, for: .normal)
         
         layer.cornerRadius = 10
-        layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        layer.shadowColor = Colors.shadowColor
         layer.shadowOffset = CGSize(width: 5, height: 7)
         layer.shadowOpacity = 0.8
         layer.masksToBounds = false
     }
     
-    func alignImageAndTitleVertically(padding: CGFloat) {
-        let imageSize = imageView!.frame.size
-        let titleSize = titleLabel!.frame.size
-        let totalHeight = imageSize.height + titleSize.height + padding
+    override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
+        let rect = super.imageRect(forContentRect: contentRect)
+        let titleRect = self.titleRect(forContentRect: contentRect)
         
-        imageEdgeInsets = UIEdgeInsets(
-            top: -(totalHeight - imageSize.height),
-            left: 0,
-            bottom: 0,
-            right: -titleSize.width
-        )
+        return CGRect(x: contentRect.width/2.0 - rect.width/2.0,
+                      y: (contentRect.height - titleRect.height)/2.0 - rect.height/2.0,
+                      width: rect.width - 2 * padding, height: rect.width - 2 * padding)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
-        titleEdgeInsets = UIEdgeInsets(
-            top: 0,
-            left: -imageSize.width,
-            bottom: -(totalHeight - titleSize.height),
-            right: 0
-        )
+        var imageFrame = (imageView?.frame)!
+        imageFrame.origin.y = bounds.midY - imageFrame.height / 2 - padding
+        imageFrame.origin.x = bounds.origin.x + padding
+        imageView?.frame = imageFrame
+        
+        var titleFrame: CGRect = (titleLabel?.frame)!
+        titleFrame.size.width = frame.width
+        titleFrame.size.height = 100
+        
+        titleFrame.origin.y = imageFrame.maxY + padding
+        titleFrame.origin.x = bounds.origin.x
+        titleLabel?.frame = titleFrame
     }
     
     func configure(image: UIImage, title: String) {
-        setImage(image, for: .normal)
+        setImage(image.withRenderingMode(.alwaysTemplate), for: .normal)
         setTitle(title, for: .normal)
-        titleLabel?.font = UIFont(name: "Nunito-Bold", size: 50)
-        imageView?.tintColor = labelColor
-        alignImageAndTitleVertically(padding: 20)
+        titleLabel?.font = UIFont(name: "Nunito-Bold", size: 25)
+        titleLabel?.textAlignment = .center
+        imageView?.tintColor = Colors.labelColor
+        imageView?.contentMode = .scaleAspectFit
+        imageView?.clipsToBounds = true
+        contentMode = .scaleAspectFit
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }

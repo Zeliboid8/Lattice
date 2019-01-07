@@ -29,8 +29,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
     let cellHeight: CGFloat = 100
     let cellSpacing: CGFloat = 5
     let buttonOffset: CGFloat = 25
-    let searchBarColor = UIColor(red: 0.84, green: 0.84, blue: 0.84, alpha: 1)
-    let labelColor = UIColor(red: 0.82, green: 0.82, blue: 0.82, alpha: 1)
+    let searchBarColor = Colors.searchBar
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +43,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         
         groupLabel = UILabel()
         groupLabel.text = "Groups"
-        groupLabel.textColor = labelColor
+        groupLabel.textColor = Colors.labelColor
         groupLabel.font = UIFont(name: "Nunito-Regular", size: 40)
         view.addSubview(groupLabel)
         
@@ -54,7 +53,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         searchBar.delegate = self
         searchBar.searchBarStyle = .minimal
         (searchBar.value(forKey: "searchField") as? UITextField)?.backgroundColor = searchBarColor
-        (searchBar.value(forKey: "searchField") as? UITextField)?.textColor = labelColor
+        (searchBar.value(forKey: "searchField") as? UITextField)?.textColor = Colors.labelColor
         searchBar.placeholder = "Find a group..."
         view.addSubview(searchBar)
         
@@ -68,13 +67,13 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         view.addSubview(tableView)
         
         addButton = UIButton()
-        addButton.backgroundColor = UIColor(red: 1, green: 0.18, blue: 0.38, alpha: 1)
+        addButton.backgroundColor = Colors.red
         addButton.setTitle("+", for: .normal)
         addButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 50)
         addButton.titleLabel?.textAlignment = .center
         addButton.setTitleColor(.black, for: .normal)
         addButton.layer.cornerRadius = 40
-        addButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        addButton.layer.shadowColor = Colors.shadowColor
         addButton.layer.shadowOffset = CGSize(width: 5, height: 7)
         addButton.layer.shadowOpacity = 0.8
         addButton.layer.shadowRadius = 2
@@ -145,7 +144,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = UIColor.clear
+        headerView.backgroundColor = .clear
         return headerView
     }
     

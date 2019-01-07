@@ -25,7 +25,6 @@ class HomeController: UIViewController {
     var eventsDict: [Date : [Event]] = [:]
     
     let formatter = DateFormatter()
-    let labelColor = UIColor(red: 0.82, green: 0.82, blue: 0.82, alpha: 1)
     let dayTitles = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
     let calCellReuseIdentifier = "calCellReuseIdentifier"
     
@@ -39,13 +38,13 @@ class HomeController: UIViewController {
         setupInfoBox()
         
         addButton = UIButton()
-        addButton.backgroundColor = UIColor(red: 1, green: 0.18, blue: 0.38, alpha: 1)
+        addButton.backgroundColor = Colors.red
         addButton.setTitle("+", for: .normal)
         addButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 50)
         addButton.titleLabel?.textAlignment = .center
         addButton.setTitleColor(.black, for: .normal)
         addButton.layer.cornerRadius = 40
-        addButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        addButton.layer.shadowColor = Colors.shadowColor
         addButton.layer.shadowOffset = CGSize(width: 5, height: 7)
         addButton.layer.shadowOpacity = 0.8
         addButton.layer.shadowRadius = 2
@@ -89,7 +88,7 @@ class HomeController: UIViewController {
     
     func setupCalendar() {
         monthLabel = UILabel()
-        monthLabel.textColor = labelColor
+        monthLabel.textColor = Colors.labelColor
         monthLabel.font = UIFont(name: "Nunito-Regular", size: 40)
         view.addSubview(monthLabel)
         
@@ -100,7 +99,7 @@ class HomeController: UIViewController {
             let dayLabel = UILabel()
             dayLabel.text = day
             dayLabel.textAlignment = .center
-            dayLabel.textColor = labelColor
+            dayLabel.textColor = Colors.labelColor
             dayLabel.font = UIFont(name: "Nunito-Bold", size: 15)
             dayNames.addArrangedSubview(dayLabel)
         }
@@ -131,7 +130,7 @@ class HomeController: UIViewController {
     
     func setupInfoBox() {
         infoBox = UIView()
-        infoBox.backgroundColor = UIColor(red: 0.22, green: 0.22, blue: 0.22, alpha: 0.64)
+        infoBox.backgroundColor = Colors.infoBox
         infoBox.layer.cornerRadius = 8
         view.addSubview(infoBox)
         
@@ -139,7 +138,7 @@ class HomeController: UIViewController {
         view.addSubview(verticalBar)
         
         infoBoxLabel = UILabel()
-        infoBoxLabel.textColor = labelColor
+        infoBoxLabel.textColor = Colors.labelColor
         infoBoxLabel.font = UIFont(name: "Nunito-Semibold", size: 20)
         view.addSubview(infoBoxLabel)
         
@@ -203,7 +202,7 @@ extension HomeController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: calCellReuseIdentifier, for: indexPath) as! CalendarCell
         if cellState.dateBelongsTo == .thisMonth {
-            cell.dateLabel.textColor = labelColor
+            cell.dateLabel.textColor = Colors.labelColor
         }
         else {
             cell.dateLabel.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
@@ -267,11 +266,11 @@ extension HomeController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
     func colorFromAvailability(_ availability: Availability) -> UIColor {
         switch availability {
         case .free:
-            return UIColor(red: 0.03, green: 0.85, blue: 0.84, alpha: 1)
+            return Colors.blue
         case .some:
-            return UIColor(red: 0.93, green: 0.72, blue: 0.26, alpha: 1)
+            return Colors.yellow
         case .busy:
-            return UIColor(red: 1, green: 0.18, blue: 0.38, alpha: 1)
+            return Colors.red
         }
     }
     

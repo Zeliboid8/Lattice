@@ -11,6 +11,7 @@
 		CA107ADD21E314F500327490 /* Nunito-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA107ADA21E314E600327490 /* Nunito-BoldItalic.ttf */; };
 		CA107ADE21E314F500327490 /* Nunito-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA107ADB21E314F200327490 /* Nunito-SemiBoldItalic.ttf */; };
 		CA107AE021E3294A00327490 /* AddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA107ADF21E3294A00327490 /* AddController.swift */; };
+		CA18261321E40CF3002DC869 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA18261221E40CF3002DC869 /* Colors.swift */; };
 		CA5E475F21DE09CE005606AA /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E475E21DE09CE005606AA /* MenuCell.swift */; };
 		CA5E476821DED0DB005606AA /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E476421DED0DB005606AA /* CalendarCell.swift */; };
 		CA5E477E21DED2CC005606AA /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA5E476F21DED2BC005606AA /* Nunito-Black.ttf */; };
@@ -57,6 +58,7 @@
 		CA107ADA21E314E600327490 /* Nunito-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Nunito-BoldItalic.ttf"; path = "../../../../../Downloads/Nunito/Nunito-BoldItalic.ttf"; sourceTree = "<group>"; };
 		CA107ADB21E314F200327490 /* Nunito-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Nunito-SemiBoldItalic.ttf"; path = "../../../../../Downloads/Nunito/Nunito-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		CA107ADF21E3294A00327490 /* AddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddController.swift; sourceTree = "<group>"; };
+		CA18261221E40CF3002DC869 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CA5E475E21DE09CE005606AA /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		CA5E476421DED0DB005606AA /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		CA5E476F21DED2BC005606AA /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				CA5E479C21DF10EB005606AA /* GroupOverviewController.swift */,
 				CADC5EA621E0641200E3097E /* GroupController.swift */,
 				CA107ADF21E3294A00327490 /* AddController.swift */,
+				CA18261221E40CF3002DC869 /* Colors.swift */,
 				CA5E479D21DF10EC005606AA /* GroupTableViewCell.swift */,
 				CA5E476421DED0DB005606AA /* CalendarCell.swift */,
 				CA5E47B221DF113C005606AA /* CalendarViews */,
@@ -404,6 +407,7 @@
 				CA5E479F21DF10EC005606AA /* GroupTableViewCell.swift in Sources */,
 				CA5E47AB21DF10F7005606AA /* CodeScannerController.swift in Sources */,
 				CA5E479E21DF10EC005606AA /* GroupOverviewController.swift in Sources */,
+				CA18261321E40CF3002DC869 /* Colors.swift in Sources */,
 				CA5E479A21DF10E7005606AA /* WeekAvailabilityController.swift in Sources */,
 				CADC5EA921E0AAA900E3097E /* LoginController.swift in Sources */,
 				CA5E47A721DF10F2005606AA /* TextSelectionController.swift in Sources */,

@@ -88,7 +88,7 @@ class AddMemberCell: GroupTableViewCell {
         groupPhoto.isHidden = true
         
         addButton = UIButton()
-        addButton.backgroundColor = UIColor(red: 1, green: 0.18, blue: 0.38, alpha: 1)
+        addButton.backgroundColor = Colors.red
         addButton.setTitle("+", for: .normal)
         addButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 30)
         addButton.titleLabel?.textAlignment = .center

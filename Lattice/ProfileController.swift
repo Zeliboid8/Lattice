@@ -72,9 +72,9 @@ class ProfileController: UIViewController {
         qrCodeButton.contentMode = .center
         qrCodeButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 20)
         qrCodeButton.titleLabel?.textAlignment = .center
-        qrCodeButton.backgroundColor = UIColor(red: 0.03, green: 0.85, blue: 0.84, alpha: 1)
+        qrCodeButton.backgroundColor = Colors.blue
         qrCodeButton.layer.cornerRadius = buttonHeight / 2
-        qrCodeButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        qrCodeButton.layer.shadowColor = Colors.shadowColor
         qrCodeButton.layer.shadowOffset = CGSize(width: 5, height: 7)
         qrCodeButton.layer.shadowOpacity = 0.8
         qrCodeButton.layer.masksToBounds = false
@@ -123,9 +123,9 @@ class ProfileController: UIViewController {
         logoutButton.setTitle("Logout", for: .normal)
         logoutButton.setTitleColor(.white, for: .normal)
         logoutButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 20)
-        logoutButton.backgroundColor = UIColor(red: 1, green: 0.18, blue: 0.38, alpha: 1)
+        logoutButton.backgroundColor = Colors.red
         logoutButton.layer.cornerRadius = buttonHeight / 2
-        logoutButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        logoutButton.layer.shadowColor = Colors.shadowColor
         logoutButton.layer.shadowOffset = CGSize(width: 5, height: 7)
         logoutButton.layer.shadowOpacity = 0.8
         logoutButton.layer.masksToBounds = false

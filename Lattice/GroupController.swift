@@ -26,8 +26,6 @@ class GroupController: UIViewController, UISearchBarDelegate {
     let cellHeight: CGFloat = 100
     let cellSpacing: CGFloat = 5
     let buttonHeight: CGFloat = 50
-    let searchBarColor = UIColor(red: 0.84, green: 0.84, blue: 0.84, alpha: 1)
-    let labelColor = UIColor(red: 0.82, green: 0.82, blue: 0.82, alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +39,7 @@ class GroupController: UIViewController, UISearchBarDelegate {
         
         groupNameLabel = UILabel()
         groupNameLabel.text = group.groupName
-        groupNameLabel.textColor = labelColor
+        groupNameLabel.textColor = Colors.labelColor
         groupNameLabel.font = UIFont(name: "Nunito-Regular", size: 40)
         view.addSubview(groupNameLabel)
         
@@ -51,9 +49,9 @@ class GroupController: UIViewController, UISearchBarDelegate {
         viewCalendarButton.setTitle("View calendar", for: .normal)
         viewCalendarButton.setTitleColor(.white, for: .normal)
         viewCalendarButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 20)
-        viewCalendarButton.backgroundColor = UIColor(red: 1, green: 0.18, blue: 0.38, alpha: 1)
+        viewCalendarButton.backgroundColor = Colors.red
         viewCalendarButton.layer.cornerRadius = buttonHeight / 2
-        viewCalendarButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        viewCalendarButton.layer.shadowColor = Colors.shadowColor
         viewCalendarButton.layer.shadowOffset = CGSize(width: 5, height: 7)
         viewCalendarButton.layer.shadowOpacity = 0.8
         viewCalendarButton.layer.masksToBounds = false
@@ -62,8 +60,8 @@ class GroupController: UIViewController, UISearchBarDelegate {
         searchBar = UISearchBar()
         searchBar.delegate = self
         searchBar.searchBarStyle = .minimal
-        (searchBar.value(forKey: "searchField") as? UITextField)?.backgroundColor = searchBarColor
-        (searchBar.value(forKey: "searchField") as? UITextField)?.textColor = labelColor
+        (searchBar.value(forKey: "searchField") as? UITextField)?.backgroundColor = Colors.searchBar
+        (searchBar.value(forKey: "searchField") as? UITextField)?.textColor = Colors.labelColor
         searchBar.placeholder = "Find a group..."
         view.addSubview(searchBar)
         
@@ -158,7 +156,7 @@ extension GroupController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = UIColor.clear
+        headerView.backgroundColor = .clear
         return headerView
     }
 }

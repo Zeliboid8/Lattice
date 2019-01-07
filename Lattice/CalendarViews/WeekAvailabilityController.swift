@@ -28,7 +28,7 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
     var collectionView: UICollectionView!
     
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         
         dailyTimes = UIStackView()
         dailyTimes.axis = .vertical
