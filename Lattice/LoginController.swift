@@ -36,7 +36,6 @@ class LoginController: UIViewController, UITextFieldDelegate {
         
         radialGradient = RadialGradientView()
         view.addSubview(radialGradient)
-        view.sendSubviewToBack(radialGradient)
         
         titleLabel = UILabel()
         titleLabel.text = "Lattice"
@@ -82,6 +81,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         signInButton.layer.shadowOffset = CGSize(width: 5, height: 7)
         signInButton.layer.shadowOpacity = 0.8
         signInButton.layer.masksToBounds = false
+        signInButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         view.addSubview(signInButton)
         
         createAccountButton = UIButton()
@@ -94,6 +94,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         createAccountButton.layer.shadowOffset = CGSize(width: 5, height: 7)
         createAccountButton.layer.shadowOpacity = 0.8
         createAccountButton.layer.masksToBounds = false
+        createAccountButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         view.addSubview(createAccountButton)
         
         setupConstraints()
@@ -172,5 +173,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     @objc func viewTapped(gesture: UITapGestureRecognizer) {
         view.endEditing(true)
+    }
+    
+    @objc func dismissView() {
+        dismiss(animated: true, completion: nil)
     }
 }

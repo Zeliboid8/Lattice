@@ -17,7 +17,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     var barGradient: CAGradientLayer!
     var horizontalBar: UIView!
     
-    let imageNames = ["CalendarGray", "EventsGray", "HomeGray", "GroupsGray", "ProfileGray"]
+    let imageNames = ["Calendar", "Events", "Home", "Groups", "Profile"]
     
     let cellReuseIdentifier = "menuCell"
     

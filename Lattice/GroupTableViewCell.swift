@@ -77,3 +77,39 @@ class GroupTableViewCell: UITableViewCell {
         nameLabel.text = name
     }
 }
+
+class AddMemberCell: GroupTableViewCell {
+    
+    var addButton: UIButton!
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        groupPhoto.isHidden = true
+        
+        addButton = UIButton()
+        addButton.backgroundColor = UIColor(red: 1, green: 0.18, blue: 0.38, alpha: 1)
+        addButton.setTitle("+", for: .normal)
+        addButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 30)
+        addButton.titleLabel?.textAlignment = .center
+        addButton.setTitleColor(.black, for: .normal)
+        addButton.layer.cornerRadius = photoHeight / 2
+        addButton.isUserInteractionEnabled = false
+        contentView.addSubview(addButton)
+        
+        nameLabel.text = "Add group member"
+    }
+    
+    override func updateConstraints() {
+        addButton.snp.makeConstraints{ (make) -> Void in
+            make.centerY.equalTo(contentView)
+            make.leading.equalTo(contentView).offset(10)
+            make.height.width.equalTo(photoHeight)
+        }
+        super.updateConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

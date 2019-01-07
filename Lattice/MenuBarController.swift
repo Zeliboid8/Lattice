@@ -21,9 +21,12 @@ class MenuBarController: UIViewController {
     let calendarController = WeekAvailabilityController()
     let eventController = DocumentScannerController()
     let homeController = HomeController()
-    let groupController = GroupOverviewController()
+    let groupOverviewController = GroupOverviewController()
+    var groupNavigationController: UINavigationController!
     let profileController = ProfileController()
     var viewControllers: [UIViewController]!
+    
+    var loggedIn: Bool = false
     
     var menuBar: MenuBar!
     
@@ -34,10 +37,12 @@ class MenuBarController: UIViewController {
         calendarController.view.tag = 0
         eventController.view.tag = 1
         homeController.view.tag = 2
-        groupController.view.tag = 3
+        groupOverviewController.view.tag = 3
         profileController.view.tag = 4
         
-        viewControllers = [calendarController, eventController, homeController, groupController, profileController]
+        groupNavigationController = UINavigationController(rootViewController: groupOverviewController)
+        groupNavigationController.setNavigationBarHidden(true, animated: false)
+        viewControllers = [calendarController, eventController, homeController, groupNavigationController, profileController]
 
         menuBar = MenuBar()
         menuBar.delegate = self
@@ -49,6 +54,14 @@ class MenuBarController: UIViewController {
         setupConstraints()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !loggedIn {
+            presentLogin()
+            loggedIn = true
+        }
+    }
+    
     func setupConstraints() {
         menuBar.snp.makeConstraints { (make) -> Void in
             make.bottom.leading.trailing.equalTo(view)
@@ -56,6 +69,10 @@ class MenuBarController: UIViewController {
         }
     }
 
+    func presentLogin() {
+        let loginController = LoginController()
+        present(loginController, animated: true, completion: nil)
+    }
 }
 
 extension MenuBarController: ChangeView {

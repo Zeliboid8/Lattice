@@ -15,9 +15,14 @@ class HomeController: UIViewController {
     var radialGradient: RadialGradientView!
     var calendar: JTAppleCalendarView!
     var infoBox: UIView!
+    var verticalBar: UIView!
+    var infoBoxLabel: UILabel!
+    var infoBoxSubtitle: UILabel!
     var dayNames: UIStackView!
     var monthLabel: UILabel!
     var addButton: UIButton!
+    var events: [Event]!
+    var eventsDict: [Date : [Event]] = [:]
     
     let formatter = DateFormatter()
     let labelColor = UIColor(red: 0.82, green: 0.82, blue: 0.82, alpha: 1)
@@ -45,13 +50,41 @@ class HomeController: UIViewController {
         addButton.layer.shadowOpacity = 0.8
         addButton.layer.shadowRadius = 2
         addButton.layer.masksToBounds = false
+        addButton.addTarget(self, action: #selector(presentAddView), for: .touchUpInside)
         view.addSubview(addButton)
         
-        let events = EventManager.importEvents()
-        print(events[0].start_date)
+        importEvents()
         
         setupCalendar()
         setupConstraints()
+    }
+    
+    func importEvents() {
+        events = EventManager.importEvents()
+        for event in events {
+            if Calendar.current.isDate(event.start_date, inSameDayAs: event.end_date) { // Event spans the same day
+                if eventsDict[Calendar.current.startOfDay(for: event.start_date)] == nil {
+                    eventsDict[Calendar.current.startOfDay(for: event.start_date)] = [event]
+                } else {
+                    eventsDict[Calendar.current.startOfDay(for: event.start_date)]?.append(event)
+                }
+            }
+            else {
+                // Add event to day the event starts on
+                if eventsDict[Calendar.current.startOfDay(for: event.start_date)] == nil {
+                    eventsDict[Calendar.current.startOfDay(for: event.start_date)] = [event]
+                } else {
+                    eventsDict[Calendar.current.startOfDay(for: event.start_date)]?.append(event)
+                }
+                // Add event to day the event ends on
+                if eventsDict[Calendar.current.startOfDay(for: event.end_date)] == nil {
+                    eventsDict[Calendar.current.startOfDay(for: event.end_date)] = [event]
+                }
+                else {
+                    eventsDict[Calendar.current.startOfDay(for: event.end_date)]?.append(event)
+                }
+            }
+        }
     }
     
     func setupCalendar() {
@@ -100,9 +133,19 @@ class HomeController: UIViewController {
         infoBox = UIView()
         infoBox.backgroundColor = UIColor(red: 0.22, green: 0.22, blue: 0.22, alpha: 0.64)
         infoBox.layer.cornerRadius = 8
-        
-        
         view.addSubview(infoBox)
+        
+        verticalBar = UIView()
+        view.addSubview(verticalBar)
+        
+        infoBoxLabel = UILabel()
+        infoBoxLabel.textColor = labelColor
+        infoBoxLabel.font = UIFont(name: "Nunito-Semibold", size: 20)
+        view.addSubview(infoBoxLabel)
+        
+        infoBoxSubtitle = UILabel()
+        infoBoxSubtitle.font = UIFont(name: "Nunito-Italic", size: 15)
+        view.addSubview(infoBoxSubtitle)
     }
     
     func setupConstraints() {
@@ -127,51 +170,108 @@ class HomeController: UIViewController {
             make.leading.trailing.equalTo(view).inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30 - MenuBarParameters.menuBarHeight)
         }
+        verticalBar.snp.makeConstraints { (make) -> Void in
+            make.leading.top.bottom.equalTo(infoBox).inset(20)
+            make.width.equalTo(3)
+        }
+        infoBoxLabel.snp.makeConstraints { (make) -> Void in
+            make.leading.equalTo(verticalBar.snp.trailing).offset(20)
+            make.top.equalTo(infoBox).offset(20)
+        }
+        infoBoxSubtitle.snp.makeConstraints { (make) -> Void in
+            make.leading.equalTo(verticalBar.snp.trailing).offset(20)
+            make.top.equalTo(infoBoxLabel.snp.bottom).offset(5)
+        }
         addButton.snp.makeConstraints { (make) -> Void in
-            make.trailing.bottom.equalTo(infoBox).inset(10)
+            make.trailing.bottom.equalTo(infoBox).inset(15)
             make.height.width.equalTo(80)
         }
+    }
+    
+    @objc func presentAddView() {
+        let addController = AddController()
+        present(addController, animated: true, completion: nil)
     }
 }
 
 extension HomeController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         let customCell = cell as! CalendarCell
-        customCell.setNeedsUpdateConstraints()
-        customCell.configure(text: cellState.text)
-        handleCellSelection(cell: cell, cellState: cellState)
+        handleCellSetup(date: date, cellState: cellState, cell: customCell)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: calCellReuseIdentifier, for: indexPath) as! CalendarCell
-        cell.setNeedsUpdateConstraints()
-        cell.configure(text: cellState.text)
         if cellState.dateBelongsTo == .thisMonth {
             cell.dateLabel.textColor = labelColor
         }
         else {
             cell.dateLabel.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
         }
-        handleCellSelection(cell: cell, cellState: cellState)
+        handleCellSetup(date: date, cellState: cellState, cell: cell)
         return cell
     }
     
+    func handleCellSetup(date: Date, cellState: CellState, cell: CalendarCell) {
+        cell.setNeedsUpdateConstraints()
+        guard let filteredEvents = eventsDict[Calendar.current.startOfDay(for: date)] else {
+            cell.configure(text: cellState.text, color: .clear)
+            handleCellSelection(cell: cell, cellState: cellState, date: date, events: nil)
+            return
+        }
+        if filteredEvents.count < 2 {
+            cell.configure(text: cellState.text, color: colorFromAvailability(.some))
+        } else {
+            cell.configure(text: cellState.text, color: colorFromAvailability(.busy))
+        }
+        handleCellSelection(cell: cell, cellState: cellState, date: date, events: filteredEvents)
+    }
+    
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        handleCellSelection(cell: cell, cellState: cellState)
+        let filteredEvents = eventsDict[Calendar.current.startOfDay(for: date)]
+        handleCellSelection(cell: cell, cellState: cellState, date: date, events: filteredEvents)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        handleCellSelection(cell: cell, cellState: cellState)
+        let filteredEvents = eventsDict[Calendar.current.startOfDay(for: date)]
+        handleCellSelection(cell: cell, cellState: cellState, date: date, events: filteredEvents)
     }
     
-    func handleCellSelection(cell: JTAppleCell?, cellState: CellState) {
+    func handleCellSelection(cell: JTAppleCell?, cellState: CellState, date: Date, events: [Event]?) {
         guard let customCell = cell as? CalendarCell else {
             return
         }
         if cellState.isSelected {
             customCell.selectedView.isHidden = false
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEEE, MMMM D"
+            infoBoxLabel.text = ("\(dateFormatter.string(from: date))")
+            if events == nil {
+                verticalBar.backgroundColor = colorFromAvailability(.free)
+                infoBoxSubtitle.textColor = colorFromAvailability(.free)
+                infoBoxSubtitle.text = "No events"
+            } else if events!.count < 2 {
+                verticalBar.backgroundColor = colorFromAvailability(.some)
+                infoBoxSubtitle.textColor = colorFromAvailability(.some)
+                infoBoxSubtitle.text = "Some availability"
+            } else {
+                verticalBar.backgroundColor = colorFromAvailability(.busy)
+                infoBoxSubtitle.textColor = colorFromAvailability(.busy)
+                infoBoxSubtitle.text = "Little availability"
+            }
         } else {
             customCell.selectedView.isHidden = true
+        }
+    }
+    
+    func colorFromAvailability(_ availability: Availability) -> UIColor {
+        switch availability {
+        case .free:
+            return UIColor(red: 0.03, green: 0.85, blue: 0.84, alpha: 1)
+        case .some:
+            return UIColor(red: 0.93, green: 0.72, blue: 0.26, alpha: 1)
+        case .busy:
+            return UIColor(red: 1, green: 0.18, blue: 0.38, alpha: 1)
         }
     }
     

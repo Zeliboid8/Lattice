@@ -103,8 +103,8 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         }
         addButton.snp.makeConstraints { (make) -> Void in
             make.height.width.equalTo(80)
-            make.trailing.equalTo(view).offset(-40)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40 - MenuBarParameters.menuBarHeight)
+            make.trailing.equalTo(view).offset(-35)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-45 - MenuBarParameters.menuBarHeight)
         }
     }
     
@@ -137,6 +137,9 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }
         return cellSpacing
     }
     
@@ -149,7 +152,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let groupController = GroupController()
         groupController.setGroup(group: groupList[indexPath.section])
-        present(groupController, animated: true, completion: nil)
+        navigationController?.pushViewController(groupController, animated: true)
     }
     
     @objc func dismissModalView() {
