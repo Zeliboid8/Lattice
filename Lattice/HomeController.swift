@@ -244,7 +244,7 @@ extension HomeController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         if cellState.isSelected {
             customCell.selectedView.isHidden = false
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EEEE, MMMM D"
+            dateFormatter.dateFormat = "EEEE, MMMM d"
             infoBoxLabel.text = ("\(dateFormatter.string(from: date))")
             if events == nil {
                 verticalBar.backgroundColor = colorFromAvailability(.free)

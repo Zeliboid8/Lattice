@@ -85,7 +85,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
     
     func setupConstraints() {
         radialGradient.snp.makeConstraints { (make) -> Void in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalTo(view)
         }
         groupLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(10)

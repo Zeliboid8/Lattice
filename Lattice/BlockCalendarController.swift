@@ -9,11 +9,19 @@
 import UIKit
 import SnapKit
 
-class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
+class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, DropDownData {
     
     var radialGradient: RadialGradientView!
     var verticalSwipe: UIPanGestureRecognizer!
     var tap: UITapGestureRecognizer!
+    var backButton: UIButton!
+    var blockCalendarLabel: UILabel!
+    var intervalDropDown: DropDownButton!
+    var separator: UIView!
+    var fromLabel: UILabel!
+    var fromDropDown: DropDownButton!
+    var toLabel: UILabel!
+    var toDropDown: DropDownButton!
     var dailyTimes: UIStackView!
     var collectionView: UICollectionView!
 
@@ -21,9 +29,17 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
     let headerCellReuseIdentifier = "header"
     let dateFormatter = DateFormatter()
     let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    let slotsPerHour: Int = 1
-    let startingHour: Int = 11
-    let endingHour: Int = 20
+    var slotsPerHour: Int = 2
+    var startingHour: Int = 0
+    var fromTime: String {
+        if startingHour == 0 { return "12:00 am"}
+        return "\(startingHour <= 12 ? startingHour : startingHour - 12):00 \(startingHour <= 12 ? "am" : "pm")"
+    }
+    var endingHour: Int = 23
+    var toTime: String {
+        if endingHour == 0 { return "12:00 am"}
+        return "\(endingHour <= 12 ? endingHour : endingHour - 12):00 \(endingHour <= 12 ? "am" : "pm")"
+    }
     var numTimeCells: Int {
         return (endingHour - startingHour + 1) * slotsPerHour
     }
@@ -31,20 +47,64 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
 
     override func viewDidLoad() {
         view.backgroundColor = .black
-        
         radialGradient = RadialGradientView()
         view.addSubview(radialGradient)
+        
+        backButton = UIButton()
+        backButton.setImage(UIImage(named: "BackArrow")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        backButton.imageView?.tintColor = Colors.labelColor
+        backButton.addTarget(self, action: #selector(popView), for: .touchUpInside)
+        view.addSubview(backButton)
+        
+        blockCalendarLabel = UILabel()
+        blockCalendarLabel.text = "Block times"
+        blockCalendarLabel.textColor = Colors.labelColor
+        blockCalendarLabel.font = UIFont(name: "Nunito-Regular", size: 30)
+        view.addSubview(blockCalendarLabel)
+        
+        intervalDropDown = DropDownButton()
+        intervalDropDown.dropView.dropDownOptions = ["Every hour", "Every half hour"]
+        view.addSubview(intervalDropDown)
+        
+        fromLabel = UILabel()
+        fromLabel.text = "From"
+        fromLabel.textColor = Colors.labelColor
+        fromLabel.font = UIFont(name: "Nunito-Light", size: 18)
+        view.addSubview(fromLabel)
+        
+        fromDropDown = DropDownButton()
+        fromDropDown.setTitle(fromTime, for: .normal)
+        fromDropDown.dropView.dropDownOptions = ["12:00 am", "1:00 am", "2:00 am", "3:00 am", "4:00 am", "5:00 am", "6:00 am", "7:00 am", "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm", "9:00 pm", "10:00 pm", "11:00 pm", "12:00 pm"]
+        fromDropDown.delegate = self
+        view.addSubview(fromDropDown)
+        
+        toLabel = UILabel()
+        toLabel.text = "to"
+        toLabel.textColor = Colors.labelColor
+        toLabel.font = UIFont(name: "Nunito-Light", size: 18)
+        view.addSubview(toLabel)
+        
+        toDropDown = DropDownButton()
+        toDropDown.setTitle(toTime, for: .normal)
+        toDropDown.dropView.dropDownOptions = ["12:00 am", "1:00 am", "2:00 am", "3:00 am", "4:00 am", "5:00 am", "6:00 am", "7:00 am", "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm", "9:00 pm", "10:00 pm", "11:00 pm", "12:00 pm"]
+        toDropDown.delegate = self
+        view.addSubview(toDropDown)
         
         dailyTimes = UIStackView()
         dailyTimes.axis = .vertical
         dailyTimes.distribution = .fillEqually
-        for hour in startingHour...endingHour {
-            for minute in 0..<slotsPerHour {
-                let timeLabel = UILabel()
-                timeLabel.text = "\(hour <= 12 ? hour : hour - 12):\(String(format: "%02d", 60 / slotsPerHour * minute)) \(hour <= 12 ? "am" : "pm")"
-                timeLabel.font = UIFont(name: "Nunito-Semibold", size: 15)
-                timeLabel.textColor = Colors.labelColor
-                dailyTimes.addArrangedSubview(timeLabel)
+        if startingHour < endingHour {
+            for hour in startingHour...endingHour {
+                for minute in 0..<slotsPerHour {
+                    let timeLabel = UILabel()
+                    timeLabel.text = "\(hour == 0 ? 12 : hour <= 12 ? hour : hour - 12):\(String(format: "%02d", 60 / slotsPerHour * minute)) \(hour <= 12 ? "am" : "pm")"
+                    timeLabel.font = UIFont(name: "Nunito-Semibold", size: 15)
+                    timeLabel.textColor = Colors.labelColor
+                    if minute != 0 {
+                        timeLabel.textColor = .clear
+                    }
+                    dailyTimes.addArrangedSubview(timeLabel)
+                }
             }
         }
         view.addSubview(dailyTimes)
@@ -78,17 +138,96 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
         radialGradient.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(view)
         }
+        backButton.snp.makeConstraints { (make) -> Void in
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.height.width.equalTo(25)
+        }
+        blockCalendarLabel.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(backButton)
+            make.leading.equalTo(backButton.snp.trailing).offset(35)
+            make.trailing.equalTo(view).offset(-30)
+            make.height.equalTo(30)
+        }
+        fromLabel.snp.makeConstraints { (make) -> Void in
+            make.leading.equalTo(blockCalendarLabel)
+            make.top.equalTo(blockCalendarLabel.snp.bottom).offset(10)
+            make.height.equalTo(40)
+        }
+        fromDropDown.snp.makeConstraints { (make) -> Void in
+            make.leading.equalTo(fromLabel.snp.trailing)
+            make.top.equalTo(fromLabel)
+            make.height.equalTo(40)
+            make.width.equalTo(120)
+        }
+        toLabel.snp.makeConstraints { (make) -> Void in
+            make.leading.equalTo(fromDropDown.snp.trailing)
+            make.top.equalTo(fromLabel)
+            make.height.equalTo(40)
+        }
+        toDropDown.snp.makeConstraints { (make) -> Void in
+            make.leading.equalTo(toLabel.snp.trailing)
+            make.top.equalTo(fromLabel)
+            make.height.equalTo(40)
+            make.width.equalTo(120)
+        }
         dailyTimes.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
+            make.top.equalTo(collectionView).offset(headerCellHeight)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20 - MenuBarParameters.menuBarHeight)
         }
         collectionView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(50 - headerCellHeight)
+            make.top.equalTo(fromLabel.snp.bottom).offset(10)
             make.leading.equalTo(dailyTimes.snp.trailing).offset(10)
             make.trailing.equalTo(view).offset(-10)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20 - MenuBarParameters.menuBarHeight)
         }
+    }
+    
+    func createStackView() {
+        for subview in dailyTimes.subviews {
+            subview.removeFromSuperview()
+        }
+        if startingHour < endingHour {
+            for hour in startingHour...endingHour {
+                for minute in 0..<slotsPerHour {
+                    let timeLabel = UILabel()
+                    timeLabel.text = "\(hour <= 12 ? hour : hour - 12):\(String(format: "%02d", 60 / slotsPerHour * minute)) \(hour <= 12 ? "am" : "pm")"
+                    timeLabel.font = UIFont(name: "Nunito-Semibold", size: 15)
+                    timeLabel.textColor = Colors.labelColor
+                    timeLabel.lineBreakMode = .byClipping
+                    if minute != 0 {
+                        timeLabel.textColor = .clear
+                    }
+                    dailyTimes.addArrangedSubview(timeLabel)
+                }
+            }
+        }
+        dailyTimes.setNeedsDisplay()
+    }
+    
+    func itemSelected(sender: DropDownButton, contents: String) {
+        if sender == fromDropDown {
+            if contents == "12:00 am" {
+                startingHour = 0
+                return
+            }
+            startingHour = Int(contents.components(separatedBy: ":").first!) ?? startingHour
+            if contents.suffix(2) == "pm" {
+                startingHour += 12
+            }
+        }
+        else if sender == toDropDown {
+            if contents == "12:00 am" {
+                startingHour = 0
+                return
+            }
+            endingHour = Int(contents.components(separatedBy: ":").first!) ?? endingHour
+            if contents.suffix(2) == "pm" {
+                endingHour += 12
+            }
+        }
+        createStackView()
+        collectionView.reloadData()
     }
     
     @objc func handlePan() {
@@ -179,7 +318,7 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
         if indexPath.item == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: headerCellReuseIdentifier, for: indexPath) as! HeaderCell
             cell.configure(day: dayNames[indexPath.section])
-            cell.backgroundColor = .clear
+            cell.backgroundColor = Colors.blue
             cell.setNeedsUpdateConstraints()
             cell.layer.borderColor = Colors.infoBox.cgColor
             cell.layer.borderWidth = 1
@@ -192,5 +331,9 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
             cell.layer.borderWidth = 1
             return cell
         }
+    }
+    
+    @objc func popView() {
+        navigationController?.popViewController(animated: true)
     }
 }

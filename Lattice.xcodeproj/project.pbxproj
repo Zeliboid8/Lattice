@@ -24,7 +24,7 @@
 		CA5E478A21DED2CC005606AA /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA5E477B21DED2BC005606AA /* Nunito-SemiBold.ttf */; };
 		CA5E478F21DF03D8005606AA /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E478E21DF03D8005606AA /* HomeController.swift */; };
 		CA5E479321DF058B005606AA /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E479221DF058B005606AA /* RadialGradientView.swift */; };
-		CA5E479A21DF10E7005606AA /* WeekAvailabilityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E479821DF10E6005606AA /* WeekAvailabilityController.swift */; };
+		CA5E479A21DF10E7005606AA /* BlockCalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E479821DF10E6005606AA /* BlockCalendarController.swift */; };
 		CA5E479B21DF10E7005606AA /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E479921DF10E6005606AA /* HeaderCell.swift */; };
 		CA5E479E21DF10EC005606AA /* GroupOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E479C21DF10EB005606AA /* GroupOverviewController.swift */; };
 		CA5E479F21DF10EC005606AA /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E479D21DF10EC005606AA /* GroupTableViewCell.swift */; };
@@ -73,7 +73,7 @@
 		CA5E477B21DED2BC005606AA /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
 		CA5E478E21DF03D8005606AA /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		CA5E479221DF058B005606AA /* RadialGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
-		CA5E479821DF10E6005606AA /* WeekAvailabilityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekAvailabilityController.swift; sourceTree = "<group>"; };
+		CA5E479821DF10E6005606AA /* BlockCalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCalendarController.swift; sourceTree = "<group>"; };
 		CA5E479921DF10E6005606AA /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		CA5E479C21DF10EB005606AA /* GroupOverviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupOverviewController.swift; sourceTree = "<group>"; };
 		CA5E479D21DF10EC005606AA /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
@@ -230,7 +230,7 @@
 				CA18261221E40CF3002DC869 /* Colors.swift */,
 				CA5E476421DED0DB005606AA /* CalendarCell.swift */,
 				CA427B5F21E488440015CCD5 /* CalendarController.swift */,
-				CA5E479821DF10E6005606AA /* WeekAvailabilityController.swift */,
+				CA5E479821DF10E6005606AA /* BlockCalendarController.swift */,
 				CA5E479921DF10E6005606AA /* HeaderCell.swift */,
 				CAFB12AA21E4395300D88446 /* DropDownButton.swift */,
 				CAFB12A921E418CE00D88446 /* MenuBar */,
@@ -423,7 +423,7 @@
 				CA5E47AB21DF10F7005606AA /* CodeScannerController.swift in Sources */,
 				CA5E479E21DF10EC005606AA /* GroupOverviewController.swift in Sources */,
 				CA18261321E40CF3002DC869 /* Colors.swift in Sources */,
-				CA5E479A21DF10E7005606AA /* WeekAvailabilityController.swift in Sources */,
+				CA5E479A21DF10E7005606AA /* BlockCalendarController.swift in Sources */,
 				CADC5EA921E0AAA900E3097E /* LoginController.swift in Sources */,
 				CA5E47A721DF10F2005606AA /* TextSelectionController.swift in Sources */,
 				CADC5EA721E0641200E3097E /* GroupController.swift in Sources */,

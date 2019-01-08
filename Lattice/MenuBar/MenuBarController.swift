@@ -18,13 +18,16 @@ struct MenuBarParameters {
 
 class MenuBarController: UIViewController {
 
-    let calendarController = WeekAvailabilityController()
+    let calendarController = BlockCalendarController()
     let eventController = DocumentScannerController()
     let homeController = HomeController()
     let groupOverviewController = GroupOverviewController()
     var groupNavigationController: UINavigationController!
     let profileController = ProfileController()
     var viewControllers: [UIViewController]!
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     var loggedIn: Bool = false
     
@@ -34,14 +37,14 @@ class MenuBarController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
+        groupNavigationController = UINavigationController(rootViewController: groupOverviewController)
+        groupNavigationController.setNavigationBarHidden(true, animated: false)
+        
         calendarController.view.tag = 0
         eventController.view.tag = 1
         homeController.view.tag = 2
-        groupOverviewController.view.tag = 3
+        groupNavigationController.view.tag = 3
         profileController.view.tag = 4
-        
-        groupNavigationController = UINavigationController(rootViewController: groupOverviewController)
-        groupNavigationController.setNavigationBarHidden(true, animated: false)
         viewControllers = [calendarController, eventController, homeController, groupNavigationController, profileController]
 
         menuBar = MenuBar()

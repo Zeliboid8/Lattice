@@ -13,10 +13,15 @@ protocol DropDownProtocol: class {
     func dropDownPressed(cellTitle: String)
 }
 
+protocol DropDownData: class {
+    func itemSelected(sender: DropDownButton, contents: String)
+}
+
 // Used NSLayoutConstraints for this portion because couldn't animate SnapKit constraints
 // Tutorial from Jared Davidson at https://www.youtube.com/watch?v=22zu-OTS-3M
 class DropDownButton: UIButton, DropDownProtocol {
 
+    weak var delegate: DropDownData?
     var dropView: DropDownView!
     var height = NSLayoutConstraint()
     let padding: CGFloat = 10
@@ -30,6 +35,7 @@ class DropDownButton: UIButton, DropDownProtocol {
         contentMode = .scaleAspectFit
         imageView?.tintColor = Colors.labelColor
         titleLabel?.font = UIFont(name: "Nunito-Regular", size: 18)
+        titleLabel?.textColor = Colors.labelColor
         transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
@@ -109,6 +115,7 @@ class DropDownButton: UIButton, DropDownProtocol {
     
     func dropDownPressed(cellTitle: String) {
         setTitle(cellTitle, for: .normal)
+        delegate?.itemSelected(sender: self, contents: cellTitle)
         self.dismissDropDown()
     }
     
@@ -130,6 +137,7 @@ class DropDownView: UIView, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
+        tableView.showsVerticalScrollIndicator = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         addSubview(tableView)
         dropDownOptions = [String]()
