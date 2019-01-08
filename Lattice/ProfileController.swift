@@ -16,16 +16,17 @@ class ProfileController: UIViewController {
     var nameLabel: UILabel!
     var usernameLabel: UILabel!
     var qrCodeButton: UIButton!
-    var emailStackView: UIStackView!
+    var notificationsLabel: UILabel!
+    var notificationsDropDown: DropDownButton!
     var emailLabel: UILabel!
     var emailTextField: UITextField!
-    var passwordStackView: UIStackView!
     var passwordLabel: UILabel!
     var passwordTextField: UITextField!
-    var notificationsLabel: UILabel!
     var logoutButton: UIButton!
     
-    let photoHeight: CGFloat = 120
+    var notificationsPreference: String = "Every morning"
+    
+    let photoHeight: CGFloat = 100
     let buttonHeight: CGFloat = 50
     
     override func viewDidLoad() {
@@ -49,13 +50,13 @@ class ProfileController: UIViewController {
         
         nameLabel = UILabel()
         nameLabel.text = "Eli Zhang"
-        nameLabel.textColor = .white
+        nameLabel.textColor = Colors.labelColor
         nameLabel.textAlignment = .center
-        nameLabel.font = UIFont(name: "Nunito-Bold", size: 25)
+        nameLabel.font = UIFont(name: "Nunito-Bold", size: 30)
         
         usernameLabel = UILabel()
         usernameLabel.text = "@elikzhang"
-        usernameLabel.textColor = .white
+        usernameLabel.textColor = Colors.labelColor
         usernameLabel.textAlignment = .center
         usernameLabel.font = UIFont(name: "Nunito-Regular", size: 18)
         
@@ -79,45 +80,38 @@ class ProfileController: UIViewController {
         qrCodeButton.layer.shadowOpacity = 0.8
         qrCodeButton.layer.masksToBounds = false
         
+        notificationsLabel = UILabel()
+        notificationsLabel.text = "NOTIFICATIONS"
+        notificationsLabel.textColor = Colors.labelColor
+        notificationsLabel.textAlignment = .left
+        notificationsLabel.font = UIFont(name: "Nunito-Semibold", size: 18)
+        
         emailLabel = UILabel()
         emailLabel.text = "EMAIL"
-        emailLabel.textColor = .white
+        emailLabel.textColor = Colors.labelColor
+        emailLabel.textAlignment = .left
         emailLabel.font = UIFont(name: "Nunito-Semibold", size: 18)
         
         emailTextField = UITextField()
         emailTextField.text = "elikzhang@gmail.com"
         emailTextField.placeholder = "Email"
-        emailTextField.textColor = .white
+        emailTextField.textColor = Colors.labelColor
+        emailTextField.textAlignment = .right
         emailTextField.font = UIFont(name: "Nunito-Regular", size: 18)
-        
-        emailStackView = UIStackView()
-        emailStackView.axis = .horizontal
-        emailStackView.distribution = .fill
-        emailStackView.addArrangedSubview(emailLabel)
-        emailStackView.addArrangedSubview(emailTextField)
         
         passwordLabel = UILabel()
         passwordLabel.text = "PASSWORD"
-        passwordLabel.textColor = .white
+        passwordLabel.textColor = Colors.labelColor
+        passwordLabel.textAlignment = .left
         passwordLabel.font = UIFont(name: "Nunito-Semibold", size: 18)
         
         passwordTextField = UITextField()
         passwordTextField.isSecureTextEntry = true
         passwordTextField.text = "password123"
-        passwordTextField.textColor = .white
+        passwordTextField.textColor = Colors.labelColor
         passwordTextField.placeholder = "Password"
+        passwordTextField.textAlignment = .right
         passwordTextField.font = UIFont(name: "Nunito-Regular", size: 18)
-        
-        passwordStackView = UIStackView()
-        passwordStackView.axis = .horizontal
-        passwordStackView.distribution = .fill
-        passwordStackView.addArrangedSubview(passwordLabel)
-        passwordStackView.addArrangedSubview(passwordTextField)
-        
-        notificationsLabel = UILabel()
-        notificationsLabel.text = "NOTIFICATIONS"
-        notificationsLabel.textColor = .white
-        notificationsLabel.font = UIFont(name: "Nunito-Semibold", size: 18)
         
         logoutButton = UIButton()
         logoutButton.setTitle("Logout", for: .normal)
@@ -129,14 +123,21 @@ class ProfileController: UIViewController {
         logoutButton.layer.shadowOffset = CGSize(width: 5, height: 7)
         logoutButton.layer.shadowOpacity = 0.8
         logoutButton.layer.masksToBounds = false
+        
+        notificationsDropDown = DropDownButton()
+        notificationsDropDown.setTitle(notificationsPreference, for: .normal)
+        notificationsDropDown.dropView.dropDownOptions = ["Every morning", "Before events", "Never"]
+        view.addSubview(notificationsDropDown)
 
         view.addSubview(profilePhoto)
         view.addSubview(nameLabel)
         view.addSubview(usernameLabel)
         view.addSubview(qrCodeButton)
-        view.addSubview(emailStackView)
-        view.addSubview(passwordStackView)
         view.addSubview(notificationsLabel)
+        view.addSubview(emailLabel)
+        view.addSubview(emailTextField)
+        view.addSubview(passwordLabel)
+        view.addSubview(passwordTextField)
         view.addSubview(logoutButton)
         
         setupConstraints()
@@ -165,20 +166,37 @@ class ProfileController: UIViewController {
             make.height.equalTo(buttonHeight)
             make.width.equalTo(250)
         }
-        emailStackView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(qrCodeButton.snp.bottom).offset(30)
-            make.leading.trailing.equalTo(view).inset(30)
-        }
-        passwordStackView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(emailStackView.snp.bottom).offset(15)
-            make.leading.trailing.equalTo(view).inset(30)
-        }
         notificationsLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(passwordStackView.snp.bottom).offset(50)
+            make.top.equalTo(qrCodeButton.snp.bottom).offset(30)
+            make.leading.equalTo(view).offset(30)
+            make.width.equalTo(140)
+        }
+        notificationsDropDown.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(notificationsLabel)
+            make.trailing.equalTo(view).offset(-10)
+            make.width.equalTo(180)
+            make.height.equalTo(50)
+        }
+        emailLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(notificationsLabel.snp.bottom).offset(50)
             make.leading.equalTo(view).offset(30)
         }
+        emailTextField.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(emailLabel)
+            make.leading.equalTo(emailLabel.snp.trailing).offset(30)
+            make.trailing.equalTo(view).offset(-20)
+        }
+        passwordLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(emailLabel.snp.bottom).offset(20)
+            make.leading.equalTo(view).offset(30)
+        }
+        passwordTextField.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(passwordLabel)
+            make.leading.equalTo(passwordLabel.snp.trailing).offset(20)
+            make.trailing.equalTo(view).offset(-20)
+        }
         logoutButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(notificationsLabel.snp.bottom).offset(50)
+            make.top.equalTo(passwordLabel.snp.bottom).offset(50)
             make.centerX.equalTo(view)
             make.height.equalTo(buttonHeight)
             make.width.equalTo(250)

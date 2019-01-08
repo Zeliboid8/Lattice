@@ -15,6 +15,8 @@ class HeaderCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         dayLabel = UILabel()
+        dayLabel.font = UIFont(name: "Nunito-Bold", size: 18)
+        dayLabel.textColor = Colors.labelColor
         contentView.addSubview(dayLabel)
     }
     

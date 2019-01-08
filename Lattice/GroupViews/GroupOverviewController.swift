@@ -152,6 +152,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         let groupController = GroupController()
         groupController.setGroup(group: groupList[indexPath.section])
         navigationController?.pushViewController(groupController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     @objc func dismissModalView() {

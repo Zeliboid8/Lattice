@@ -11,6 +11,12 @@ import SnapKit
 
 class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
     
+    var radialGradient: RadialGradientView!
+    var verticalSwipe: UIPanGestureRecognizer!
+    var tap: UITapGestureRecognizer!
+    var dailyTimes: UIStackView!
+    var collectionView: UICollectionView!
+
     let timeCellReuseIdentifier = "timeCell"
     let headerCellReuseIdentifier = "header"
     let dateFormatter = DateFormatter()
@@ -22,13 +28,12 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
         return (endingHour - startingHour + 1) * slotsPerHour
     }
     let headerCellHeight: CGFloat = 30
-    var verticalSwipe: UIPanGestureRecognizer!
-    var tap: UITapGestureRecognizer!
-    var dailyTimes: UIStackView!
-    var collectionView: UICollectionView!
-    
+
     override func viewDidLoad() {
         view.backgroundColor = .black
+        
+        radialGradient = RadialGradientView()
+        view.addSubview(radialGradient)
         
         dailyTimes = UIStackView()
         dailyTimes.axis = .vertical
@@ -37,6 +42,8 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
             for minute in 0..<slotsPerHour {
                 let timeLabel = UILabel()
                 timeLabel.text = "\(hour <= 12 ? hour : hour - 12):\(String(format: "%02d", 60 / slotsPerHour * minute)) \(hour <= 12 ? "am" : "pm")"
+                timeLabel.font = UIFont(name: "Nunito-Semibold", size: 15)
+                timeLabel.textColor = Colors.labelColor
                 dailyTimes.addArrangedSubview(timeLabel)
             }
         }
@@ -48,7 +55,7 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
         layout.minimumLineSpacing = 0
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: timeCellReuseIdentifier)
@@ -68,15 +75,19 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func setupConstraints() {
+        radialGradient.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(view)
+        }
         dailyTimes.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20 - MenuBarParameters.menuBarHeight)
         }
         collectionView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(50 - headerCellHeight)
             make.leading.equalTo(dailyTimes.snp.trailing).offset(10)
-            make.bottom.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            make.trailing.equalTo(view).offset(-10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20 - MenuBarParameters.menuBarHeight)
         }
     }
     
@@ -85,30 +96,42 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
             print("Swipe begins")   // Shouldn't do anything because it may be scrolling
         }
         else if verticalSwipe.state == UIGestureRecognizer.State.changed {
-            if abs(verticalSwipe.velocity(in: collectionView).x) < 50 {
+            if abs(verticalSwipe.velocity(in: collectionView).x) < 100 {
                 if let indexPath = collectionView.indexPathForItem(at: verticalSwipe.location(in: collectionView)) {
-                    print(indexPath)
+                    if indexPath.item == 0 {
+                        return
+                    }
                     if collectionView.cellForItem(at: indexPath)?.tag == 0 {
-                        collectionView.cellForItem(at: indexPath)?.backgroundColor = .green
-                        collectionView.cellForItem(at: indexPath)?.tag = 1
+                        collectionView.cellForItem(at: indexPath)?.backgroundColor = Colors.highlightedCell
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.collectionView.cellForItem(at: indexPath)?.tag = 1
+                        }
                     }
                     else {
-                        collectionView.cellForItem(at: indexPath)?.backgroundColor = .white
-                        collectionView.cellForItem(at: indexPath)?.tag = 0
+                        collectionView.cellForItem(at: indexPath)?.backgroundColor = .clear
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.collectionView.cellForItem(at: indexPath)?.tag = 0
+                        }
                     }
                 }
             }
         } else {
-            if abs(verticalSwipe.velocity(in: collectionView).x) < 50 {
+            if abs(verticalSwipe.velocity(in: collectionView).x) < 100 {
                 if let indexPath = collectionView.indexPathForItem(at: verticalSwipe.location(in: collectionView)) {
-                    print(indexPath)
+                    if indexPath.item == 0 {
+                        return
+                    }
                     if collectionView.cellForItem(at: indexPath)?.tag == 0 {
-                        collectionView.cellForItem(at: indexPath)?.backgroundColor = .green
-                        collectionView.cellForItem(at: indexPath)?.tag = 1
+                        collectionView.cellForItem(at: indexPath)?.backgroundColor = Colors.highlightedCell
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.collectionView.cellForItem(at: indexPath)?.tag = 1
+                        }
                     }
                     else {
-                        collectionView.cellForItem(at: indexPath)?.backgroundColor = .white
-                        collectionView.cellForItem(at: indexPath)?.tag = 0
+                        collectionView.cellForItem(at: indexPath)?.backgroundColor = .clear
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.collectionView.cellForItem(at: indexPath)?.tag = 0
+                        }
                     }
                 }
             }
@@ -117,13 +140,15 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
     
     @objc func handleTap() {
         if let indexPath = collectionView.indexPathForItem(at: tap.location(in: collectionView)) {
-            print(indexPath)
+            if indexPath.item == 0 {
+                return
+            }
             if collectionView.cellForItem(at: indexPath)?.tag == 0 {
-                collectionView.cellForItem(at: indexPath)?.backgroundColor = .green
+                collectionView.cellForItem(at: indexPath)?.backgroundColor = Colors.highlightedCell
                 collectionView.cellForItem(at: indexPath)?.tag = 1
             }
             else {
-                collectionView.cellForItem(at: indexPath)?.backgroundColor = .white
+                collectionView.cellForItem(at: indexPath)?.backgroundColor = .clear
                 collectionView.cellForItem(at: indexPath)?.tag = 0
             }
         }
@@ -154,15 +179,16 @@ class WeekAvailabilityController: UIViewController, UICollectionViewDelegate, UI
         if indexPath.item == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: headerCellReuseIdentifier, for: indexPath) as! HeaderCell
             cell.configure(day: dayNames[indexPath.section])
+            cell.backgroundColor = .clear
             cell.setNeedsUpdateConstraints()
-            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.borderColor = Colors.infoBox.cgColor
             cell.layer.borderWidth = 1
             return cell
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: timeCellReuseIdentifier, for: indexPath)
-            cell.backgroundColor = .white
-            cell.layer.borderColor = UIColor.black.cgColor
+            cell.backgroundColor = .clear
+            cell.layer.borderColor = Colors.infoBox.cgColor
             cell.layer.borderWidth = 1
             return cell
         }

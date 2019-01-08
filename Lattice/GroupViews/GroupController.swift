@@ -12,6 +12,7 @@ import SnapKit
 class GroupController: UIViewController, UISearchBarDelegate {
     
     var radialGradient: RadialGradientView!
+    var backButton: UIButton!
     var groupNameLabel: UILabel!
     var viewCalendarButton: UIButton!
     var searchBar: UISearchBar!
@@ -37,10 +38,16 @@ class GroupController: UIViewController, UISearchBarDelegate {
         radialGradient = RadialGradientView()
         view.addSubview(radialGradient)
         
+        backButton = UIButton()
+        backButton.setImage(UIImage(named: "BackArrow")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        backButton.imageView?.tintColor = Colors.labelColor
+        backButton.addTarget(self, action: #selector(popView), for: .touchUpInside)
+        view.addSubview(backButton)
+        
         groupNameLabel = UILabel()
         groupNameLabel.text = group.groupName
         groupNameLabel.textColor = Colors.labelColor
-        groupNameLabel.font = UIFont(name: "Nunito-Regular", size: 40)
+        groupNameLabel.font = UIFont(name: "Nunito-Regular", size: 30)
         view.addSubview(groupNameLabel)
         
         matchingMembers = memberList
@@ -82,9 +89,14 @@ class GroupController: UIViewController, UISearchBarDelegate {
         radialGradient.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(view)
         }
+        backButton.snp.makeConstraints { (make) -> Void in
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.height.width.equalTo(25)
+        }
         groupNameLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
+            make.centerY.equalTo(backButton)
+            make.leading.equalTo(backButton.snp.trailing).offset(20)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
         }
         viewCalendarButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(groupNameLabel.snp.bottom).offset(20)
@@ -113,8 +125,8 @@ class GroupController: UIViewController, UISearchBarDelegate {
         tableView.reloadData()
     }
     
-    @objc func dismissModalView() {
-        dismiss(animated: true, completion: nil)
+    @objc func popView() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
@@ -158,5 +170,9 @@ extension GroupController: UITableViewDelegate, UITableViewDataSource {
         let headerView = UIView()
         headerView.backgroundColor = .clear
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

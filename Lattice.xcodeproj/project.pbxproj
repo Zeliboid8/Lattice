@@ -12,6 +12,7 @@
 		CA107ADE21E314F500327490 /* Nunito-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA107ADB21E314F200327490 /* Nunito-SemiBoldItalic.ttf */; };
 		CA107AE021E3294A00327490 /* AddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA107ADF21E3294A00327490 /* AddController.swift */; };
 		CA18261321E40CF3002DC869 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA18261221E40CF3002DC869 /* Colors.swift */; };
+		CA427B6021E488440015CCD5 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA427B5F21E488440015CCD5 /* CalendarController.swift */; };
 		CA5E475F21DE09CE005606AA /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E475E21DE09CE005606AA /* MenuCell.swift */; };
 		CA5E476821DED0DB005606AA /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E476421DED0DB005606AA /* CalendarCell.swift */; };
 		CA5E477E21DED2CC005606AA /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA5E476F21DED2BC005606AA /* Nunito-Black.ttf */; };
@@ -48,6 +49,7 @@
 		CAF809E921E1D00200313A82 /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF809E821E1D00200313A82 /* MenuBarController.swift */; };
 		CAF809EB21E1EF3000313A82 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF809EA21E1EF3000313A82 /* Event.swift */; };
 		CAF809ED21E1F16500313A82 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF809EC21E1F16500313A82 /* EventManager.swift */; };
+		CAFB12AB21E4395300D88446 /* DropDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB12AA21E4395300D88446 /* DropDownButton.swift */; };
 		D963C3844E1FE7513B07D988 /* Pods_Lattice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA05287BA8A88A675C58F70 /* Pods_Lattice.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,7 @@
 		CA107ADB21E314F200327490 /* Nunito-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Nunito-SemiBoldItalic.ttf"; path = "../../../../../Downloads/Nunito/Nunito-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		CA107ADF21E3294A00327490 /* AddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddController.swift; sourceTree = "<group>"; };
 		CA18261221E40CF3002DC869 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		CA427B5F21E488440015CCD5 /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		CA5E475E21DE09CE005606AA /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		CA5E476421DED0DB005606AA /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		CA5E476F21DED2BC005606AA /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 		CAF809E821E1D00200313A82 /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
 		CAF809EA21E1EF3000313A82 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		CAF809EC21E1F16500313A82 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		CAFB12AA21E4395300D88446 /* DropDownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownButton.swift; sourceTree = "<group>"; };
 		EEA05287BA8A88A675C58F70 /* Pods_Lattice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lattice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -149,8 +153,6 @@
 		CA5E47B221DF113C005606AA /* CalendarViews */ = {
 			isa = PBXGroup;
 			children = (
-				CA5E479821DF10E6005606AA /* WeekAvailabilityController.swift */,
-				CA5E479921DF10E6005606AA /* HeaderCell.swift */,
 			);
 			path = CalendarViews;
 			sourceTree = "<group>";
@@ -158,6 +160,9 @@
 		CA5E47B321DF1169005606AA /* GroupViews */ = {
 			isa = PBXGroup;
 			children = (
+				CA5E479C21DF10EB005606AA /* GroupOverviewController.swift */,
+				CADC5EA621E0641200E3097E /* GroupController.swift */,
+				CA5E479D21DF10EC005606AA /* GroupTableViewCell.swift */,
 			);
 			path = GroupViews;
 			sourceTree = "<group>";
@@ -216,22 +221,21 @@
 				CAC263DF21C86EE60018EEA8 /* tessdata */,
 				CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */,
 				CA5E479221DF058B005606AA /* RadialGradientView.swift */,
-				CAF809E821E1D00200313A82 /* MenuBarController.swift */,
 				CAF809EC21E1F16500313A82 /* EventManager.swift */,
 				CAF809EA21E1EF3000313A82 /* Event.swift */,
-				CACBC01D21DE04D80063BDDE /* MenuBar.swift */,
-				CA5E475E21DE09CE005606AA /* MenuCell.swift */,
 				CADC5EA821E0AAA900E3097E /* LoginController.swift */,
 				CA5E478E21DF03D8005606AA /* HomeController.swift */,
 				CACBC01B21DE030C0063BDDE /* ProfileController.swift */,
-				CA5E479C21DF10EB005606AA /* GroupOverviewController.swift */,
-				CADC5EA621E0641200E3097E /* GroupController.swift */,
 				CA107ADF21E3294A00327490 /* AddController.swift */,
 				CA18261221E40CF3002DC869 /* Colors.swift */,
-				CA5E479D21DF10EC005606AA /* GroupTableViewCell.swift */,
 				CA5E476421DED0DB005606AA /* CalendarCell.swift */,
-				CA5E47B221DF113C005606AA /* CalendarViews */,
+				CA427B5F21E488440015CCD5 /* CalendarController.swift */,
+				CA5E479821DF10E6005606AA /* WeekAvailabilityController.swift */,
+				CA5E479921DF10E6005606AA /* HeaderCell.swift */,
+				CAFB12AA21E4395300D88446 /* DropDownButton.swift */,
+				CAFB12A921E418CE00D88446 /* MenuBar */,
 				CA5E47B321DF1169005606AA /* GroupViews */,
+				CA5E47B221DF113C005606AA /* CalendarViews */,
 				CA5E47B421DF116E005606AA /* TextProcessingViews */,
 				CA5E47B521DF1172005606AA /* QRCodeViews */,
 				CA5E47B621DF1177005606AA /* EventViews */,
@@ -250,6 +254,16 @@
 				CADC5EAC21E0AD9D00E3097E /* Offside-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		CAFB12A921E418CE00D88446 /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				CAF809E821E1D00200313A82 /* MenuBarController.swift */,
+				CACBC01D21DE04D80063BDDE /* MenuBar.swift */,
+				CA5E475E21DE09CE005606AA /* MenuCell.swift */,
+			);
+			path = MenuBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,6 +419,7 @@
 				CAF809ED21E1F16500313A82 /* EventManager.swift in Sources */,
 				CA5E475F21DE09CE005606AA /* MenuCell.swift in Sources */,
 				CA5E479F21DF10EC005606AA /* GroupTableViewCell.swift in Sources */,
+				CAFB12AB21E4395300D88446 /* DropDownButton.swift in Sources */,
 				CA5E47AB21DF10F7005606AA /* CodeScannerController.swift in Sources */,
 				CA5E479E21DF10EC005606AA /* GroupOverviewController.swift in Sources */,
 				CA18261321E40CF3002DC869 /* Colors.swift in Sources */,
@@ -424,6 +439,7 @@
 				CA5E47B121DF10FC005606AA /* LocationCell.swift in Sources */,
 				CA5E47A521DF10F2005606AA /* PhotoProcessor.swift in Sources */,
 				CA5E47A621DF10F2005606AA /* DocumentScannerController.swift in Sources */,
+				CA427B6021E488440015CCD5 /* CalendarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

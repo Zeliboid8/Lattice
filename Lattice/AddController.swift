@@ -12,6 +12,7 @@ import SnapKit
 class AddController: UIViewController {
 
     var radialGradient: RadialGradientView!
+    var backButton: UIButton!
     var calendarButton: AddButton!
     var eventButton: AddButton!
     var groupButton: AddButton!
@@ -26,6 +27,12 @@ class AddController: UIViewController {
         view.backgroundColor = .black
         radialGradient = RadialGradientView()
         view.addSubview(radialGradient)
+        
+        backButton = UIButton()
+        backButton.setImage(UIImage(named: "DownArrow")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        backButton.imageView?.tintColor = Colors.labelColor
+        backButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        view.addSubview(backButton)
         
         calendarButton = AddButton()
         calendarButton.configure(image: UIImage(named: "Calendar")!, title: "Calendar")
@@ -72,9 +79,18 @@ class AddController: UIViewController {
         radialGradient.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(view)
         }
-        verticalStackView.snp.makeConstraints { (make) -> Void in
-            make.edges.equalTo(view).inset(30)
+        backButton.snp.makeConstraints { (make) -> Void in
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.height.width.equalTo(30)
         }
+        verticalStackView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(backButton.snp.bottom).offset(20)
+            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(30)
+        }
+    }
+    
+    @objc func dismissView() {
+        dismiss(animated: true, completion: nil)
     }
 }
 

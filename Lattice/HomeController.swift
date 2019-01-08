@@ -189,6 +189,7 @@ class HomeController: UIViewController {
     
     @objc func presentAddView() {
         let addController = AddController()
+        addController.modalPresentationStyle = .overCurrentContext
         present(addController, animated: true, completion: nil)
     }
 }
