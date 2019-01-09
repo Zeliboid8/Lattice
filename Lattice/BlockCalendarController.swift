@@ -24,6 +24,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
     var toDropDown: DropDownButton!
     var dailyTimes: UIStackView!
     var collectionView: UICollectionView!
+    var cellStates: [[CellSelectedState]]!
 
     let timeCellReuseIdentifier = "timeCell"
     let headerCellReuseIdentifier = "header"
@@ -121,6 +122,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: timeCellReuseIdentifier)
         collectionView.register(HeaderCell.self, forCellWithReuseIdentifier: headerCellReuseIdentifier)
         collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
         view.addSubview(collectionView)
         
         verticalSwipe = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
@@ -131,6 +133,14 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
         tap.delegate = self
         tap.cancelsTouchesInView = false
         collectionView.addGestureRecognizer(tap)
+        
+        cellStates = [[CellSelectedState]]()
+        for section in 0..<collectionView.numberOfSections {
+            cellStates.append([CellSelectedState]())
+            for _ in 0..<collectionView.numberOfItems(inSection: section) {
+                cellStates[section].append(CellSelectedState(isSelected: false))
+            }
+        }
         setupConstraints()
     }
     
@@ -232,7 +242,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
     
     @objc func handlePan() {
         if verticalSwipe.state == UIGestureRecognizer.State.began {
-            print("Swipe begins")   // Shouldn't do anything because it may be scrolling
+            // Shouldn't do anything because it may be scrolling
         }
         else if verticalSwipe.state == UIGestureRecognizer.State.changed {
             if abs(verticalSwipe.velocity(in: collectionView).x) < 100 {
@@ -240,16 +250,17 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
                     if indexPath.item == 0 {
                         return
                     }
-                    if collectionView.cellForItem(at: indexPath)?.tag == 0 {
-                        collectionView.cellForItem(at: indexPath)?.backgroundColor = Colors.highlightedCell
+                    let timeCell = collectionView.cellForItem(at: indexPath)
+                    if !cellStates[indexPath.section][indexPath.item].isSelected {
+                        timeCell?.backgroundColor = Colors.highlightedCell
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            self.collectionView.cellForItem(at: indexPath)?.tag = 1
+                            self.cellStates[indexPath.section][indexPath.item].isSelected = true
                         }
                     }
                     else {
-                        collectionView.cellForItem(at: indexPath)?.backgroundColor = .clear
+                        timeCell?.backgroundColor = .clear
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            self.collectionView.cellForItem(at: indexPath)?.tag = 0
+                            self.cellStates[indexPath.section][indexPath.item].isSelected = false
                         }
                     }
                 }
@@ -260,16 +271,17 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
                     if indexPath.item == 0 {
                         return
                     }
-                    if collectionView.cellForItem(at: indexPath)?.tag == 0 {
-                        collectionView.cellForItem(at: indexPath)?.backgroundColor = Colors.highlightedCell
+                    let timeCell = collectionView.cellForItem(at: indexPath)
+                    if !cellStates[indexPath.section][indexPath.item].isSelected {
+                        timeCell?.backgroundColor = Colors.highlightedCell
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            self.collectionView.cellForItem(at: indexPath)?.tag = 1
+                            self.cellStates[indexPath.section][indexPath.item].isSelected = true
                         }
                     }
                     else {
-                        collectionView.cellForItem(at: indexPath)?.backgroundColor = .clear
+                        timeCell?.backgroundColor = .clear
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            self.collectionView.cellForItem(at: indexPath)?.tag = 0
+                            self.cellStates[indexPath.section][indexPath.item].isSelected = false
                         }
                     }
                 }
@@ -282,13 +294,18 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
             if indexPath.item == 0 {
                 return
             }
-            if collectionView.cellForItem(at: indexPath)?.tag == 0 {
-                collectionView.cellForItem(at: indexPath)?.backgroundColor = Colors.highlightedCell
-                collectionView.cellForItem(at: indexPath)?.tag = 1
+            let timeCell = collectionView.cellForItem(at: indexPath)
+            if !cellStates[indexPath.section][indexPath.item].isSelected {
+                timeCell?.backgroundColor = Colors.highlightedCell
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.cellStates[indexPath.section][indexPath.item].isSelected = true
+                }
             }
             else {
-                collectionView.cellForItem(at: indexPath)?.backgroundColor = .clear
-                collectionView.cellForItem(at: indexPath)?.tag = 0
+                timeCell?.backgroundColor = .clear
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.cellStates[indexPath.section][indexPath.item].isSelected = false
+                }
             }
         }
     }
@@ -313,6 +330,27 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
             return CGSize(width: collectionView.frame.width, height: (collectionView.frame.height - headerCellHeight - 0.01) / CGFloat(numTimeCells))   // Must subtract a small amount due to round-off problems
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == 0 {
+            let customCell = cell as! HeaderCell
+            customCell.configure(day: dayNames[indexPath.section])
+            customCell.backgroundColor = Colors.blue
+            customCell.setNeedsUpdateConstraints()
+            customCell.layer.borderColor = Colors.infoBox.cgColor
+            customCell.layer.borderWidth = 1
+        }
+        else {
+            if cellStates[indexPath.section][indexPath.item].isSelected {
+                cell.backgroundColor = Colors.highlightedCell
+            }
+            else {
+                cell.backgroundColor = .clear
+            }
+            cell.layer.borderColor = Colors.infoBox.cgColor
+            cell.layer.borderWidth = 1
+        }
+    }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item == 0 {
@@ -326,7 +364,12 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: timeCellReuseIdentifier, for: indexPath)
-            cell.backgroundColor = .clear
+            if cellStates[indexPath.section][indexPath.item].isSelected {
+                cell.backgroundColor = Colors.highlightedCell
+            }
+            else {
+                cell.backgroundColor = .clear
+            }
             cell.layer.borderColor = Colors.infoBox.cgColor
             cell.layer.borderWidth = 1
             return cell
@@ -337,3 +380,8 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
         navigationController?.popViewController(animated: true)
     }
 }
+
+struct CellSelectedState {
+    var isSelected: Bool // selection state
+}
+
