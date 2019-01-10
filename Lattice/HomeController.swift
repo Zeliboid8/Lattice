@@ -152,8 +152,9 @@ class HomeController: UIViewController {
             make.edges.equalTo(view)
         }
         monthLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(25)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(30)
+            make.height.equalTo(40)
         }
         dayNames.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(monthLabel.snp.bottom).offset(20)

@@ -124,14 +124,14 @@ class AddButton: UIButton {
         
         var imageFrame = (imageView?.frame)!
         imageFrame.origin.y = bounds.midY - imageFrame.height / 2 - padding
-        imageFrame.origin.x = bounds.origin.x + padding
+        imageFrame.origin.x = bounds.midX - imageFrame.width / 2
         imageView?.frame = imageFrame
         
         var titleFrame: CGRect = (titleLabel?.frame)!
         titleFrame.size.width = frame.width
         titleFrame.size.height = 100
         
-        titleFrame.origin.y = imageFrame.maxY + padding
+        titleFrame.origin.y = imageFrame.maxY - padding
         titleFrame.origin.x = bounds.origin.x
         titleLabel?.frame = titleFrame
     }

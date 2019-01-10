@@ -88,8 +88,9 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
             make.edges.equalTo(view)
         }
         groupLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(25)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
+            make.height.equalTo(40)
         }
         searchBar.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(groupLabel.snp.bottom).offset(20)

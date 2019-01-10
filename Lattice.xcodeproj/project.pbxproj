@@ -133,6 +133,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		CA427B6321E5931F0015CCD5 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				CA5E479221DF058B005606AA /* RadialGradientView.swift */,
+				CAFB12AA21E4395300D88446 /* DropDownButton.swift */,
+				CA18261221E40CF3002DC869 /* Colors.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		CA5E476E21DED2BC005606AA /* Nunito */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +163,9 @@
 		CA5E47B221DF113C005606AA /* CalendarViews */ = {
 			isa = PBXGroup;
 			children = (
+				CA5E476421DED0DB005606AA /* CalendarCell.swift */,
+				CA5E479821DF10E6005606AA /* BlockCalendarController.swift */,
+				CA5E479921DF10E6005606AA /* HeaderCell.swift */,
 			);
 			path = CalendarViews;
 			sourceTree = "<group>";
@@ -220,22 +233,17 @@
 			children = (
 				CAC263DF21C86EE60018EEA8 /* tessdata */,
 				CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */,
-				CA5E479221DF058B005606AA /* RadialGradientView.swift */,
 				CAF809EC21E1F16500313A82 /* EventManager.swift */,
 				CAF809EA21E1EF3000313A82 /* Event.swift */,
 				CADC5EA821E0AAA900E3097E /* LoginController.swift */,
 				CA5E478E21DF03D8005606AA /* HomeController.swift */,
 				CACBC01B21DE030C0063BDDE /* ProfileController.swift */,
 				CA107ADF21E3294A00327490 /* AddController.swift */,
-				CA18261221E40CF3002DC869 /* Colors.swift */,
-				CA5E476421DED0DB005606AA /* CalendarCell.swift */,
 				CA427B5F21E488440015CCD5 /* CalendarController.swift */,
-				CA5E479821DF10E6005606AA /* BlockCalendarController.swift */,
-				CA5E479921DF10E6005606AA /* HeaderCell.swift */,
-				CAFB12AA21E4395300D88446 /* DropDownButton.swift */,
 				CAFB12A921E418CE00D88446 /* MenuBar */,
 				CA5E47B321DF1169005606AA /* GroupViews */,
 				CA5E47B221DF113C005606AA /* CalendarViews */,
+				CA427B6321E5931F0015CCD5 /* UI */,
 				CA5E47B421DF116E005606AA /* TextProcessingViews */,
 				CA5E47B521DF1172005606AA /* QRCodeViews */,
 				CA5E47B621DF1177005606AA /* EventViews */,

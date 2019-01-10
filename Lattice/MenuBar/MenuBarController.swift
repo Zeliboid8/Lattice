@@ -18,7 +18,8 @@ struct MenuBarParameters {
 
 class MenuBarController: UIViewController {
 
-    let calendarController = BlockCalendarController()
+    let calendarController = CalendarController()
+    var calendarNavigationController: UINavigationController!
     let eventController = DocumentScannerController()
     let homeController = HomeController()
     let groupOverviewController = GroupOverviewController()
@@ -40,12 +41,15 @@ class MenuBarController: UIViewController {
         groupNavigationController = UINavigationController(rootViewController: groupOverviewController)
         groupNavigationController.setNavigationBarHidden(true, animated: false)
         
-        calendarController.view.tag = 0
+        calendarNavigationController = UINavigationController(rootViewController: calendarController)
+        calendarNavigationController.setNavigationBarHidden(true, animated: false)
+        
+        calendarNavigationController.view.tag = 0
         eventController.view.tag = 1
         homeController.view.tag = 2
         groupNavigationController.view.tag = 3
         profileController.view.tag = 4
-        viewControllers = [calendarController, eventController, homeController, groupNavigationController, profileController]
+        viewControllers = [calendarNavigationController, eventController, homeController, groupNavigationController, profileController]
 
         menuBar = MenuBar()
         menuBar.delegate = self

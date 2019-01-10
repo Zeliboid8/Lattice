@@ -20,9 +20,11 @@ class CalendarController: UIViewController {
     var infoBoxSubtitle: UILabel!
     var dayNames: UIStackView!
     var monthLabel: UILabel!
-    var addButton: UIButton!
     var events: [Event]!
     var eventsDict: [Date : [Event]] = [:]
+    var importButton: AddButton!
+    var blockCalendarButton: AddButton!
+    var buttonStackView: UIStackView!
     
     let formatter = DateFormatter()
     let dayTitles = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
@@ -32,30 +34,45 @@ class CalendarController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showButtons))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+        
         radialGradient = RadialGradientView()
         view.addSubview(radialGradient)
         
+        importButton = AddButton()
+        importButton.configure(image: UIImage(named: "Import")!.withRenderingMode(.alwaysTemplate), title: "Import")
+        importButton.imageView?.tintColor = Colors.labelColor
+        importButton.titleLabel?.numberOfLines = 2
+        importButton.backgroundColor = Colors.red
+        
+        blockCalendarButton = AddButton()
+        blockCalendarButton.configure(image: UIImage(named: "BlockCalendar")!.withRenderingMode(.alwaysTemplate), title: "Block")
+        blockCalendarButton.imageView?.tintColor = Colors.labelColor
+        blockCalendarButton.titleLabel?.numberOfLines = 2
+        blockCalendarButton.backgroundColor = Colors.blue
+        blockCalendarButton.addTarget(self, action: #selector(pushBlockView), for: .touchUpInside)
+        
+        buttonStackView = UIStackView()
+        buttonStackView.axis = .horizontal
+        buttonStackView.spacing = 20
+        buttonStackView.distribution = .fillEqually
+        buttonStackView.addArrangedSubview(importButton)
+        buttonStackView.addArrangedSubview(blockCalendarButton)
+        view.addSubview(buttonStackView)
+        
         setupInfoBox()
-        
-        addButton = UIButton()
-        addButton.backgroundColor = Colors.red
-        addButton.setTitle("+", for: .normal)
-        addButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 50)
-        addButton.titleLabel?.textAlignment = .center
-        addButton.setTitleColor(.black, for: .normal)
-        addButton.layer.cornerRadius = 40
-        addButton.layer.shadowColor = Colors.shadowColor
-        addButton.layer.shadowOffset = CGSize(width: 5, height: 7)
-        addButton.layer.shadowOpacity = 0.8
-        addButton.layer.shadowRadius = 2
-        addButton.layer.masksToBounds = false
-        addButton.addTarget(self, action: #selector(presentAddView), for: .touchUpInside)
-        view.addSubview(addButton)
-        
         importEvents()
-        
         setupCalendar()
         setupConstraints()
+        
+        infoBox.isHidden = true
+        verticalBar.isHidden = true
+        infoBoxLabel.isHidden = true
+        infoBoxSubtitle.isHidden = true
+        importButton.isHidden = false
+        blockCalendarButton.isHidden = false
     }
     
     func importEvents() {
@@ -114,7 +131,6 @@ class CalendarController: UIViewController {
         calendar.minimumLineSpacing = 0
         calendar.isPagingEnabled = true
         calendar.register(CalendarCell.self, forCellWithReuseIdentifier: calCellReuseIdentifier)
-        calendar.selectDates([Date()])
         calendar.backgroundColor = .clear
         
         calendar.visibleDates { (visibleDates) in
@@ -152,8 +168,9 @@ class CalendarController: UIViewController {
             make.edges.equalTo(view)
         }
         monthLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(25)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(30)
+            make.height.equalTo(40)
         }
         dayNames.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(monthLabel.snp.bottom).offset(20)
@@ -181,16 +198,25 @@ class CalendarController: UIViewController {
             make.leading.equalTo(verticalBar.snp.trailing).offset(20)
             make.top.equalTo(infoBoxLabel.snp.bottom).offset(5)
         }
-        addButton.snp.makeConstraints { (make) -> Void in
-            make.trailing.bottom.equalTo(infoBox).inset(15)
-            make.height.width.equalTo(80)
+        buttonStackView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(calendar.snp.bottom).offset(20)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30 - MenuBarParameters.menuBarHeight)
         }
     }
     
-    @objc func presentAddView() {
-        let addController = AddController()
-        addController.modalPresentationStyle = .overCurrentContext
-        present(addController, animated: true, completion: nil)
+    @objc func showButtons() {
+        infoBox.isHidden = true
+        verticalBar.isHidden = true
+        infoBoxLabel.isHidden = true
+        infoBoxSubtitle.isHidden = true
+        importButton.isHidden = false
+        blockCalendarButton.isHidden = false
+    }
+    
+    @objc func pushBlockView() {
+        let blockController = BlockCalendarController()
+        navigationController?.pushViewController(blockController, animated: true)
     }
 }
 
@@ -229,6 +255,12 @@ extension CalendarController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDa
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         let filteredEvents = eventsDict[Calendar.current.startOfDay(for: date)]
+        infoBox.isHidden = false
+        verticalBar.isHidden = false
+        infoBoxLabel.isHidden = false
+        infoBoxSubtitle.isHidden = false
+        importButton.isHidden = true
+        blockCalendarButton.isHidden = true
         handleCellSelection(cell: cell, cellState: cellState, date: date, events: filteredEvents)
     }
     

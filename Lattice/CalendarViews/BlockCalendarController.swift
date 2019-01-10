@@ -16,7 +16,6 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
     var tap: UITapGestureRecognizer!
     var backButton: UIButton!
     var blockCalendarLabel: UILabel!
-    var intervalDropDown: DropDownButton!
     var separator: UIView!
     var fromLabel: UILabel!
     var fromDropDown: DropDownButton!
@@ -31,12 +30,14 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
     let dateFormatter = DateFormatter()
     let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     var slotsPerHour: Int = 2
-    var startingHour: Int = 0
+    let minStartingHour: Int = 0
+    var startingHour: Int = 9
     var fromTime: String {
         if startingHour == 0 { return "12:00 am"}
         return "\(startingHour <= 12 ? startingHour : startingHour - 12):00 \(startingHour <= 12 ? "am" : "pm")"
     }
-    var endingHour: Int = 23
+    let maxEndingHour: Int = 24
+    var endingHour: Int = 17
     var toTime: String {
         if endingHour == 0 { return "12:00 am"}
         return "\(endingHour <= 12 ? endingHour : endingHour - 12):00 \(endingHour <= 12 ? "am" : "pm")"
@@ -63,10 +64,6 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
         blockCalendarLabel.font = UIFont(name: "Nunito-Regular", size: 30)
         view.addSubview(blockCalendarLabel)
         
-        intervalDropDown = DropDownButton()
-        intervalDropDown.dropView.dropDownOptions = ["Every hour", "Every half hour"]
-        view.addSubview(intervalDropDown)
-        
         fromLabel = UILabel()
         fromLabel.text = "From"
         fromLabel.textColor = Colors.labelColor
@@ -75,7 +72,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
         
         fromDropDown = DropDownButton()
         fromDropDown.setTitle(fromTime, for: .normal)
-        fromDropDown.dropView.dropDownOptions = ["12:00 am", "1:00 am", "2:00 am", "3:00 am", "4:00 am", "5:00 am", "6:00 am", "7:00 am", "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm", "9:00 pm", "10:00 pm", "11:00 pm", "12:00 pm"]
+        fromDropDown.dropView.dropDownOptions = ["12:00 am", "1:00 am", "2:00 am", "3:00 am", "4:00 am", "5:00 am", "6:00 am", "7:00 am", "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm", "9:00 pm", "10:00 pm", "11:00 pm"]
         fromDropDown.delegate = self
         view.addSubview(fromDropDown)
         
@@ -87,22 +84,22 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
         
         toDropDown = DropDownButton()
         toDropDown.setTitle(toTime, for: .normal)
-        toDropDown.dropView.dropDownOptions = ["12:00 am", "1:00 am", "2:00 am", "3:00 am", "4:00 am", "5:00 am", "6:00 am", "7:00 am", "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm", "9:00 pm", "10:00 pm", "11:00 pm", "12:00 pm"]
+        toDropDown.dropView.dropDownOptions = ["12:00 am", "1:00 am", "2:00 am", "3:00 am", "4:00 am", "5:00 am", "6:00 am", "7:00 am", "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm", "9:00 pm", "10:00 pm", "11:00 pm"]
         toDropDown.delegate = self
         view.addSubview(toDropDown)
         
         dailyTimes = UIStackView()
         dailyTimes.axis = .vertical
         dailyTimes.distribution = .fillEqually
-        if startingHour < endingHour {
+        if startingHour <= endingHour {
             for hour in startingHour...endingHour {
                 for minute in 0..<slotsPerHour {
                     let timeLabel = UILabel()
-                    timeLabel.text = "\(hour == 0 ? 12 : hour <= 12 ? hour : hour - 12):\(String(format: "%02d", 60 / slotsPerHour * minute)) \(hour <= 12 ? "am" : "pm")"
+                    timeLabel.text = "\(hour == 0 ? 12 : hour <= 12 ? hour : hour - 12):\(String(format: "%02d", 60 / slotsPerHour * minute)) \(hour < 12 ? "am" : "pm")"
                     timeLabel.font = UIFont(name: "Nunito-Semibold", size: 15)
                     timeLabel.textColor = Colors.labelColor
                     if minute != 0 {
-                        timeLabel.textColor = .clear
+                        timeLabel.isHidden = true
                     }
                     dailyTimes.addArrangedSubview(timeLabel)
                 }
@@ -137,7 +134,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
         cellStates = [[CellSelectedState]]()
         for section in 0..<collectionView.numberOfSections {
             cellStates.append([CellSelectedState]())
-            for _ in 0..<collectionView.numberOfItems(inSection: section) {
+            for _ in minStartingHour...(maxEndingHour * slotsPerHour) {
                 cellStates[section].append(CellSelectedState(isSelected: false))
             }
         }
@@ -197,16 +194,15 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
         for subview in dailyTimes.subviews {
             subview.removeFromSuperview()
         }
-        if startingHour < endingHour {
+        if startingHour <= endingHour {
             for hour in startingHour...endingHour {
                 for minute in 0..<slotsPerHour {
                     let timeLabel = UILabel()
-                    timeLabel.text = "\(hour <= 12 ? hour : hour - 12):\(String(format: "%02d", 60 / slotsPerHour * minute)) \(hour <= 12 ? "am" : "pm")"
+                    timeLabel.text = "\(hour == 0 ? 12 : hour <= 12 ? hour : hour - 12):\(String(format: "%02d", 60 / slotsPerHour * minute)) \(hour < 12 ? "am" : "pm")"
                     timeLabel.font = UIFont(name: "Nunito-Semibold", size: 15)
                     timeLabel.textColor = Colors.labelColor
-                    timeLabel.lineBreakMode = .byClipping
                     if minute != 0 {
-                        timeLabel.textColor = .clear
+                        timeLabel.isHidden = true
                     }
                     dailyTimes.addArrangedSubview(timeLabel)
                 }
@@ -217,8 +213,10 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
     
     func itemSelected(sender: DropDownButton, contents: String) {
         if sender == fromDropDown {
-            if contents == "12:00 am" {
-                startingHour = 0
+            if contents.prefix(2) == "12" {
+                startingHour = contents.suffix(2) == "am" ? 0 : 12
+                createStackView()
+                collectionView.reloadData()
                 return
             }
             startingHour = Int(contents.components(separatedBy: ":").first!) ?? startingHour
@@ -227,8 +225,10 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
             }
         }
         else if sender == toDropDown {
-            if contents == "12:00 am" {
-                startingHour = 0
+            if contents.prefix(2) == "12" {
+                endingHour = contents.suffix(2) == "am" ? 0 : 12
+                createStackView()
+                collectionView.reloadData()
                 return
             }
             endingHour = Int(contents.components(separatedBy: ":").first!) ?? endingHour
