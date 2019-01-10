@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, DropDownData {
+class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, DropDownData {
     
     var radialGradient: RadialGradientView!
     var verticalSwipe: UIPanGestureRecognizer!
@@ -21,10 +21,11 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
     var fromDropDown: DropDownButton!
     var toLabel: UILabel!
     var toDropDown: DropDownButton!
-    var dailyTimes: UIStackView!
+    var dailyTimes: UITableView!
     var collectionView: UICollectionView!
     var cellStates: [[CellSelectedState]]!
 
+    let timeLabelCellReuseIdentifier = "timeLabel"
     let timeCellReuseIdentifier = "timeCell"
     let headerCellReuseIdentifier = "header"
     let dateFormatter = DateFormatter()
@@ -88,23 +89,14 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
         toDropDown.delegate = self
         view.addSubview(toDropDown)
         
-        dailyTimes = UIStackView()
-        dailyTimes.axis = .vertical
-        dailyTimes.distribution = .fillEqually
-        if startingHour <= endingHour {
-            for hour in startingHour...endingHour {
-                for minute in 0..<slotsPerHour {
-                    let timeLabel = UILabel()
-                    timeLabel.text = "\(hour == 0 ? 12 : hour <= 12 ? hour : hour - 12):\(String(format: "%02d", 60 / slotsPerHour * minute)) \(hour < 12 ? "am" : "pm")"
-                    timeLabel.font = UIFont(name: "Nunito-Semibold", size: 15)
-                    timeLabel.textColor = Colors.labelColor
-                    if minute != 0 {
-                        timeLabel.isHidden = true
-                    }
-                    dailyTimes.addArrangedSubview(timeLabel)
-                }
-            }
-        }
+        dailyTimes = UITableView()
+        dailyTimes.delegate = self
+        dailyTimes.dataSource = self
+        dailyTimes.register(TimeCell.self, forCellReuseIdentifier: timeLabelCellReuseIdentifier)
+        dailyTimes.isScrollEnabled = false
+        dailyTimes.backgroundColor = .clear
+        dailyTimes.isUserInteractionEnabled = false
+        dailyTimes.separatorStyle = .none
         view.addSubview(dailyTimes)
         
         let layout = UICollectionViewFlowLayout()
@@ -179,43 +171,23 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
         }
         dailyTimes.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(collectionView).offset(headerCellHeight)
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(5)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20 - MenuBarParameters.menuBarHeight)
+            make.width.equalTo(80)
         }
         collectionView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(fromLabel.snp.bottom).offset(10)
-            make.leading.equalTo(dailyTimes.snp.trailing).offset(10)
+            make.leading.equalTo(dailyTimes.snp.trailing)
             make.trailing.equalTo(view).offset(-10)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20 - MenuBarParameters.menuBarHeight)
         }
-    }
-    
-    func createStackView() {
-        for subview in dailyTimes.subviews {
-            subview.removeFromSuperview()
-        }
-        if startingHour <= endingHour {
-            for hour in startingHour...endingHour {
-                for minute in 0..<slotsPerHour {
-                    let timeLabel = UILabel()
-                    timeLabel.text = "\(hour == 0 ? 12 : hour <= 12 ? hour : hour - 12):\(String(format: "%02d", 60 / slotsPerHour * minute)) \(hour < 12 ? "am" : "pm")"
-                    timeLabel.font = UIFont(name: "Nunito-Semibold", size: 15)
-                    timeLabel.textColor = Colors.labelColor
-                    if minute != 0 {
-                        timeLabel.isHidden = true
-                    }
-                    dailyTimes.addArrangedSubview(timeLabel)
-                }
-            }
-        }
-        dailyTimes.setNeedsDisplay()
     }
     
     func itemSelected(sender: DropDownButton, contents: String) {
         if sender == fromDropDown {
             if contents.prefix(2) == "12" {
                 startingHour = contents.suffix(2) == "am" ? 0 : 12
-                createStackView()
+                dailyTimes.reloadData()
                 collectionView.reloadData()
                 return
             }
@@ -227,7 +199,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
         else if sender == toDropDown {
             if contents.prefix(2) == "12" {
                 endingHour = contents.suffix(2) == "am" ? 0 : 12
-                createStackView()
+                dailyTimes.reloadData()
                 collectionView.reloadData()
                 return
             }
@@ -236,7 +208,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
                 endingHour += 12
             }
         }
-        createStackView()
+        dailyTimes.reloadData()
         collectionView.reloadData()
     }
     
@@ -313,13 +285,37 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
+    
+    @objc func popView() {
+        navigationController?.popViewController(animated: true)
+    }
+}
+extension BlockCalendarController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return endingHour - startingHour + 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = dailyTimes.dequeueReusableCell(withIdentifier: timeLabelCellReuseIdentifier, for: indexPath) as! TimeCell
+        let hour = startingHour + indexPath.row
+        cell.configure(title: "\(hour == 0 ? 12 : hour <= 12 ? hour : hour - 12):00 \(hour < 12 ? "am" : "pm")")
+        cell.setNeedsUpdateConstraints()
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.frame.height / CGFloat(tableView.numberOfRows(inSection: 0))
+    }
+}
 
+extension BlockCalendarController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 7
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numTimeCells + 1
+        return numTimeCells + 1     // Adding 1 for header cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -374,10 +370,6 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegate, UICol
             cell.layer.borderWidth = 1
             return cell
         }
-    }
-    
-    @objc func popView() {
-        navigationController?.popViewController(animated: true)
     }
 }
 

@@ -37,6 +37,10 @@
 		CA5E47AF21DF10FC005606AA /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47AC21DF10FB005606AA /* LocationController.swift */; };
 		CA5E47B021DF10FC005606AA /* EventCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47AD21DF10FB005606AA /* EventCreationController.swift */; };
 		CA5E47B121DF10FC005606AA /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47AE21DF10FB005606AA /* LocationCell.swift */; };
+		CAB33FB421E6F668007D1D3E /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB321E6F668007D1D3E /* EventController.swift */; };
+		CAB33FB721E6F7E3007D1D3E /* HeaderEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB621E6F7E3007D1D3E /* HeaderEventCell.swift */; };
+		CAB33FB921E6F7ED007D1D3E /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB821E6F7ED007D1D3E /* EventCell.swift */; };
+		CAB33FBB21E70A7C007D1D3E /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FBA21E70A7C007D1D3E /* TimeCell.swift */; };
 		CAC263CA21C6C0EC0018EEA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */; };
 		CAC263D121C6C0EF0018EEA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */; };
 		CAC263D421C6C0EF0018EEA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC263D221C6C0EF0018EEA8 /* LaunchScreen.storyboard */; };
@@ -86,6 +90,10 @@
 		CA5E47AC21DF10FB005606AA /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		CA5E47AD21DF10FB005606AA /* EventCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationController.swift; sourceTree = "<group>"; };
 		CA5E47AE21DF10FB005606AA /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		CAB33FB321E6F668007D1D3E /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
+		CAB33FB621E6F7E3007D1D3E /* HeaderEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderEventCell.swift; sourceTree = "<group>"; };
+		CAB33FB821E6F7ED007D1D3E /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		CAB33FBA21E70A7C007D1D3E /* TimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
 		CAC263C621C6C0EC0018EEA8 /* Lattice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lattice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,8 +171,9 @@
 		CA5E47B221DF113C005606AA /* CalendarViews */ = {
 			isa = PBXGroup;
 			children = (
-				CA5E476421DED0DB005606AA /* CalendarCell.swift */,
 				CA5E479821DF10E6005606AA /* BlockCalendarController.swift */,
+				CA5E476421DED0DB005606AA /* CalendarCell.swift */,
+				CAB33FBA21E70A7C007D1D3E /* TimeCell.swift */,
 				CA5E479921DF10E6005606AA /* HeaderCell.swift */,
 			);
 			path = CalendarViews;
@@ -203,11 +212,22 @@
 		CA5E47B621DF1177005606AA /* EventViews */ = {
 			isa = PBXGroup;
 			children = (
+				CAB33FB321E6F668007D1D3E /* EventController.swift */,
+				CAB33FB621E6F7E3007D1D3E /* HeaderEventCell.swift */,
+				CAB33FB821E6F7ED007D1D3E /* EventCell.swift */,
+			);
+			path = EventViews;
+			sourceTree = "<group>";
+		};
+		CAB33FB521E6F7B1007D1D3E /* Unused Files */ = {
+			isa = PBXGroup;
+			children = (
 				CA5E47AD21DF10FB005606AA /* EventCreationController.swift */,
 				CA5E47AE21DF10FB005606AA /* LocationCell.swift */,
 				CA5E47AC21DF10FB005606AA /* LocationController.swift */,
+				CA5E47B421DF116E005606AA /* TextProcessingViews */,
 			);
-			path = EventViews;
+			path = "Unused Files";
 			sourceTree = "<group>";
 		};
 		CAC263BD21C6C0EC0018EEA8 = {
@@ -244,9 +264,9 @@
 				CA5E47B321DF1169005606AA /* GroupViews */,
 				CA5E47B221DF113C005606AA /* CalendarViews */,
 				CA427B6321E5931F0015CCD5 /* UI */,
-				CA5E47B421DF116E005606AA /* TextProcessingViews */,
 				CA5E47B521DF1172005606AA /* QRCodeViews */,
 				CA5E47B621DF1177005606AA /* EventViews */,
+				CAB33FB521E6F7B1007D1D3E /* Unused Files */,
 				CADC5EAB21E0AD9600E3097E /* Fonts */,
 				CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */,
 				CAC263D221C6C0EF0018EEA8 /* LaunchScreen.storyboard */,
@@ -421,6 +441,7 @@
 			files = (
 				CAF809E921E1D00200313A82 /* MenuBarController.swift in Sources */,
 				CACBC01C21DE030C0063BDDE /* ProfileController.swift in Sources */,
+				CAB33FB421E6F668007D1D3E /* EventController.swift in Sources */,
 				CA5E47A421DF10F2005606AA /* TextSimilarityCheck.swift in Sources */,
 				CA5E479321DF058B005606AA /* RadialGradientView.swift in Sources */,
 				CA5E47AF21DF10FC005606AA /* LocationController.swift in Sources */,
@@ -430,6 +451,7 @@
 				CAFB12AB21E4395300D88446 /* DropDownButton.swift in Sources */,
 				CA5E47AB21DF10F7005606AA /* CodeScannerController.swift in Sources */,
 				CA5E479E21DF10EC005606AA /* GroupOverviewController.swift in Sources */,
+				CAB33FB921E6F7ED007D1D3E /* EventCell.swift in Sources */,
 				CA18261321E40CF3002DC869 /* Colors.swift in Sources */,
 				CA5E479A21DF10E7005606AA /* BlockCalendarController.swift in Sources */,
 				CADC5EA921E0AAA900E3097E /* LoginController.swift in Sources */,
@@ -441,6 +463,8 @@
 				CA107AE021E3294A00327490 /* AddController.swift in Sources */,
 				CAF809EB21E1EF3000313A82 /* Event.swift in Sources */,
 				CA5E478F21DF03D8005606AA /* HomeController.swift in Sources */,
+				CAB33FBB21E70A7C007D1D3E /* TimeCell.swift in Sources */,
+				CAB33FB721E6F7E3007D1D3E /* HeaderEventCell.swift in Sources */,
 				CA5E47B021DF10FC005606AA /* EventCreationController.swift in Sources */,
 				CACBC01E21DE04D80063BDDE /* MenuBar.swift in Sources */,
 				CA5E476821DED0DB005606AA /* CalendarCell.swift in Sources */,
