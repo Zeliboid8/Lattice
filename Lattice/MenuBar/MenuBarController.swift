@@ -20,7 +20,7 @@ class MenuBarController: UIViewController {
 
     let calendarController = CalendarController()
     var calendarNavigationController: UINavigationController!
-    let eventController = DocumentScannerController()
+    let eventController = EventController()
     let homeController = HomeController()
     let groupOverviewController = GroupOverviewController()
     var groupNavigationController: UINavigationController!

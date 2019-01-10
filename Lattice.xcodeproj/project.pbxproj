@@ -38,7 +38,7 @@
 		CA5E47B021DF10FC005606AA /* EventCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47AD21DF10FB005606AA /* EventCreationController.swift */; };
 		CA5E47B121DF10FC005606AA /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47AE21DF10FB005606AA /* LocationCell.swift */; };
 		CAB33FB421E6F668007D1D3E /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB321E6F668007D1D3E /* EventController.swift */; };
-		CAB33FB721E6F7E3007D1D3E /* HeaderEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB621E6F7E3007D1D3E /* HeaderEventCell.swift */; };
+		CAB33FB721E6F7E3007D1D3E /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB621E6F7E3007D1D3E /* HeaderView.swift */; };
 		CAB33FB921E6F7ED007D1D3E /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB821E6F7ED007D1D3E /* EventCell.swift */; };
 		CAB33FBB21E70A7C007D1D3E /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FBA21E70A7C007D1D3E /* TimeCell.swift */; };
 		CAC263CA21C6C0EC0018EEA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC263C921C6C0EC0018EEA8 /* AppDelegate.swift */; };
@@ -91,7 +91,7 @@
 		CA5E47AD21DF10FB005606AA /* EventCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationController.swift; sourceTree = "<group>"; };
 		CA5E47AE21DF10FB005606AA /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		CAB33FB321E6F668007D1D3E /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
-		CAB33FB621E6F7E3007D1D3E /* HeaderEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderEventCell.swift; sourceTree = "<group>"; };
+		CAB33FB621E6F7E3007D1D3E /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		CAB33FB821E6F7ED007D1D3E /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		CAB33FBA21E70A7C007D1D3E /* TimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
 		CAC263C621C6C0EC0018EEA8 /* Lattice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lattice.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,8 +213,8 @@
 			isa = PBXGroup;
 			children = (
 				CAB33FB321E6F668007D1D3E /* EventController.swift */,
-				CAB33FB621E6F7E3007D1D3E /* HeaderEventCell.swift */,
 				CAB33FB821E6F7ED007D1D3E /* EventCell.swift */,
+				CAB33FB621E6F7E3007D1D3E /* HeaderView.swift */,
 			);
 			path = EventViews;
 			sourceTree = "<group>";
@@ -464,7 +464,7 @@
 				CAF809EB21E1EF3000313A82 /* Event.swift in Sources */,
 				CA5E478F21DF03D8005606AA /* HomeController.swift in Sources */,
 				CAB33FBB21E70A7C007D1D3E /* TimeCell.swift in Sources */,
-				CAB33FB721E6F7E3007D1D3E /* HeaderEventCell.swift in Sources */,
+				CAB33FB721E6F7E3007D1D3E /* HeaderView.swift in Sources */,
 				CA5E47B021DF10FC005606AA /* EventCreationController.swift in Sources */,
 				CACBC01E21DE04D80063BDDE /* MenuBar.swift in Sources */,
 				CA5E476821DED0DB005606AA /* CalendarCell.swift in Sources */,

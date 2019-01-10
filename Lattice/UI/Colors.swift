@@ -19,4 +19,5 @@ class Colors {
     static let searchBar: UIColor = UIColor(red: 0.84, green: 0.84, blue: 0.84, alpha: 1)
     static let highlightedCell: UIColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 0.7)
     static let dropDownCell: UIColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.9)
+    static let headerColor: UIColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.7)
 }

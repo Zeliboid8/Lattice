@@ -1,5 +1,5 @@
 //
-//  HeaderEventCell.swift
+//  HeaderView.swift
 //  Lattice
 //
 //  Created by Eli Zhang on 1/9/19.
@@ -9,17 +9,17 @@
 import UIKit
 import SnapKit
 
-class HeaderEventCell: UITableViewCell {
+class HeaderView: UITableViewHeaderFooterView  {
 
     var dayLabel: UILabel!
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = Colors.highlightedCell
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = Colors.headerColor
         
         dayLabel = UILabel()
         dayLabel.textColor = Colors.labelColor
-        dayLabel.font = UIFont(name: "Nunito-Light", size: 20)
+        dayLabel.font = UIFont(name: "Nunito-Light", size: 15)
         contentView.addSubview(dayLabel)
     }
     
@@ -29,6 +29,10 @@ class HeaderEventCell: UITableViewCell {
             make.centerY.equalTo(contentView)
         }
         super.updateConstraints()
+    }
+    
+    func configure(dayName: String) {
+        dayLabel.text = dayName.uppercased()
     }
     
     required init?(coder aDecoder: NSCoder) {
