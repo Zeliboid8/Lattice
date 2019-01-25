@@ -83,7 +83,7 @@ class AddController: UIViewController {
             make.edges.equalTo(view)
         }
         backButton.snp.makeConstraints { (make) -> Void in
-            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(25)
             make.height.width.equalTo(30)
         }
         verticalStackView.snp.makeConstraints { (make) -> Void in

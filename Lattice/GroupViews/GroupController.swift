@@ -90,8 +90,8 @@ class GroupController: UIViewController, UISearchBarDelegate {
             make.edges.equalTo(view)
         }
         backButton.snp.makeConstraints { (make) -> Void in
-            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.height.width.equalTo(25)
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(25)
+            make.height.width.equalTo(30)
         }
         groupNameLabel.snp.makeConstraints { (make) -> Void in
             make.centerY.equalTo(backButton)

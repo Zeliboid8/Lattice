@@ -161,7 +161,7 @@ class EventCreationController: UIViewController {
             make.edges.equalTo(view)
         }
         backButton.snp.makeConstraints{ (make) -> Void in
-            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(25)
             make.height.width.equalTo(30)
         }
         titleLabel.snp.makeConstraints { (make) -> Void in
@@ -180,7 +180,7 @@ class EventCreationController: UIViewController {
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(vOffset)
         }
         eventNameTextField.snp.makeConstraints { (make) -> Void in
-            make.leading.equalTo(notificationsDropDown)
+            make.leading.equalTo(locationLabel.snp.trailing).offset(20)
             make.trailing.equalTo(view).offset(-hOffset)
             make.centerY.equalTo(eventNameLabel)
         }
@@ -189,7 +189,7 @@ class EventCreationController: UIViewController {
             make.top.equalTo(eventNameLabel.snp.bottom).offset(hOffset)
         }
         startingTimeTextField.snp.makeConstraints { (make) -> Void in
-            make.leading.equalTo(notificationsDropDown)
+            make.leading.equalTo(locationLabel.snp.trailing).offset(20)
             make.trailing.equalTo(view).offset(-hOffset)
             make.centerY.equalTo(startingTimeLabel)
         }
@@ -198,16 +198,17 @@ class EventCreationController: UIViewController {
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(vOffset)
         }
         endingTimeTextField.snp.makeConstraints { (make) -> Void in
-            make.leading.equalTo(notificationsDropDown)
+            make.leading.equalTo(locationLabel.snp.trailing).offset(20)
             make.trailing.equalTo(view).offset(-hOffset)
             make.centerY.equalTo(endingTimeLabel)
         }
         locationLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(endingTimeLabel.snp.bottom).offset(hOffset)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(vOffset)
+            make.width.equalTo(100)
         }
         locationTextField.snp.makeConstraints { (make) -> Void in
-            make.leading.equalTo(notificationsDropDown)
+            make.leading.equalTo(locationLabel.snp.trailing).offset(20)
             make.trailing.equalTo(view).offset(-hOffset)
             make.centerY.equalTo(locationLabel)
         }

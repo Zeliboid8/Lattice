@@ -58,7 +58,7 @@ class FriendController: UIViewController, UITableViewDelegate, UITableViewDataSo
         searchBar.searchBarStyle = .minimal
         (searchBar.value(forKey: "searchField") as? UITextField)?.backgroundColor = searchBarColor
         (searchBar.value(forKey: "searchField") as? UITextField)?.textColor = Colors.labelColor
-        searchBar.placeholder = "Find a group..."
+        searchBar.placeholder = "Search for a user..."
         view.addSubview(searchBar)
         
         tableView = UITableView()
@@ -78,7 +78,7 @@ class FriendController: UIViewController, UITableViewDelegate, UITableViewDataSo
             make.edges.equalTo(view)
         }
         backButton.snp.makeConstraints{ (make) -> Void in
-            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(25)
             make.height.width.equalTo(30)
         }
         friendsLabel.snp.makeConstraints { (make) -> Void in

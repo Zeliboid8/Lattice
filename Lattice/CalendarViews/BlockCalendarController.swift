@@ -155,12 +155,12 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
             make.edges.equalTo(view)
         }
         backButton.snp.makeConstraints { (make) -> Void in
-            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.height.width.equalTo(25)
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(25)
+            make.height.width.equalTo(30)
         }
         blockCalendarLabel.snp.makeConstraints { (make) -> Void in
             make.centerY.equalTo(backButton)
-            make.leading.equalTo(backButton.snp.trailing).offset(35)
+            make.leading.equalTo(collectionView)
             make.trailing.equalTo(view).offset(-30)
             make.height.equalTo(30)
         }
@@ -173,7 +173,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
             make.leading.equalTo(fromLabel.snp.trailing)
             make.top.equalTo(fromLabel)
             make.height.equalTo(40)
-            make.width.equalTo(120)
+            make.width.equalTo(110)
         }
         toLabel.snp.makeConstraints { (make) -> Void in
             make.leading.equalTo(fromDropDown.snp.trailing)
@@ -184,7 +184,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
             make.leading.equalTo(toLabel.snp.trailing)
             make.top.equalTo(fromLabel)
             make.height.equalTo(40)
-            make.width.equalTo(120)
+            make.width.equalTo(110)
         }
         dailyTimes.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(collectionView).offset(headerCellHeight)

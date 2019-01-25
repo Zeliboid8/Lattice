@@ -56,7 +56,7 @@ class TextSelectionController: UIViewController {
             make.edges.equalTo(view)
         }
         backButton.snp.makeConstraints{ (make) -> Void in
-            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(buttonOffset)
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(25)
             make.height.width.equalTo(30)
         }
     }
