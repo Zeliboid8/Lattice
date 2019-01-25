@@ -1,28 +1,26 @@
 //
-//  GroupOverviewController.swift
+//  FriendController.swift
 //  Lattice
 //
-//  Created by Eli Zhang on 12/31/18.
-//  Copyright © 2018 Eli Zhang. All rights reserved.
+//  Created by Eli Zhang on 1/25/19.
+//  Copyright © 2019 Eli Zhang. All rights reserved.
 //
 
 import UIKit
-import SnapKit
 
-class GroupOverviewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-
+class FriendController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+    
     var radialGradient: RadialGradientView!
-    var groupLabel: UILabel!
-    var friendsButton: UIButton!
+    var backButton: UIButton!
+    var friendsLabel: UILabel!
     var searchBar: UISearchBar!
     var tableView: UITableView!
-    var addButton: UIButton!
     let groupList: [Group] = [Group(groupMembers: ["Satomi Kikunaga"]),
-                               Group(groupName: "Parents", groupMembers: ["Charles Jones", "Anna Ricardo"]),
-                               Group(groupMembers: ["Ellen", "Juan", "Rachael"]),
-                               Group(groupName: "Math Study Group", groupMembers: ["Anthony Perez", "Daniel Heinz-Klarmann"]),
-                               Group(groupName: "Jones Family", groupMembers: ["Michael Jones", "Charles Jones", "Anna Ricardo"]),
-                               Group(groupMembers: ["Anna Ricardo"])]
+                              Group(groupName: "Parents", groupMembers: ["Charles Jones", "Anna Ricardo"]),
+                              Group(groupMembers: ["Ellen", "Juan", "Rachael"]),
+                              Group(groupName: "Math Study Group", groupMembers: ["Anthony Perez", "Daniel Heinz-Klarmann"]),
+                              Group(groupName: "Jones Family", groupMembers: ["Michael Jones", "Charles Jones", "Anna Ricardo"]),
+                              Group(groupMembers: ["Anna Ricardo"])]
     var matchingGroups: [Group]!
     
     let reuseIdentifier = "groupCell"
@@ -41,17 +39,17 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         radialGradient = RadialGradientView()
         view.addSubview(radialGradient)
         
-        groupLabel = UILabel()
-        groupLabel.text = "Groups"
-        groupLabel.textColor = Colors.labelColor
-        groupLabel.font = UIFont(name: "Nunito-Regular", size: 40)
-        view.addSubview(groupLabel)
+        backButton = UIButton()
+        backButton.setImage(UIImage(named: "BackArrow")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        backButton.imageView?.tintColor = Colors.labelColor
+        backButton.addTarget(self, action: #selector(popView), for: .touchUpInside)
+        view.addSubview(backButton)
         
-        friendsButton = UIButton()
-        friendsButton.setImage(UIImage(named: "Friend")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        friendsButton.imageView?.tintColor = Colors.labelColor
-        friendsButton.addTarget(self, action: #selector(pushFriendView), for: .touchUpInside)
-        view.addSubview(friendsButton)
+        friendsLabel = UILabel()
+        friendsLabel.text = "Friends"
+        friendsLabel.textColor = Colors.labelColor
+        friendsLabel.font = UIFont(name: "Nunito-Regular", size: 40)
+        view.addSubview(friendsLabel)
         
         matchingGroups = groupList
         
@@ -72,21 +70,6 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.showsVerticalScrollIndicator = false
         view.addSubview(tableView)
         
-        addButton = UIButton()
-        addButton.backgroundColor = Colors.red
-        addButton.setTitle("+", for: .normal)
-        addButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 50)
-        addButton.titleLabel?.textAlignment = .center
-        addButton.setTitleColor(.black, for: .normal)
-        addButton.layer.cornerRadius = 40
-        addButton.layer.shadowColor = Colors.shadowColor
-        addButton.layer.shadowOffset = CGSize(width: 5, height: 7)
-        addButton.layer.shadowOpacity = 0.8
-        addButton.layer.shadowRadius = 2
-        addButton.layer.masksToBounds = false
-        addButton.addTarget(self, action: #selector(presentAddGroupView), for: .touchUpInside)
-        view.addSubview(addButton)
-        
         setupConstraints()
     }
     
@@ -94,29 +77,24 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         radialGradient.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(view)
         }
-        groupLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(25)
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
+        backButton.snp.makeConstraints{ (make) -> Void in
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.height.width.equalTo(30)
+        }
+        friendsLabel.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(backButton)
+            make.leading.equalTo(backButton.snp.trailing).offset(15)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
             make.height.equalTo(40)
         }
-        friendsButton.snp.makeConstraints { (make) -> Void in
-            make.centerY.equalTo(groupLabel)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-25)
-            make.width.height.equalTo(40)
-        }
         searchBar.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(groupLabel.snp.bottom).offset(20)
+            make.top.equalTo(friendsLabel.snp.bottom).offset(20)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         tableView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(searchBar.snp.bottom).offset(20)
             make.leading.trailing.equalTo(view).inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-MenuBarParameters.menuBarHeight)
-        }
-        addButton.snp.makeConstraints { (make) -> Void in
-            make.height.width.equalTo(80)
-            make.trailing.equalTo(view).offset(-35)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-45 - MenuBarParameters.menuBarHeight)
         }
     }
     
@@ -126,7 +104,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         }
         tableView.reloadData()
     }
-
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -168,19 +146,8 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    @objc func presentAddGroupView() {
-        let groupController = GroupCreationController()
-        groupController.modalPresentationStyle = .overCurrentContext
-        view.window?.rootViewController?.present(groupController, animated: true, completion: nil)
-    }
-    
-    @objc func pushFriendView() {
-        let friendController = FriendController()
-        navigationController?.pushViewController(friendController, animated: true)
-    }
-    
-    @objc func dismissModalView() {
-        dismiss(animated: true, completion: nil)
+    @objc func popView() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {

@@ -24,7 +24,7 @@ class MenuCell: UICollectionViewCell {
     override func updateConstraints() {
         imageView.snp.makeConstraints {(make) -> Void in
             make.center.equalTo(contentView)
-            make.height.width.equalTo(contentView.frame.height - 40)
+            make.height.width.equalTo(contentView.frame.height - 35)
         }
         super.updateConstraints()
     }

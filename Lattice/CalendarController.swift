@@ -206,6 +206,7 @@ class CalendarController: UIViewController {
     }
     
     @objc func showButtons() {
+        calendar.deselectAllDates()
         infoBox.isHidden = true
         verticalBar.isHidden = true
         infoBoxLabel.isHidden = true
@@ -276,7 +277,7 @@ extension CalendarController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDa
         if cellState.isSelected {
             customCell.selectedView.isHidden = false
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EEEE, MMMM D"
+            dateFormatter.dateFormat = "EEEE, MMMM d"
             infoBoxLabel.text = ("\(dateFormatter.string(from: date))")
             if events == nil {
                 verticalBar.backgroundColor = colorFromAvailability(.free)

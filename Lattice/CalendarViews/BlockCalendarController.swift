@@ -24,6 +24,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
     var dailyTimes: UITableView!
     var collectionView: UICollectionView!
     var cellStates: [[CellSelectedState]]!
+    var addButton: UIButton!
     
     var selecting: Bool = true
 
@@ -116,6 +117,20 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
         collectionView.showsHorizontalScrollIndicator = false
         view.addSubview(collectionView)
         
+        addButton = UIButton()
+        addButton.backgroundColor = Colors.purple
+        addButton.setImage(UIImage(named: "Check")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        addButton.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        addButton.imageView?.tintColor = Colors.labelColor
+        addButton.layer.cornerRadius = 40
+        addButton.layer.shadowColor = Colors.shadowColor
+        addButton.layer.shadowOffset = CGSize(width: 5, height: 7)
+        addButton.layer.shadowOpacity = 0.8
+        addButton.layer.shadowRadius = 2
+        addButton.layer.masksToBounds = false
+        addButton.addTarget(self, action: #selector(saveData), for: .touchUpInside)
+        view.addSubview(addButton)
+        
         verticalSwipe = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         verticalSwipe.delegate = self
         collectionView.addGestureRecognizer(verticalSwipe)
@@ -182,6 +197,11 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
             make.leading.equalTo(dailyTimes.snp.trailing)
             make.trailing.equalTo(view).offset(-10)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20 - MenuBarParameters.menuBarHeight)
+        }
+        addButton.snp.makeConstraints { (make) -> Void in
+            make.height.width.equalTo(80)
+            make.trailing.equalTo(view).offset(-35)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-45 - MenuBarParameters.menuBarHeight)
         }
     }
     
@@ -292,6 +312,10 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
     
     @objc func popView() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func saveData() {
+        popView()
     }
 }
 extension BlockCalendarController: UITableViewDataSource, UITableViewDelegate {

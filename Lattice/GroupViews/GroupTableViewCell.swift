@@ -33,11 +33,11 @@ class GroupTableViewCell: UITableViewCell {
         contentView.addSubview(groupPhoto)
         
         nameLabel = UILabel()
-        nameLabel.textColor = .white
+        nameLabel.textColor = Colors.labelColor
         nameLabel.font = UIFont(name: "Nunito-Bold", size: 25)
         
         memberLabel = UILabel()
-        memberLabel.textColor = .white
+        memberLabel.textColor = Colors.labelColor
         memberLabel.font = UIFont(name: "Nunito-Regular", size: 15)
         
         labelStackView = UIStackView()

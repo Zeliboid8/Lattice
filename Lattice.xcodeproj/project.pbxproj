@@ -39,6 +39,8 @@
 		CA5E47B121DF10FC005606AA /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47AE21DF10FB005606AA /* LocationCell.swift */; };
 		CA8FE1AA21FA633500E9D812 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8FE1A921FA633500E9D812 /* Switch.swift */; };
 		CA8FE1AC21FA6B4300E9D812 /* GroupCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8FE1AB21FA6B4300E9D812 /* GroupCreationController.swift */; };
+		CA8FE1AF21FADF0000E9D812 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8FE1AE21FADF0000E9D812 /* FriendController.swift */; };
+		CA8FE1B121FADF5400E9D812 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8FE1B021FADF5400E9D812 /* Group.swift */; };
 		CAB33FB421E6F668007D1D3E /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB321E6F668007D1D3E /* EventController.swift */; };
 		CAB33FB721E6F7E3007D1D3E /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB621E6F7E3007D1D3E /* HeaderView.swift */; };
 		CAB33FB921E6F7ED007D1D3E /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB821E6F7ED007D1D3E /* EventCell.swift */; };
@@ -94,6 +96,8 @@
 		CA5E47AE21DF10FB005606AA /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		CA8FE1A921FA633500E9D812 /* Switch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
 		CA8FE1AB21FA6B4300E9D812 /* GroupCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCreationController.swift; sourceTree = "<group>"; };
+		CA8FE1AE21FADF0000E9D812 /* FriendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
+		CA8FE1B021FADF5400E9D812 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		CAB33FB321E6F668007D1D3E /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		CAB33FB621E6F7E3007D1D3E /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		CAB33FB821E6F7ED007D1D3E /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				CA5E479C21DF10EB005606AA /* GroupOverviewController.swift */,
+				CA8FE1B021FADF5400E9D812 /* Group.swift */,
 				CADC5EA621E0641200E3097E /* GroupController.swift */,
 				CA8FE1AB21FA6B4300E9D812 /* GroupCreationController.swift */,
 				CA5E479D21DF10EC005606AA /* GroupTableViewCell.swift */,
@@ -224,6 +229,14 @@
 				CAB33FB621E6F7E3007D1D3E /* HeaderView.swift */,
 			);
 			path = EventViews;
+			sourceTree = "<group>";
+		};
+		CA8FE1AD21FADE9300E9D812 /* FriendViews */ = {
+			isa = PBXGroup;
+			children = (
+				CA8FE1AE21FADF0000E9D812 /* FriendController.swift */,
+			);
+			path = FriendViews;
 			sourceTree = "<group>";
 		};
 		CAB33FB521E6F7B1007D1D3E /* Unused Files */ = {
@@ -269,9 +282,10 @@
 				CAFB12A921E418CE00D88446 /* MenuBar */,
 				CA5E47B321DF1169005606AA /* GroupViews */,
 				CA5E47B221DF113C005606AA /* CalendarViews */,
+				CA5E47B621DF1177005606AA /* EventViews */,
+				CA8FE1AD21FADE9300E9D812 /* FriendViews */,
 				CA427B6321E5931F0015CCD5 /* UI */,
 				CA5E47B521DF1172005606AA /* QRCodeViews */,
-				CA5E47B621DF1177005606AA /* EventViews */,
 				CAB33FB521E6F7B1007D1D3E /* Unused Files */,
 				CADC5EAB21E0AD9600E3097E /* Fonts */,
 				CAC263D021C6C0EF0018EEA8 /* Assets.xcassets */,
@@ -455,6 +469,7 @@
 				CA8FE1AC21FA6B4300E9D812 /* GroupCreationController.swift in Sources */,
 				CA5E475F21DE09CE005606AA /* MenuCell.swift in Sources */,
 				CA5E479F21DF10EC005606AA /* GroupTableViewCell.swift in Sources */,
+				CA8FE1B121FADF5400E9D812 /* Group.swift in Sources */,
 				CAFB12AB21E4395300D88446 /* DropDownButton.swift in Sources */,
 				CA5E47AB21DF10F7005606AA /* CodeScannerController.swift in Sources */,
 				CA5E479E21DF10EC005606AA /* GroupOverviewController.swift in Sources */,
@@ -470,6 +485,7 @@
 				CA5E479B21DF10E7005606AA /* HeaderCell.swift in Sources */,
 				CA107AE021E3294A00327490 /* AddController.swift in Sources */,
 				CAF809EB21E1EF3000313A82 /* Event.swift in Sources */,
+				CA8FE1AF21FADF0000E9D812 /* FriendController.swift in Sources */,
 				CA5E478F21DF03D8005606AA /* HomeController.swift in Sources */,
 				CAB33FBB21E70A7C007D1D3E /* TimeCell.swift in Sources */,
 				CAB33FB721E6F7E3007D1D3E /* HeaderView.swift in Sources */,

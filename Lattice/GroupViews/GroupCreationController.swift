@@ -85,7 +85,7 @@ class GroupCreationController: UIViewController, UISearchBarDelegate {
         submitButton.layer.shadowOffset = CGSize(width: 5, height: 7)
         submitButton.layer.shadowOpacity = 0.8
         submitButton.layer.masksToBounds = false
-        submitButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+        submitButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         view.addSubview(submitButton)
         
         setupConstraints()

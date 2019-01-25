@@ -58,6 +58,7 @@ class AddController: UIViewController {
         friendButton = AddButton()
         friendButton.configure(image: UIImage(named: "Profile")!, title: "Friend")
         friendButton.backgroundColor = Colors.yellow
+        friendButton.addTarget(self, action: #selector(pushFriendCreationView), for: .touchUpInside)
         
         bottomStackView = UIStackView()
         bottomStackView.axis = .horizontal
@@ -99,6 +100,11 @@ class AddController: UIViewController {
     @objc func pushGroupCreationView() {
         let groupView = GroupCreationController()
         navigationController?.pushViewController(groupView, animated: true)
+    }
+    
+    @objc func pushFriendCreationView() {
+        let friendView = FriendController()
+        navigationController?.pushViewController(friendView, animated: true)
     }
     
     @objc func dismissView() {
