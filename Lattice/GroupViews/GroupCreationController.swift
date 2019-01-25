@@ -1,32 +1,33 @@
 //
-//  GroupController.swift
+//  GroupCreationController.swift
 //  Lattice
 //
-//  Created by Eli Zhang on 1/4/19
-//  Copyright © 2018 Eli Zhang. All rights reserved.
+//  Created by Eli Zhang on 1/24/19.
+//  Copyright © 2019 Eli Zhang. All rights reserved.
 //
 
 import UIKit
-import SnapKit
 
-class GroupController: UIViewController, UISearchBarDelegate {
+class GroupCreationController: UIViewController, UISearchBarDelegate {
     
     var radialGradient: RadialGradientView!
     var backButton: UIButton!
-    var groupNameLabel: UILabel!
-    var viewCalendarButton: UIButton!
+    var titleLabel: UILabel!
     var searchBar: UISearchBar!
     var tableView: UITableView!
+    var submitButton: UIButton!
     var group: Group!
     
-    let memberList: [String] = ["Michael Jones", "Charles Jones", "Lily Jones", "Anna Ricardo", "Joshua Chen"]
+    let memberList: [String] = []
     var matchingMembers: [String]!
     
     let addMemberReuseIdentifier = "addCell"
     let memberReuseIdentifier = "memberCell"
     let cellHeight: CGFloat = 80
     let cellSpacing: CGFloat = 5
-    let buttonHeight: CGFloat = 50
+    let submitButtonHeight: CGFloat = 50
+    let vOffset: CGFloat = 30
+    let hOffset: CGFloat = 30
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,37 +40,29 @@ class GroupController: UIViewController, UISearchBarDelegate {
         view.addSubview(radialGradient)
         
         backButton = UIButton()
-        backButton.setImage(UIImage(named: "BackArrow")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        if navigationController == nil {
+            backButton.setImage(UIImage(named: "DownArrow")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        } else {
+            backButton.setImage(UIImage(named: "BackArrow")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        }
         backButton.imageView?.tintColor = Colors.labelColor
-        backButton.addTarget(self, action: #selector(popView), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
         view.addSubview(backButton)
         
-        groupNameLabel = UILabel()
-        groupNameLabel.text = group.groupName
-        groupNameLabel.textColor = Colors.labelColor
-        groupNameLabel.font = UIFont(name: "Nunito-Regular", size: 30)
-        view.addSubview(groupNameLabel)
+        titleLabel = UILabel()
+        titleLabel.text = "New Group"
+        titleLabel.textColor = Colors.labelColor
+        titleLabel.font = UIFont(name: "Nunito-Semibold", size: 40)
+        view.addSubview(titleLabel)
         
         matchingMembers = memberList
-        
-        viewCalendarButton = UIButton()
-        viewCalendarButton.setTitle("View calendar", for: .normal)
-        viewCalendarButton.setTitleColor(.white, for: .normal)
-        viewCalendarButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 20)
-        viewCalendarButton.backgroundColor = Colors.red
-        viewCalendarButton.layer.cornerRadius = buttonHeight / 2
-        viewCalendarButton.layer.shadowColor = Colors.shadowColor
-        viewCalendarButton.layer.shadowOffset = CGSize(width: 5, height: 7)
-        viewCalendarButton.layer.shadowOpacity = 0.8
-        viewCalendarButton.layer.masksToBounds = false
-        view.addSubview(viewCalendarButton)
         
         searchBar = UISearchBar()
         searchBar.delegate = self
         searchBar.searchBarStyle = .minimal
         (searchBar.value(forKey: "searchField") as? UITextField)?.backgroundColor = Colors.searchBar
         (searchBar.value(forKey: "searchField") as? UITextField)?.textColor = Colors.labelColor
-        searchBar.placeholder = "Find a user..."
+        searchBar.placeholder = "Find a friend..."
         view.addSubview(searchBar)
         
         tableView = UITableView()
@@ -81,7 +74,20 @@ class GroupController: UIViewController, UISearchBarDelegate {
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.showsVerticalScrollIndicator = false
         view.addSubview(tableView)
-
+        
+        submitButton = UIButton()
+        submitButton.setTitle("Create group", for: .normal)
+        submitButton.setTitleColor(.white, for: .normal)
+        submitButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 25)
+        submitButton.backgroundColor = Colors.red
+        submitButton.layer.cornerRadius = submitButtonHeight / 2
+        submitButton.layer.shadowColor = Colors.shadowColor
+        submitButton.layer.shadowOffset = CGSize(width: 5, height: 7)
+        submitButton.layer.shadowOpacity = 0.8
+        submitButton.layer.masksToBounds = false
+        submitButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+        view.addSubview(submitButton)
+        
         setupConstraints()
     }
     
@@ -89,28 +95,29 @@ class GroupController: UIViewController, UISearchBarDelegate {
         radialGradient.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(view)
         }
-        backButton.snp.makeConstraints { (make) -> Void in
+        backButton.snp.makeConstraints{ (make) -> Void in
             make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.height.width.equalTo(25)
+            make.height.width.equalTo(30)
         }
-        groupNameLabel.snp.makeConstraints { (make) -> Void in
+        titleLabel.snp.makeConstraints { (make) -> Void in
             make.centerY.equalTo(backButton)
-            make.leading.equalTo(backButton.snp.trailing).offset(20)
+            make.leading.equalTo(backButton.snp.trailing).offset(15)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
-        }
-        viewCalendarButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(groupNameLabel.snp.bottom).offset(20)
-            make.leading.trailing.equalTo(view).inset(40)
-            make.height.equalTo(buttonHeight)
+            make.height.equalTo(40)
         }
         searchBar.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(viewCalendarButton.snp.bottom).offset(20)
+            make.top.equalTo(titleLabel.snp.bottom).offset(hOffset)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         tableView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(searchBar.snp.bottom).offset(10)
-            make.leading.trailing.equalTo(view).inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-MenuBarParameters.menuBarHeight)
+            make.leading.trailing.equalTo(view).inset(vOffset)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
+        }
+        submitButton.snp.makeConstraints { (make) -> Void in
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-vOffset)
+            make.leading.trailing.equalTo(view).inset(hOffset)
+            make.height.equalTo(submitButtonHeight)
         }
     }
     
@@ -125,15 +132,29 @@ class GroupController: UIViewController, UISearchBarDelegate {
         tableView.reloadData()
     }
     
+    @objc func closeView() {
+        if navigationController == nil {
+            dismissView()
+        }
+        else {
+            popView()
+        }
+    }
+    
     @objc func popView() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func dismissView() {
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
         searchBar.resignFirstResponder()
     }
 }
-extension GroupController: UITableViewDelegate, UITableViewDataSource {
+
+extension GroupCreationController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }

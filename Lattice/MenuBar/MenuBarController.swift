@@ -78,7 +78,7 @@ class MenuBarController: UIViewController {
 
     func presentLogin() {
         let loginController = LoginController()
-        present(loginController, animated: true, completion: nil)
+        view.window?.rootViewController?.present(loginController, animated: true, completion: nil)
     }
 }
 

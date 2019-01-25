@@ -232,7 +232,7 @@ extension CalendarController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDa
             cell.dateLabel.textColor = Colors.labelColor
         }
         else {
-            cell.dateLabel.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+            cell.dateLabel.textColor = Colors.grayLabelColor
         }
         handleCellSetup(date: date, cellState: cellState, cell: cell)
         return cell

@@ -15,7 +15,7 @@ class ProfileController: UIViewController {
     var profilePhoto: UIImageView!
     var nameLabel: UILabel!
     var usernameLabel: UILabel!
-    var qrCodeButton: UIButton!
+    var qrCodeButton: CenteredButton!
     var notificationsLabel: UILabel!
     var notificationsDropDown: DropDownButton!
     var emailLabel: UILabel!
@@ -60,25 +60,11 @@ class ProfileController: UIViewController {
         usernameLabel.textAlignment = .center
         usernameLabel.font = UIFont(name: "Nunito-Regular", size: 18)
         
-        qrCodeButton = UIButton()
-        qrCodeButton.setTitle("My QR Code", for: .normal)
-        qrCodeButton.setImage(UIImage(named: "QRCode"), for: .normal)
-        qrCodeButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        qrCodeButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        qrCodeButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        qrCodeButton.imageView?.contentMode = .scaleAspectFit
-        qrCodeButton.imageView?.clipsToBounds = true
-        qrCodeButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        qrCodeButton.setTitleColor(.white, for: .normal)
-        qrCodeButton.contentMode = .center
-        qrCodeButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 20)
-        qrCodeButton.titleLabel?.textAlignment = .center
+        qrCodeButton = CenteredButton()
+        qrCodeButton.configure(image: UIImage(named: "QRCode")!, title: "My QR Code")
         qrCodeButton.backgroundColor = Colors.blue
+        qrCodeButton.setTitleColor(Colors.labelColor, for: .normal)
         qrCodeButton.layer.cornerRadius = buttonHeight / 2
-        qrCodeButton.layer.shadowColor = Colors.shadowColor
-        qrCodeButton.layer.shadowOffset = CGSize(width: 5, height: 7)
-        qrCodeButton.layer.shadowOpacity = 0.8
-        qrCodeButton.layer.masksToBounds = false
         
         notificationsLabel = UILabel()
         notificationsLabel.text = "NOTIFICATIONS"
@@ -115,7 +101,7 @@ class ProfileController: UIViewController {
         
         logoutButton = UIButton()
         logoutButton.setTitle("Logout", for: .normal)
-        logoutButton.setTitleColor(.white, for: .normal)
+        logoutButton.setTitleColor(Colors.labelColor, for: .normal)
         logoutButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 20)
         logoutButton.backgroundColor = Colors.red
         logoutButton.layer.cornerRadius = buttonHeight / 2
@@ -224,5 +210,46 @@ class ProfileController: UIViewController {
     
     @objc func viewTapped(gesture: UITapGestureRecognizer) {
         view.endEditing(true)
+    }
+}
+
+class CenteredButton: UIButton {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        contentMode = .center
+        layer.shadowColor = Colors.shadowColor
+        layer.shadowOffset = CGSize(width: 5, height: 7)
+        layer.shadowOpacity = 0.8
+        layer.masksToBounds = false
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        var imageFrame = (imageView?.frame)!
+        var titleFrame = (titleLabel?.frame)!
+        imageFrame.origin.y = bounds.midY - imageFrame.height / 2
+        imageFrame.origin.x = bounds.midX + titleFrame.width / 2 - imageFrame.width / 2 + 10
+        imageView?.frame = imageFrame
+        
+        titleFrame.origin.y = bounds.midY - titleFrame.height / 2
+        titleFrame.origin.x = bounds.midX - titleFrame.width / 2 - imageFrame.height / 2 - 10
+        titleLabel?.frame = titleFrame
+    }
+    
+    func configure(image: UIImage, title: String) {
+        setImage(image.withRenderingMode(.alwaysTemplate), for: .normal)
+        setTitle(title, for: .normal)
+        imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        imageView?.tintColor = Colors.labelColor
+        imageView?.contentMode = .scaleAspectFit
+        imageView?.clipsToBounds = true
+        contentMode = .scaleAspectFit
+        titleLabel?.font = UIFont(name: "Nunito-Bold", size: 20)
+        titleLabel?.textAlignment = .center
     }
 }

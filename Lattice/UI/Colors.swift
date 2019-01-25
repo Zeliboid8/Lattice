@@ -13,6 +13,7 @@ class Colors {
     static let blue: UIColor = UIColor(red: 0.03, green: 0.74, blue: 0.79, alpha: 1)
     static let yellow: UIColor = UIColor(red: 0.9, green: 0.69, blue: 0.23, alpha: 1)
     static let purple: UIColor = UIColor(red: 0.5, green: 0.1, blue: 0.5, alpha: 1)
+    static let grayLabelColor: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
     static let labelColor: UIColor = UIColor(red: 0.82, green: 0.82, blue: 0.82, alpha: 1)
     static let shadowColor: CGColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
     static let infoBox: UIColor = UIColor(red: 0.22, green: 0.22, blue: 0.22, alpha: 0.64)

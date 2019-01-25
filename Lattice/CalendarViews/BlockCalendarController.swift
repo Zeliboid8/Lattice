@@ -24,6 +24,8 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
     var dailyTimes: UITableView!
     var collectionView: UICollectionView!
     var cellStates: [[CellSelectedState]]!
+    
+    var selecting: Bool = true
 
     let timeLabelCellReuseIdentifier = "timeLabel"
     let timeCellReuseIdentifier = "timeCell"
@@ -214,7 +216,9 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
     
     @objc func handlePan() {
         if verticalSwipe.state == UIGestureRecognizer.State.began {
-            // Shouldn't do anything because it may be scrolling
+            if let indexPath = collectionView.indexPathForItem(at: verticalSwipe.location(in: collectionView)) {
+                self.selecting = !self.cellStates[indexPath.section][indexPath.item].isSelected
+            }
         }
         else if verticalSwipe.state == UIGestureRecognizer.State.changed {
             if abs(verticalSwipe.velocity(in: collectionView).x) < 100 {
@@ -223,7 +227,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
                         return
                     }
                     let timeCell = collectionView.cellForItem(at: indexPath)
-                    if !cellStates[indexPath.section][indexPath.item].isSelected {
+                    if selecting {// !cellStates[indexPath.section][indexPath.item].isSelected {
                         timeCell?.backgroundColor = Colors.highlightedCell
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             self.cellStates[indexPath.section][indexPath.item].isSelected = true
@@ -244,7 +248,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
                         return
                     }
                     let timeCell = collectionView.cellForItem(at: indexPath)
-                    if !cellStates[indexPath.section][indexPath.item].isSelected {
+                    if selecting { // !cellStates[indexPath.section][indexPath.item].isSelected {
                         timeCell?.backgroundColor = Colors.highlightedCell
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             self.cellStates[indexPath.section][indexPath.item].isSelected = true

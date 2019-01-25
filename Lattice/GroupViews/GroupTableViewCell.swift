@@ -55,7 +55,7 @@ class GroupTableViewCell: UITableViewCell {
             make.height.width.equalTo(photoHeight)
         }
         labelStackView.snp.makeConstraints{ (make) -> Void in
-            make.top.bottom.equalTo(contentView).inset(20)
+            make.top.bottom.equalTo(contentView).inset(10)
             make.leading.equalTo(groupPhoto.snp.trailing).offset(20)
             make.trailing.equalTo(contentView).offset(-20)
         }
@@ -97,7 +97,27 @@ class AddMemberCell: GroupTableViewCell {
         addButton.isUserInteractionEnabled = false
         contentView.addSubview(addButton)
         
-        nameLabel.text = "Add group member"
+        nameLabel.text = "Add a member"
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        let viewColor = addButton.backgroundColor
+        super.setHighlighted(false, animated: animated)
+        if highlighted {
+            addButton.backgroundColor = .clear
+        } else {
+            UIView.animate(withDuration: 0.65, animations: {
+                self.addButton.backgroundColor = viewColor
+            })
+        }
+        super.setHighlighted(highlighted, animated: animated)
+        addButton.backgroundColor = viewColor
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        let viewColor = addButton.backgroundColor
+        super.setSelected(selected, animated: animated)
+        addButton.backgroundColor = viewColor
     }
     
     override func updateConstraints() {

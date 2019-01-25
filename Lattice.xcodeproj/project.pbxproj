@@ -37,6 +37,8 @@
 		CA5E47AF21DF10FC005606AA /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47AC21DF10FB005606AA /* LocationController.swift */; };
 		CA5E47B021DF10FC005606AA /* EventCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47AD21DF10FB005606AA /* EventCreationController.swift */; };
 		CA5E47B121DF10FC005606AA /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E47AE21DF10FB005606AA /* LocationCell.swift */; };
+		CA8FE1AA21FA633500E9D812 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8FE1A921FA633500E9D812 /* Switch.swift */; };
+		CA8FE1AC21FA6B4300E9D812 /* GroupCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8FE1AB21FA6B4300E9D812 /* GroupCreationController.swift */; };
 		CAB33FB421E6F668007D1D3E /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB321E6F668007D1D3E /* EventController.swift */; };
 		CAB33FB721E6F7E3007D1D3E /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB621E6F7E3007D1D3E /* HeaderView.swift */; };
 		CAB33FB921E6F7ED007D1D3E /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB821E6F7ED007D1D3E /* EventCell.swift */; };
@@ -90,6 +92,8 @@
 		CA5E47AC21DF10FB005606AA /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		CA5E47AD21DF10FB005606AA /* EventCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationController.swift; sourceTree = "<group>"; };
 		CA5E47AE21DF10FB005606AA /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		CA8FE1A921FA633500E9D812 /* Switch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
+		CA8FE1AB21FA6B4300E9D812 /* GroupCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCreationController.swift; sourceTree = "<group>"; };
 		CAB33FB321E6F668007D1D3E /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		CAB33FB621E6F7E3007D1D3E /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		CAB33FB821E6F7ED007D1D3E /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				CA5E479221DF058B005606AA /* RadialGradientView.swift */,
+				CA8FE1A921FA633500E9D812 /* Switch.swift */,
 				CAFB12AA21E4395300D88446 /* DropDownButton.swift */,
 				CA18261221E40CF3002DC869 /* Colors.swift */,
 			);
@@ -184,6 +189,7 @@
 			children = (
 				CA5E479C21DF10EB005606AA /* GroupOverviewController.swift */,
 				CADC5EA621E0641200E3097E /* GroupController.swift */,
+				CA8FE1AB21FA6B4300E9D812 /* GroupCreationController.swift */,
 				CA5E479D21DF10EC005606AA /* GroupTableViewCell.swift */,
 			);
 			path = GroupViews;
@@ -212,6 +218,7 @@
 		CA5E47B621DF1177005606AA /* EventViews */ = {
 			isa = PBXGroup;
 			children = (
+				CA5E47AD21DF10FB005606AA /* EventCreationController.swift */,
 				CAB33FB321E6F668007D1D3E /* EventController.swift */,
 				CAB33FB821E6F7ED007D1D3E /* EventCell.swift */,
 				CAB33FB621E6F7E3007D1D3E /* HeaderView.swift */,
@@ -222,7 +229,6 @@
 		CAB33FB521E6F7B1007D1D3E /* Unused Files */ = {
 			isa = PBXGroup;
 			children = (
-				CA5E47AD21DF10FB005606AA /* EventCreationController.swift */,
 				CA5E47AE21DF10FB005606AA /* LocationCell.swift */,
 				CA5E47AC21DF10FB005606AA /* LocationController.swift */,
 				CA5E47B421DF116E005606AA /* TextProcessingViews */,
@@ -446,6 +452,7 @@
 				CA5E479321DF058B005606AA /* RadialGradientView.swift in Sources */,
 				CA5E47AF21DF10FC005606AA /* LocationController.swift in Sources */,
 				CAF809ED21E1F16500313A82 /* EventManager.swift in Sources */,
+				CA8FE1AC21FA6B4300E9D812 /* GroupCreationController.swift in Sources */,
 				CA5E475F21DE09CE005606AA /* MenuCell.swift in Sources */,
 				CA5E479F21DF10EC005606AA /* GroupTableViewCell.swift in Sources */,
 				CAFB12AB21E4395300D88446 /* DropDownButton.swift in Sources */,
@@ -458,6 +465,7 @@
 				CA5E47A721DF10F2005606AA /* TextSelectionController.swift in Sources */,
 				CADC5EA721E0641200E3097E /* GroupController.swift in Sources */,
 				CAC263CA21C6C0EC0018EEA8 /* AppDelegate.swift in Sources */,
+				CA8FE1AA21FA633500E9D812 /* Switch.swift in Sources */,
 				CA5E47AA21DF10F7005606AA /* QRCode.swift in Sources */,
 				CA5E479B21DF10E7005606AA /* HeaderCell.swift in Sources */,
 				CA107AE021E3294A00327490 /* AddController.swift in Sources */,
@@ -614,6 +622,7 @@
 				DEVELOPMENT_TEAM = 37AKFHT6H5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Lattice/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -634,6 +643,7 @@
 				DEVELOPMENT_TEAM = 37AKFHT6H5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Lattice/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -26,7 +26,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
     var matchingGroups: [Group]!
     
     let reuseIdentifier = "groupCell"
-    let cellHeight: CGFloat = 100
+    let cellHeight: CGFloat = 80
     let cellSpacing: CGFloat = 5
     let buttonOffset: CGFloat = 25
     let searchBarColor = Colors.searchBar
@@ -78,6 +78,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         addButton.layer.shadowOpacity = 0.8
         addButton.layer.shadowRadius = 2
         addButton.layer.masksToBounds = false
+        addButton.addTarget(self, action: #selector(presentAddGroupView), for: .touchUpInside)
         view.addSubview(addButton)
         
         setupConstraints()
@@ -99,7 +100,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(searchBar.snp.bottom).offset(20)
             make.leading.trailing.equalTo(view).inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20 - MenuBarParameters.menuBarHeight)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-MenuBarParameters.menuBarHeight)
         }
         addButton.snp.makeConstraints { (make) -> Void in
             make.height.width.equalTo(80)
@@ -154,6 +155,12 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         groupController.setGroup(group: groupList[indexPath.section])
         navigationController?.pushViewController(groupController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    @objc func presentAddGroupView() {
+        let groupController = GroupCreationController()
+        groupController.modalPresentationStyle = .overCurrentContext
+        view.window?.rootViewController?.present(groupController, animated: true, completion: nil)
     }
     
     @objc func dismissModalView() {

@@ -66,6 +66,26 @@ class EventCell: UITableViewCell {
         super.updateConstraints()
     }
     
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        let viewColor = verticalBar.backgroundColor
+        super.setHighlighted(false, animated: animated)
+        if highlighted {
+            verticalBar.backgroundColor = .clear
+        } else {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.verticalBar.backgroundColor = viewColor
+            })
+        }
+        super.setHighlighted(highlighted, animated: animated)
+        verticalBar.backgroundColor = viewColor
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        let viewColor = verticalBar.backgroundColor
+        super.setSelected(selected, animated: animated)
+        verticalBar.backgroundColor = viewColor
+    }
+    
     func configure(eventTitle: String, eventTime: String) {
         self.eventTitle.text = eventTitle
         self.eventTime.text = eventTime

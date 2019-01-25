@@ -190,8 +190,10 @@ class HomeController: UIViewController {
     
     @objc func presentAddView() {
         let addController = AddController()
-        addController.modalPresentationStyle = .overCurrentContext
-        present(addController, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: addController)
+        navigationController.isNavigationBarHidden = true
+        navigationController.modalPresentationStyle = .overCurrentContext
+        view.window?.rootViewController?.present(navigationController, animated: true, completion: nil)
     }
 }
 
@@ -207,7 +209,7 @@ extension HomeController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
             cell.dateLabel.textColor = Colors.labelColor
         }
         else {
-            cell.dateLabel.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+            cell.dateLabel.textColor = Colors.grayLabelColor
         }
         handleCellSetup(date: date, cellState: cellState, cell: cell)
         return cell

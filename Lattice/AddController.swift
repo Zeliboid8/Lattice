@@ -41,6 +41,7 @@ class AddController: UIViewController {
         eventButton = AddButton()
         eventButton.configure(image: UIImage(named: "Clock")!, title: "Event")
         eventButton.backgroundColor = Colors.blue
+        eventButton.addTarget(self, action: #selector(pushEventCreationView), for: .touchUpInside)
         
         topStackView = UIStackView()
         topStackView.axis = .horizontal
@@ -52,6 +53,7 @@ class AddController: UIViewController {
         groupButton = AddButton()
         groupButton.configure(image: UIImage(named: "Groups")!, title: "Group")
         groupButton.backgroundColor = Colors.purple
+        groupButton.addTarget(self, action: #selector(pushGroupCreationView), for: .touchUpInside)
         
         friendButton = AddButton()
         friendButton.configure(image: UIImage(named: "Profile")!, title: "Friend")
@@ -87,6 +89,16 @@ class AddController: UIViewController {
             make.top.equalTo(backButton.snp.bottom).offset(20)
             make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(30)
         }
+    }
+    
+    @objc func pushEventCreationView() {
+        let eventView = EventCreationController()
+        navigationController?.pushViewController(eventView, animated: true)
+    }
+    
+    @objc func pushGroupCreationView() {
+        let groupView = GroupCreationController()
+        navigationController?.pushViewController(groupView, animated: true)
     }
     
     @objc func dismissView() {
