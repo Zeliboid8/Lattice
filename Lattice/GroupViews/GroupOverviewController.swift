@@ -17,7 +17,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
     var searchBar: UISearchBar!
     var tableView: UITableView!
     var addButton: UIButton!
-    let groupList: [Group] = [Group(groupMembers: ["Satomi Kikunaga"]),
+    var groupList: [Group] = [Group(groupMembers: ["Satomi Kikunaga"]),
                                Group(groupName: "Parents", groupMembers: ["Charles Jones", "Anna Ricardo"]),
                                Group(groupMembers: ["Ellen", "Juan", "Rachael"]),
                                Group(groupName: "Math Study Group", groupMembers: ["Anthony Perez", "Daniel Heinz-Klarmann"]),
@@ -126,19 +126,26 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         }
         tableView.reloadData()
     }
-
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.groupList.remove(at: indexPath.row)
+            matchingGroups = groupList
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return matchingGroups.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return matchingGroups.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! GroupTableViewCell
-        cell.configureWithGroup(group: matchingGroups[indexPath.section])
+        cell.configureWithGroup(group: matchingGroups[indexPath.row])
         cell.backgroundColor = .clear
         cell.setNeedsUpdateConstraints()
         return cell
@@ -148,22 +155,9 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
         return cellHeight
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 0
-        }
-        return cellSpacing
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = .clear
-        return headerView
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let groupController = GroupController()
-        groupController.setGroup(group: groupList[indexPath.section])
+        groupController.setGroup(group: groupList[indexPath.row])
         navigationController?.pushViewController(groupController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }

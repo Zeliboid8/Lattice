@@ -35,11 +35,11 @@ class EventCreationController: UIViewController {
     let dateFormatter = DateFormatter()
     let submitButtonHeight: CGFloat = 50
     let vOffset: CGFloat = 30
-    let hOffset: CGFloat = 30
+    let hOffset: CGFloat = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self,     selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         radialGradient = RadialGradientView()
@@ -151,6 +151,7 @@ class EventCreationController: UIViewController {
         view.addSubview(submitButton)
         
         let tapToDismiss = UITapGestureRecognizer(target: self, action: #selector(viewTapped(gesture:)))
+        tapToDismiss.cancelsTouchesInView = false
         view.addGestureRecognizer(tapToDismiss)
     
         setupConstraints()
@@ -176,7 +177,7 @@ class EventCreationController: UIViewController {
             make.height.equalTo(submitButtonHeight)
         }
         eventNameLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(titleLabel.snp.bottom).offset(25)
+            make.top.equalTo(titleLabel.snp.bottom).offset(35)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(vOffset)
         }
         eventNameTextField.snp.makeConstraints { (make) -> Void in

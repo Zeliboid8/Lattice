@@ -19,7 +19,7 @@ class GroupController: UIViewController, UISearchBarDelegate {
     var tableView: UITableView!
     var group: Group!
     
-    let memberList: [String] = ["Michael Jones", "Charles Jones", "Lily Jones", "Anna Ricardo", "Joshua Chen"]
+    var memberList: [String] = ["Michael Jones", "Charles Jones", "Lily Jones", "Anna Ricardo", "Joshua Chen"]
     var matchingMembers: [String]!
     
     let addMemberReuseIdentifier = "addCell"
@@ -135,15 +135,15 @@ class GroupController: UIViewController, UISearchBarDelegate {
 }
 extension GroupController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return matchingMembers.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return matchingMembers.count + 1
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: addMemberReuseIdentifier, for: indexPath) as! AddMemberCell
             cell.backgroundColor = .clear
             cell.setNeedsUpdateConstraints()
@@ -151,28 +151,23 @@ extension GroupController: UITableViewDelegate, UITableViewDataSource {
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: memberReuseIdentifier, for: indexPath) as! GroupTableViewCell
-            cell.configureWithUser(name: matchingMembers[indexPath.section - 1])
+            cell.configureWithUser(name: matchingMembers[indexPath.row - 1])
             cell.backgroundColor = .clear
             cell.setNeedsUpdateConstraints()
             return cell
         }
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.memberList.remove(at: indexPath.row)
+            matchingMembers = memberList
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeight
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 0
-        }
-        return cellSpacing
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = .clear
-        return headerView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

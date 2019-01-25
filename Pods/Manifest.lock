@@ -10,6 +10,7 @@ PODS:
   - JGProgressHUD (2.0.3)
   - JTAppleCalendar (7.1.6)
   - SnapKit (4.2.0)
+  - SwipeCellKit (2.5.1)
   - TesseractOCRiOS (5.0.1)
   - TOCropViewController (2.4.0)
 
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - JGProgressHUD
   - JTAppleCalendar
   - SnapKit
+  - SwipeCellKit
   - TesseractOCRiOS
 
 SPEC REPOS:
@@ -30,6 +32,7 @@ SPEC REPOS:
     - JGProgressHUD
     - JTAppleCalendar
     - SnapKit
+    - SwipeCellKit
     - TesseractOCRiOS
     - TOCropViewController
 
@@ -40,9 +43,10 @@ SPEC CHECKSUMS:
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwipeCellKit: 30fd6a4f8a8b8ac864ea389c8b4c8bac5ba5471a
   TesseractOCRiOS: 2c189465f86abb030d0c5141c90da9705b647854
   TOCropViewController: 368d8df3ea43b62c3dc5a61f11b9048274d240bd
 
-PODFILE CHECKSUM: de76db5447d632c5f1d9e89bcf8bcc6f71ed9f2d
+PODFILE CHECKSUM: 15135d72253c924b43244a4939b35c563f061083
 
 COCOAPODS: 1.6.0.beta.2

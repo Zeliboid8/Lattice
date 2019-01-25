@@ -41,6 +41,7 @@
 		CA8FE1AC21FA6B4300E9D812 /* GroupCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8FE1AB21FA6B4300E9D812 /* GroupCreationController.swift */; };
 		CA8FE1AF21FADF0000E9D812 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8FE1AE21FADF0000E9D812 /* FriendController.swift */; };
 		CA8FE1B121FADF5400E9D812 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8FE1B021FADF5400E9D812 /* Group.swift */; };
+		CA8FE1B521FAE9A200E9D812 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8FE1B421FAE9A200E9D812 /* FriendTableViewCell.swift */; };
 		CAB33FB421E6F668007D1D3E /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB321E6F668007D1D3E /* EventController.swift */; };
 		CAB33FB721E6F7E3007D1D3E /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB621E6F7E3007D1D3E /* HeaderView.swift */; };
 		CAB33FB921E6F7ED007D1D3E /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB33FB821E6F7ED007D1D3E /* EventCell.swift */; };
@@ -98,6 +99,7 @@
 		CA8FE1AB21FA6B4300E9D812 /* GroupCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCreationController.swift; sourceTree = "<group>"; };
 		CA8FE1AE21FADF0000E9D812 /* FriendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
 		CA8FE1B021FADF5400E9D812 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		CA8FE1B421FAE9A200E9D812 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		CAB33FB321E6F668007D1D3E /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		CAB33FB621E6F7E3007D1D3E /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		CAB33FB821E6F7ED007D1D3E /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				CA8FE1AE21FADF0000E9D812 /* FriendController.swift */,
+				CA8FE1B421FAE9A200E9D812 /* FriendTableViewCell.swift */,
 			);
 			path = FriendViews;
 			sourceTree = "<group>";
@@ -280,8 +283,8 @@
 				CA107ADF21E3294A00327490 /* AddController.swift */,
 				CA427B5F21E488440015CCD5 /* CalendarController.swift */,
 				CAFB12A921E418CE00D88446 /* MenuBar */,
-				CA5E47B321DF1169005606AA /* GroupViews */,
 				CA5E47B221DF113C005606AA /* CalendarViews */,
+				CA5E47B321DF1169005606AA /* GroupViews */,
 				CA5E47B621DF1177005606AA /* EventViews */,
 				CA8FE1AD21FADE9300E9D812 /* FriendViews */,
 				CA427B6321E5931F0015CCD5 /* UI */,
@@ -409,6 +412,7 @@
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 			);
@@ -422,6 +426,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 			);
@@ -476,6 +481,7 @@
 				CAB33FB921E6F7ED007D1D3E /* EventCell.swift in Sources */,
 				CA18261321E40CF3002DC869 /* Colors.swift in Sources */,
 				CA5E479A21DF10E7005606AA /* BlockCalendarController.swift in Sources */,
+				CA8FE1B521FAE9A200E9D812 /* FriendTableViewCell.swift in Sources */,
 				CADC5EA921E0AAA900E3097E /* LoginController.swift in Sources */,
 				CA5E47A721DF10F2005606AA /* TextSelectionController.swift in Sources */,
 				CADC5EA721E0641200E3097E /* GroupController.swift in Sources */,

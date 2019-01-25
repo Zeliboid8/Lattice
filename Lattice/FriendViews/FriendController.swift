@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class FriendController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
@@ -15,7 +16,8 @@ class FriendController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var friendsLabel: UILabel!
     var searchBar: UISearchBar!
     var tableView: UITableView!
-    let groupList: [Group] = [Group(groupMembers: ["Satomi Kikunaga"]),
+    var addButton: UIButton!
+    var groupList: [Group] = [Group(groupMembers: ["Satomi Kikunaga"]),
                               Group(groupName: "Parents", groupMembers: ["Charles Jones", "Anna Ricardo"]),
                               Group(groupMembers: ["Ellen", "Juan", "Rachael"]),
                               Group(groupName: "Math Study Group", groupMembers: ["Anthony Perez", "Daniel Heinz-Klarmann"]),
@@ -65,10 +67,25 @@ class FriendController: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(GroupTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(FriendTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.showsVerticalScrollIndicator = false
         view.addSubview(tableView)
+        
+        addButton = UIButton()
+        addButton.backgroundColor = Colors.red
+        addButton.setTitle("+", for: .normal)
+        addButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 50)
+        addButton.titleLabel?.textAlignment = .center
+        addButton.setTitleColor(.black, for: .normal)
+        addButton.layer.cornerRadius = 40
+        addButton.layer.shadowColor = Colors.shadowColor
+        addButton.layer.shadowOffset = CGSize(width: 5, height: 7)
+        addButton.layer.shadowOpacity = 0.8
+        addButton.layer.shadowRadius = 2
+        addButton.layer.masksToBounds = false
+//        addButton.addTarget(self, action: #selector(presentAddGroupView), for: .touchUpInside)
+        view.addSubview(addButton)
         
         setupConstraints()
     }
@@ -96,6 +113,11 @@ class FriendController: UIViewController, UITableViewDelegate, UITableViewDataSo
             make.leading.trailing.equalTo(view).inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-MenuBarParameters.menuBarHeight)
         }
+        addButton.snp.makeConstraints { (make) -> Void in
+            make.height.width.equalTo(80)
+            make.trailing.equalTo(view).offset(-35)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-45 - MenuBarParameters.menuBarHeight)
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -105,43 +127,37 @@ class FriendController: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView.reloadData()
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
         return matchingGroups.count
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! GroupTableViewCell
-        cell.configureWithGroup(group: matchingGroups[indexPath.section])
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! FriendTableViewCell
+        cell.configureWithGroup(group: matchingGroups[indexPath.row])
         cell.backgroundColor = .clear
         cell.setNeedsUpdateConstraints()
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.groupList.remove(at: indexPath.row)
+            matchingGroups = groupList
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeight
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 0
-        }
-        return cellSpacing
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = .clear
-        return headerView
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let groupController = GroupController()
-        groupController.setGroup(group: groupList[indexPath.section])
+        groupController.setGroup(group: groupList[indexPath.row])
         navigationController?.pushViewController(groupController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }

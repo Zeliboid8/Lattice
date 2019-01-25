@@ -1,16 +1,16 @@
 //
-//  GroupTableViewCell.swift
+//  FriendTableViewCell.swift
 //  Lattice
 //
-//  Created by Eli Zhang on 12/31/18.
-//  Copyright © 2018 Eli Zhang. All rights reserved.
+//  Created by Eli Zhang on 1/25/19.
+//  Copyright © 2019 Eli Zhang. All rights reserved.
 //
 
 import UIKit
 import SnapKit
 
-class GroupTableViewCell: UITableViewCell {
-
+class FriendTableViewCell: UITableViewCell {
+    
     var groupPhoto: UIImageView!
     var labelStackView: UIStackView!
     var nameLabel: UILabel!
@@ -75,61 +75,5 @@ class GroupTableViewCell: UITableViewCell {
     
     func configureWithUser(name: String) {
         nameLabel.text = name
-    }
-}
-
-class AddMemberCell: GroupTableViewCell {
-    
-    var addButton: UIButton!
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        groupPhoto.isHidden = true
-        
-        addButton = UIButton()
-        addButton.backgroundColor = Colors.red
-        addButton.setTitle("+", for: .normal)
-        addButton.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 30)
-        addButton.titleLabel?.textAlignment = .center
-        addButton.setTitleColor(.black, for: .normal)
-        addButton.layer.cornerRadius = photoHeight / 2
-        addButton.isUserInteractionEnabled = false
-        contentView.addSubview(addButton)
-        
-        nameLabel.text = "Add a member"
-    }
-    
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        let viewColor = addButton.backgroundColor
-        super.setHighlighted(false, animated: animated)
-        if highlighted {
-            addButton.backgroundColor = .clear
-        } else {
-            UIView.animate(withDuration: 0.65, animations: {
-                self.addButton.backgroundColor = viewColor
-            })
-        }
-        super.setHighlighted(highlighted, animated: animated)
-        addButton.backgroundColor = viewColor
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        let viewColor = addButton.backgroundColor
-        super.setSelected(selected, animated: animated)
-        addButton.backgroundColor = viewColor
-    }
-    
-    override func updateConstraints() {
-        addButton.snp.makeConstraints{ (make) -> Void in
-            make.centerY.equalTo(contentView)
-            make.leading.equalTo(contentView).offset(10)
-            make.height.width.equalTo(photoHeight)
-        }
-        super.updateConstraints()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

@@ -37,14 +37,14 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
     let minStartingHour: Int = 0
     var startingHour: Int = 9
     var fromTime: String {
-        if startingHour == 0 { return "12:00 am"}
-        return "\(startingHour <= 12 ? startingHour : startingHour - 12):00 \(startingHour <= 12 ? "am" : "pm")"
+        if startingHour == 0 { return "12 am"}
+        return "\(startingHour <= 12 ? startingHour : startingHour - 12) \(startingHour <= 12 ? "am" : "pm")"
     }
     let maxEndingHour: Int = 24
     var endingHour: Int = 17
     var toTime: String {
-        if endingHour == 0 { return "12:00 am"}
-        return "\(endingHour <= 12 ? endingHour : endingHour - 12):00 \(endingHour <= 12 ? "am" : "pm")"
+        if endingHour == 0 { return "12 am"}
+        return "\(endingHour <= 12 ? endingHour : endingHour - 12) \(endingHour <= 12 ? "am" : "pm")"
     }
     var numTimeCells: Int {
         return (endingHour - startingHour + 1) * slotsPerHour
@@ -76,7 +76,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
         
         fromDropDown = DropDownButton()
         fromDropDown.setTitle(fromTime, for: .normal)
-        fromDropDown.dropView.dropDownOptions = ["12:00 am", "1:00 am", "2:00 am", "3:00 am", "4:00 am", "5:00 am", "6:00 am", "7:00 am", "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm", "9:00 pm", "10:00 pm", "11:00 pm"]
+        fromDropDown.dropView.dropDownOptions = ["12 am", "1 am", "2 am", "3 am", "4 am", "5 am", "6 am", "7 am", "8 am", "9 am", "10 am", "11 am", "12 pm", "1 pm", "2 pm", "3 pm", "4 pm", "5 pm", "6 pm", "7 pm", "8 pm", "9 pm", "10 pm", "11 pm"]
         fromDropDown.delegate = self
         view.addSubview(fromDropDown)
         
@@ -88,7 +88,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
         
         toDropDown = DropDownButton()
         toDropDown.setTitle(toTime, for: .normal)
-        toDropDown.dropView.dropDownOptions = ["12:00 am", "1:00 am", "2:00 am", "3:00 am", "4:00 am", "5:00 am", "6:00 am", "7:00 am", "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm", "9:00 pm", "10:00 pm", "11:00 pm"]
+        toDropDown.dropView.dropDownOptions = ["12 am", "1 am", "2 am", "3 am", "4 am", "5 am", "6 am", "7 am", "8 am", "9 am", "10 am", "11 am", "12 pm", "1 pm", "2 pm", "3 pm", "4 pm", "5 pm", "6 pm", "7 pm", "8 pm", "9 pm", "10 pm", "11 pm"]
         toDropDown.delegate = self
         view.addSubview(toDropDown)
         
@@ -121,7 +121,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
         addButton.backgroundColor = Colors.purple
         addButton.setImage(UIImage(named: "Check")?.withRenderingMode(.alwaysTemplate), for: .normal)
         addButton.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        addButton.imageView?.tintColor = Colors.labelColor
+        addButton.imageView?.tintColor = .black
         addButton.layer.cornerRadius = 40
         addButton.layer.shadowColor = Colors.shadowColor
         addButton.layer.shadowOffset = CGSize(width: 5, height: 7)
@@ -173,7 +173,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
             make.leading.equalTo(fromLabel.snp.trailing)
             make.top.equalTo(fromLabel)
             make.height.equalTo(40)
-            make.width.equalTo(110)
+            make.width.equalTo(100)
         }
         toLabel.snp.makeConstraints { (make) -> Void in
             make.leading.equalTo(fromDropDown.snp.trailing)
@@ -184,7 +184,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
             make.leading.equalTo(toLabel.snp.trailing)
             make.top.equalTo(fromLabel)
             make.height.equalTo(40)
-            make.width.equalTo(110)
+            make.width.equalTo(100)
         }
         dailyTimes.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(collectionView).offset(headerCellHeight)
@@ -213,7 +213,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
                 collectionView.reloadData()
                 return
             }
-            startingHour = Int(contents.components(separatedBy: ":").first!) ?? startingHour
+            startingHour = Int(contents.components(separatedBy: ":").first!) ?? Int(contents.components(separatedBy: " ").first!)!
             if contents.suffix(2) == "pm" {
                 startingHour += 12
             }
@@ -225,7 +225,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
                 collectionView.reloadData()
                 return
             }
-            endingHour = Int(contents.components(separatedBy: ":").first!) ?? endingHour
+            endingHour = Int(contents.components(separatedBy: ":").first!) ?? Int(contents.components(separatedBy: " ").first!)!
             if contents.suffix(2) == "pm" {
                 endingHour += 12
             }
@@ -247,17 +247,13 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
                         return
                     }
                     let timeCell = collectionView.cellForItem(at: indexPath)
-                    if selecting {// !cellStates[indexPath.section][indexPath.item].isSelected {
+                    if selecting {
                         timeCell?.backgroundColor = Colors.highlightedCell
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            self.cellStates[indexPath.section][indexPath.item].isSelected = true
-                        }
+                        self.cellStates[indexPath.section][indexPath.item].isSelected = true
                     }
                     else {
                         timeCell?.backgroundColor = .clear
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            self.cellStates[indexPath.section][indexPath.item].isSelected = false
-                        }
+                        self.cellStates[indexPath.section][indexPath.item].isSelected = false
                     }
                 }
             }
@@ -268,17 +264,13 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
                         return
                     }
                     let timeCell = collectionView.cellForItem(at: indexPath)
-                    if selecting { // !cellStates[indexPath.section][indexPath.item].isSelected {
+                    if selecting {
                         timeCell?.backgroundColor = Colors.highlightedCell
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            self.cellStates[indexPath.section][indexPath.item].isSelected = true
-                        }
+                        self.cellStates[indexPath.section][indexPath.item].isSelected = true
                     }
                     else {
                         timeCell?.backgroundColor = .clear
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            self.cellStates[indexPath.section][indexPath.item].isSelected = false
-                        }
+                        self.cellStates[indexPath.section][indexPath.item].isSelected = false
                     }
                 }
             }
@@ -293,15 +285,11 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
             let timeCell = collectionView.cellForItem(at: indexPath)
             if !cellStates[indexPath.section][indexPath.item].isSelected {
                 timeCell?.backgroundColor = Colors.highlightedCell
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.cellStates[indexPath.section][indexPath.item].isSelected = true
-                }
+                self.cellStates[indexPath.section][indexPath.item].isSelected = true
             }
             else {
                 timeCell?.backgroundColor = .clear
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.cellStates[indexPath.section][indexPath.item].isSelected = false
-                }
+                self.cellStates[indexPath.section][indexPath.item].isSelected = false
             }
         }
     }
@@ -315,10 +303,44 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
     }
     
     @objc func saveData() {
-        popView()
+        var selectedTimes: [String] = []
+        for column in 0..<cellStates.count {
+            var selecting = false
+            var startingTime: String = ""
+            var endingTime: String = ""
+            for row in 1..<cellStates[column].count {
+                if selecting {
+                    if !cellStates[column][row].isSelected {
+                        endingTime = accurateTimeFromRow(row: row - 1)
+                        selectedTimes.append("\(startingTime) to \(endingTime), \(dayNames[column])")
+                        selecting = false
+                    }
+                }
+                else {
+                    if cellStates[column][row].isSelected {
+                        startingTime = accurateTimeFromRow(row: row - 1)
+                        selecting = true
+                    }
+                }
+            }
+        }
+        print(selectedTimes)
+//        popView()
     }
+    
+    func accurateTimeFromRow(row: Int) -> String {
+        let hour = startingHour + row / slotsPerHour
+        let minute = (60 / slotsPerHour) * (row % slotsPerHour)
+        return "\(hour == 0 ? 12 : hour <= 12 ? hour : hour - 12):\(String(format: "%02d", minute)) \(hour < 12 ? "am" : "pm")"
+    }
+    
 }
 extension BlockCalendarController: UITableViewDataSource, UITableViewDelegate {
+    
+    func timeFromIndexPath(indexPath: IndexPath) -> String {
+        let hour = startingHour + indexPath.row
+        return "\(hour == 0 ? 12 : hour <= 12 ? hour : hour - 12):00 \(hour < 12 ? "am" : "pm")"
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return endingHour - startingHour + 1
@@ -326,8 +348,7 @@ extension BlockCalendarController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = dailyTimes.dequeueReusableCell(withIdentifier: timeLabelCellReuseIdentifier, for: indexPath) as! TimeCell
-        let hour = startingHour + indexPath.row
-        cell.configure(title: "\(hour == 0 ? 12 : hour <= 12 ? hour : hour - 12):00 \(hour < 12 ? "am" : "pm")")
+        cell.configure(title: timeFromIndexPath(indexPath: indexPath))
         cell.setNeedsUpdateConstraints()
         return cell
     }
