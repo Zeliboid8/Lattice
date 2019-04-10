@@ -23,6 +23,7 @@ class FriendController: UIViewController, UITableViewDelegate, UITableViewDataSo
                               Group(groupName: "Math Study Group", groupMembers: ["Anthony Perez", "Daniel Heinz-Klarmann"]),
                               Group(groupName: "Jones Family", groupMembers: ["Michael Jones", "Charles Jones", "Anna Ricardo"]),
                               Group(groupMembers: ["Anna Ricardo"])]
+    let photoNames = ["Eli", "Kari", "Danielle", "Abhinav", "Noah", "Olivia"]
     var matchingGroups: [Group]!
     
     let reuseIdentifier = "groupCell"
@@ -137,7 +138,7 @@ class FriendController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! FriendTableViewCell
-        cell.configureWithGroup(group: matchingGroups[indexPath.row])
+        cell.configureWithGroup(group: matchingGroups[indexPath.row], photoName: photoNames[indexPath.row])
         cell.backgroundColor = .clear
         cell.setNeedsUpdateConstraints()
         return cell

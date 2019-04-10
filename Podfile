@@ -6,14 +6,10 @@ target 'Lattice' do
   use_frameworks!
 
   # Pods for Lattice
-  pod 'TesseractOCRiOS'
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'SnapKit'
   pod 'JTAppleCalendar'
-  pod 'IRLDocumentScanner'
-  pod 'SwipeCellKit'
-  pod 'JGProgressHUD'
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|

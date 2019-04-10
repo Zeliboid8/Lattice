@@ -44,7 +44,7 @@ class ProfileController: UIViewController {
         profilePhoto = UIImageView()
         profilePhoto.layer.masksToBounds = false
         profilePhoto.layer.cornerRadius = photoHeight / 2
-        profilePhoto.image = UIImage(named: "ProfilePhoto")
+        profilePhoto.image = UIImage(named: "Eli")
         profilePhoto.clipsToBounds = true
         profilePhoto.contentMode = .scaleAspectFit
         

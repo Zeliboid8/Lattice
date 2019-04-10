@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CA107ADC21E314F500327490 /* Nunito-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA107AD921E314D600327490 /* Nunito-Italic.ttf */; };
-		CA107ADD21E314F500327490 /* Nunito-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA107ADA21E314E600327490 /* Nunito-BoldItalic.ttf */; };
-		CA107ADE21E314F500327490 /* Nunito-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA107ADB21E314F200327490 /* Nunito-SemiBoldItalic.ttf */; };
 		CA107AE021E3294A00327490 /* AddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA107ADF21E3294A00327490 /* AddController.swift */; };
 		CA18261321E40CF3002DC869 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA18261221E40CF3002DC869 /* Colors.swift */; };
+		CA1B707F225E6E840027E2E9 /* Nunito-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAE7C56E221128E100EABD5D /* Nunito-Italic.ttf */; };
+		CA1B7080225E6E890027E2E9 /* Nunito-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAE7C56F221128E400EABD5D /* Nunito-SemiBoldItalic.ttf */; };
+		CA1B7081225E6E8C0027E2E9 /* Nunito-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAE7C56D221128DE00EABD5D /* Nunito-BoldItalic.ttf */; };
 		CA427B6021E488440015CCD5 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA427B5F21E488440015CCD5 /* CalendarController.swift */; };
 		CA5E475F21DE09CE005606AA /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E475E21DE09CE005606AA /* MenuCell.swift */; };
 		CA5E476821DED0DB005606AA /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E476421DED0DB005606AA /* CalendarCell.swift */; };
@@ -65,9 +65,6 @@
 /* Begin PBXFileReference section */
 		1938793CEDADB23B1D4E09DE /* Pods-Lattice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lattice.debug.xcconfig"; path = "Target Support Files/Pods-Lattice/Pods-Lattice.debug.xcconfig"; sourceTree = "<group>"; };
 		4FBFE1793BE587CE39C06923 /* Pods-Lattice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lattice.release.xcconfig"; path = "Target Support Files/Pods-Lattice/Pods-Lattice.release.xcconfig"; sourceTree = "<group>"; };
-		CA107AD921E314D600327490 /* Nunito-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Nunito-Italic.ttf"; path = "../../../../../Downloads/Nunito/Nunito-Italic.ttf"; sourceTree = "<group>"; };
-		CA107ADA21E314E600327490 /* Nunito-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Nunito-BoldItalic.ttf"; path = "../../../../../Downloads/Nunito/Nunito-BoldItalic.ttf"; sourceTree = "<group>"; };
-		CA107ADB21E314F200327490 /* Nunito-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Nunito-SemiBoldItalic.ttf"; path = "../../../../../Downloads/Nunito/Nunito-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		CA107ADF21E3294A00327490 /* AddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddController.swift; sourceTree = "<group>"; };
 		CA18261221E40CF3002DC869 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CA427B5F21E488440015CCD5 /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
@@ -115,6 +112,9 @@
 		CADC5EA621E0641200E3097E /* GroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupController.swift; sourceTree = "<group>"; };
 		CADC5EA821E0AAA900E3097E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		CADC5EAC21E0AD9D00E3097E /* Offside-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Offside-Regular.ttf"; sourceTree = "<group>"; };
+		CAE7C56D221128DE00EABD5D /* Nunito-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-BoldItalic.ttf"; sourceTree = "<group>"; };
+		CAE7C56E221128E100EABD5D /* Nunito-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Italic.ttf"; sourceTree = "<group>"; };
+		CAE7C56F221128E400EABD5D /* Nunito-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		CAF809E821E1D00200313A82 /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
 		CAF809EA21E1EF3000313A82 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		CAF809EC21E1F16500313A82 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
@@ -165,9 +165,6 @@
 		CA5E476E21DED2BC005606AA /* Nunito */ = {
 			isa = PBXGroup;
 			children = (
-				CA107AD921E314D600327490 /* Nunito-Italic.ttf */,
-				CA107ADA21E314E600327490 /* Nunito-BoldItalic.ttf */,
-				CA107ADB21E314F200327490 /* Nunito-SemiBoldItalic.ttf */,
 				CA5E476F21DED2BC005606AA /* Nunito-Black.ttf */,
 				CA5E477121DED2BC005606AA /* Nunito-Bold.ttf */,
 				CA5E477321DED2BC005606AA /* Nunito-ExtraBold.ttf */,
@@ -175,6 +172,9 @@
 				CA5E477821DED2BC005606AA /* Nunito-Light.ttf */,
 				CA5E477A21DED2BC005606AA /* Nunito-Regular.ttf */,
 				CA5E477B21DED2BC005606AA /* Nunito-SemiBold.ttf */,
+				CAE7C56D221128DE00EABD5D /* Nunito-BoldItalic.ttf */,
+				CAE7C56E221128E100EABD5D /* Nunito-Italic.ttf */,
+				CAE7C56F221128E400EABD5D /* Nunito-SemiBoldItalic.ttf */,
 			);
 			path = Nunito;
 			sourceTree = "<group>";
@@ -378,19 +378,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA5E478A21DED2CC005606AA /* Nunito-SemiBold.ttf in Resources */,
-				CA107ADC21E314F500327490 /* Nunito-Italic.ttf in Resources */,
+				CA1B707F225E6E840027E2E9 /* Nunito-Italic.ttf in Resources */,
+				CA1B7081225E6E8C0027E2E9 /* Nunito-BoldItalic.ttf in Resources */,
 				CAC263D421C6C0EF0018EEA8 /* LaunchScreen.storyboard in Resources */,
 				CA5E478721DED2CC005606AA /* Nunito-Light.ttf in Resources */,
 				CA5E478221DED2CC005606AA /* Nunito-ExtraBold.ttf in Resources */,
 				CAC263E021C86EE70018EEA8 /* tessdata in Resources */,
 				CA5E478921DED2CC005606AA /* Nunito-Regular.ttf in Resources */,
 				CA5E478421DED2CC005606AA /* Nunito-ExtraLight.ttf in Resources */,
-				CA107ADE21E314F500327490 /* Nunito-SemiBoldItalic.ttf in Resources */,
 				CA5E478021DED2CC005606AA /* Nunito-Bold.ttf in Resources */,
+				CA1B7080225E6E890027E2E9 /* Nunito-SemiBoldItalic.ttf in Resources */,
 				CADC5EAD21E13FF900E3097E /* Offside-Regular.ttf in Resources */,
 				CAC263D121C6C0EF0018EEA8 /* Assets.xcassets in Resources */,
 				CA5E477E21DED2CC005606AA /* Nunito-Black.ttf in Resources */,
-				CA107ADD21E314F500327490 /* Nunito-BoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,13 +408,8 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Lattice/Pods-Lattice-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
-				"${BUILT_PRODUCTS_DIR}/IRLDocumentScanner/IRLDocumentScanner.framework",
-				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
-				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -422,13 +417,8 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IRLDocumentScanner.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -640,6 +630,7 @@
 			baseConfigurationReference = 1938793CEDADB23B1D4E09DE /* Pods-Lattice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37AKFHT6H5;
 				ENABLE_BITCODE = NO;
@@ -651,6 +642,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elizhang.Lattice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -661,6 +653,7 @@
 			baseConfigurationReference = 4FBFE1793BE587CE39C06923 /* Pods-Lattice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37AKFHT6H5;
 				ENABLE_BITCODE = NO;
@@ -672,6 +665,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elizhang.Lattice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

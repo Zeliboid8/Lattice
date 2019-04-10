@@ -24,6 +24,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
                                Group(groupName: "Jones Family", groupMembers: ["Michael Jones", "Charles Jones", "Anna Ricardo"]),
                                Group(groupMembers: ["Anna Ricardo"])]
     var matchingGroups: [Group]!
+    let photoNames = ["Eli", "Kari", "Danielle", "Abhinav", "Noah", "Olivia"]
     
     let reuseIdentifier = "groupCell"
     let cellHeight: CGFloat = 80
@@ -145,7 +146,7 @@ class GroupOverviewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! GroupTableViewCell
-        cell.configureWithGroup(group: matchingGroups[indexPath.row])
+        cell.configureWithGroup(group: matchingGroups[indexPath.row], photoName: photoNames[indexPath.row])
         cell.backgroundColor = .clear
         cell.setNeedsUpdateConstraints()
         return cell

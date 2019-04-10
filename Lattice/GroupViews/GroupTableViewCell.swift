@@ -24,10 +24,8 @@ class GroupTableViewCell: UITableViewCell {
         contentView.backgroundColor = .clear
         
         groupPhoto = UIImageView()
-        groupPhoto.image = UIImage(named: "ProfilePhoto")
         groupPhoto.layer.masksToBounds = false
         groupPhoto.layer.cornerRadius = photoHeight / 2
-        groupPhoto.image = UIImage(named: "ProfilePhoto")
         groupPhoto.clipsToBounds = true
         groupPhoto.contentMode = .scaleAspectFit
         contentView.addSubview(groupPhoto)
@@ -66,14 +64,16 @@ class GroupTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    func configureWithGroup(group: Group) {
+    func configureWithGroup(group: Group, photoName: String) {
+        groupPhoto.image = UIImage(named: photoName)
         nameLabel.text = group.groupName
         if (group.hasName) {
             memberLabel.text = group.groupMembersString
         }
     }
     
-    func configureWithUser(name: String) {
+    func configureWithUser(name: String, photoName: String) {
+        groupPhoto.image = UIImage(named: photoName)
         nameLabel.text = name
     }
 }

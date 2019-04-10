@@ -20,6 +20,7 @@ class GroupController: UIViewController, UISearchBarDelegate {
     var group: Group!
     
     var memberList: [String] = ["Michael Jones", "Charles Jones", "Lily Jones", "Anna Ricardo", "Joshua Chen"]
+    let photoNames = ["Eli", "Kari", "Danielle", "Abhinav", "Noah", "Olivia"]
     var matchingMembers: [String]!
     
     let addMemberReuseIdentifier = "addCell"
@@ -151,7 +152,7 @@ extension GroupController: UITableViewDelegate, UITableViewDataSource {
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: memberReuseIdentifier, for: indexPath) as! GroupTableViewCell
-            cell.configureWithUser(name: matchingMembers[indexPath.row - 1])
+            cell.configureWithUser(name: matchingMembers[indexPath.row - 1], photoName: photoNames[indexPath.row - 1])
             cell.backgroundColor = .clear
             cell.setNeedsUpdateConstraints()
             return cell

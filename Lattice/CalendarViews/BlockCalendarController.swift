@@ -118,7 +118,7 @@ class BlockCalendarController: UIViewController, UICollectionViewDelegateFlowLay
         view.addSubview(collectionView)
         
         addButton = UIButton()
-        addButton.backgroundColor = Colors.purple
+        addButton.backgroundColor = Colors.red
         addButton.setImage(UIImage(named: "Check")?.withRenderingMode(.alwaysTemplate), for: .normal)
         addButton.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         addButton.imageView?.tintColor = .black
