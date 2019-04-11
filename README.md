@@ -1,6 +1,4 @@
 # Lattice
-Scheduling and event planning app
-
 Lattice is a scheduling app that helps you coordinate event planning with others. 
 Setting up a schedule is as easy as importing a calendar from Google Calendar or iCal or blocking the times you're available in the calendar blocking tool. After you've created a schedule, you can create groups with friends, family, or coworkers to instantly find overlapping times and highlight availability. You can view group calendars and look at dates and times that work best for everyone all through a simple and intuitive interface.
 
