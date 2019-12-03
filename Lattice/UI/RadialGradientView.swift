@@ -11,7 +11,7 @@ import UIKit
 class RadialGradientView: UIView {
     
     let radius: CGFloat = 500
-    let colors: [CGColor] = [UIColor(red: 0.22, green: 0.22, blue: 0.22, alpha: 1.0).cgColor, UIColor.black.cgColor]
+    let colors: [CGColor] = [UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.0).cgColor, UIColor.black.cgColor]
     var gradientLayer: RadialGradientLayer!
     
     override init(frame: CGRect) {

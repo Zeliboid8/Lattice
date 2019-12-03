@@ -11,13 +11,15 @@ import SnapKit
 
 class MenuCell: UICollectionViewCell {
     var imageView: UIImageView!
-    let barColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
+    let barColor = UIColor.clear
+    let defaultTint = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+    let highlightedColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.7)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = barColor
         imageView = UIImageView()
-        imageView.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+        imageView.tintColor = defaultTint
         contentView.addSubview(imageView)
     }
     
@@ -31,15 +33,15 @@ class MenuCell: UICollectionViewCell {
     
     override var isHighlighted: Bool {
         didSet {
-            imageView.tintColor = isHighlighted ? UIColor.white : UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-            backgroundColor = isHighlighted ? UIColor(red: 0.85, green: 0.84, blue: 0.84, alpha: 0.7) : barColor
+            imageView.tintColor = isHighlighted ? UIColor.white : defaultTint
+            backgroundColor = isHighlighted ? highlightedColor : barColor
         }
     }
     
     override var isSelected: Bool {
         didSet {
-            imageView.tintColor = isSelected ? UIColor.white : UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-            backgroundColor = isSelected ? UIColor(red: 0.85, green: 0.84, blue: 0.84, alpha: 0.7) : barColor
+            imageView.tintColor = isSelected ? UIColor.white : defaultTint
+            backgroundColor = isSelected ? highlightedColor : barColor
         }
     }
     

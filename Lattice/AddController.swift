@@ -64,7 +64,7 @@ class AddController: UIViewController {
         bottomStackView.axis = .horizontal
         bottomStackView.spacing = 30
         bottomStackView.distribution = .fillEqually
-        bottomStackView.addArrangedSubview(groupButton)
+        bottomStackView.addArrangedSubview(groupButton)	
         bottomStackView.addArrangedSubview(friendButton)
         
         verticalStackView = UIStackView()

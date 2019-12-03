@@ -31,6 +31,8 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(MenuCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
+        collectionView.backgroundView = UIView(frame: CGRect.zero)
+        collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
         addSubview(collectionView)
@@ -39,7 +41,6 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         let defaultSelectedItemPath = IndexPath(item: 0, section: 2)
         collectionView.selectItem(at: defaultSelectedItemPath, animated: false, scrollPosition: .left)
         
-        setupGradient()
         setupConstraints()
     }
     
@@ -47,17 +48,6 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         horizontalBar = UIView()
         horizontalBar.backgroundColor = UIColor(red: 0.03, green: 0.85, blue: 0.84, alpha: 1)
         addSubview(horizontalBar)
-    }
-    
-    func setupGradient() {
-        let colorCenter = UIColor(red: 0.30, green: 0.30, blue: 0.30, alpha: 1)
-        let colorSides = UIColor(red: 0.44, green: 0.44, blue: 0.44, alpha: 1)
-        barGradient = CAGradientLayer()
-        barGradient.anchorPoint = .zero
-        barGradient.colors = [colorSides, colorCenter, colorSides]
-        barGradient.locations = [0.0, 1.0]
-        barGradient.frame = frame
-        layer.insertSublayer(barGradient, at: 0)
     }
     
     func setupConstraints() {
@@ -94,7 +84,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! MenuCell
         cell.imageView.image = UIImage(named: imageNames[indexPath.section])?.withRenderingMode(.alwaysTemplate)
-        cell.tintColor = UIColor(red: 0.22, green: 0.22, blue: 0.22, alpha: 1)
+        cell.tintColor = UIColor.clear
         cell.setNeedsUpdateConstraints()
         return cell
     }
